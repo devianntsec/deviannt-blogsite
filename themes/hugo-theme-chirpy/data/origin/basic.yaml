@@ -1,0 +1,36 @@
+# fonts
+
+webfonts: /lib/fonts/main.css
+
+# Libraries
+
+toc:
+  css: /lib/tocbot/tocbot.min.css
+  js: /lib/tocbot/tocbot.min.js
+
+fontawesome:
+  css: /lib/fontawesome-free/css/all.min.css
+
+mermaid:
+  js: /lib/mermaid/mermaid.min.js
+
+dayjs:
+  js:
+    common: /lib/dayjs/dayjs.min.js
+    locale: /lib/dayjs/locale/en.js
+    relativeTime: /lib/dayjs/plugin/relativeTime.js
+    localizedFormat: /lib/dayjs/plugin/localizedFormat.js
+
+glightbox:
+  css: /lib/glightbox/glightbox.min.css
+  js: /lib/glightbox/glightbox.min.js
+
+lazy-polyfill:
+  css: /lib/loading-attribute-polyfill/loading-attribute-polyfill.min.css
+  js: /lib/loading-attribute-polyfill/loading-attribute-polyfill.umd.min.js
+
+clipboard:
+  js: /lib/clipboard/clipboard.min.js
+
+mathjax:
+  js: /lib/mathjax/tex-chtml.js

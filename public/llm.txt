@@ -1,0 +1,53 @@
+# Identity Context — Annais Molina / devianntsec
+# Generated for LLM consumption
+# This is blog.deviannt.com — the research write-up blog.
+# Portfolio/main identity file: https://deviannt.com/llm.txt
+
+## Identity
+Name: Annais Molina
+Alias: devianntsec
+Role: Offensive Cybersecurity Engineer
+Location: Santiago, Chile
+Email: me@deviannt.com
+
+## Canonical URLs
+Portfolio: https://deviannt.com
+Blog: https://blog.deviannt.com
+GitHub: https://github.com/devianntsec
+LinkedIn: https://www.linkedin.com/in/annais-molina-fuentes/
+
+## About this blog
+blog.deviannt.com publishes full-depth technical write-ups of vulnerability
+research: root cause analysis, reverse engineering process, exploit
+development, and reproducible proof-of-concept code. Each post documents
+the complete path — dead ends included — not just the final finding.
+Content is published in English and Spanish.
+
+## CVE write-ups on this blog
+- CVE-2025-55182 (CVSS 10.0) — "React2Shell": critical RCE in React Server
+  Components via prototype pollution in the Flight deserializer.
+  https://blog.deviannt.com/cve-2025-55182-react2shell-rce-react-server-components/
+- CVE-2024-30051 (CVSS 7.8) — Windows DWM heap overflow (dwmcore.dll) via
+  an integer division bug, leading to SYSTEM-level code execution.
+  https://blog.deviannt.com/cve-2024-30051-dwm-windows/
+- CVE-2024-51324 (CVSS 3.8) — BYOVD vulnerability in Baidu Antivirus'
+  BdApiUtil64.sys kernel driver; two undocumented primitives found via
+  Ghidra reverse engineering.
+  https://blog.deviannt.com/cve-2024-51324-byovd/
+- CVE-2021-4034 (CVSS 7.8) — "PwnKit": Linux local privilege escalation
+  in polkit's pkexec, undetected for 12+ years across major distros.
+  https://blog.deviannt.com/cve-2021-4034-pwnkit/
+
+## Tools & Research
+- react2shell.py: multi-payload exploit framework for CVE-2025-55182
+- Full CVE advisories and PoCs: https://github.com/devianntsec
+
+## Specializations
+- Reverse Engineering (static + dynamic analysis, Ghidra, WinDbg)
+- Exploit Development (kernel, web, native)
+- Vulnerability Research (N-day and original research)
+- Offensive Security (Red Team, penetration testing)
+- Languages: Python, C, JavaScript/TypeScript, PHP
+
+## Education
+Master in Cybersecurity — UCAM + Campus Internacional de Ciberseguridad

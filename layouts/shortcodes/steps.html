@@ -1,0 +1,29 @@
+{{ $lines := split (trim .Inner "\n\r ") "\n" }}
+{{ $steps := slice }}
+{{ range $lines }}
+  {{ $line := trim . "\r " }}
+  {{ if $line }}
+    {{ $steps = $steps | append $line }}
+  {{ end }}
+{{ end }}
+<div class="dv-step-list">
+  {{ $total := len $steps }}
+  {{ range $i, $raw := $steps }}
+    {{ $parts := split $raw "|" }}
+    {{ $title := trim (index $parts 0) " " }}
+    {{ $desc  := "" }}
+    {{ if gt (len $parts) 1 }}{{ $desc = trim (index $parts 1) " " }}{{ end }}
+    {{ $num    := printf "%02d" (add $i 1) }}
+    {{ $isLast := eq (add $i 1) $total }}
+    <div class="dv-step">
+      <div class="dv-step-connector">
+        <div class="dv-step-num{{ if eq $i 0 }} active{{ end }}">{{ $num }}</div>
+        {{ if not $isLast }}<div class="dv-step-line"></div>{{ end }}
+      </div>
+      <div class="dv-step-body">
+        <div class="dv-step-title">{{ $title }}</div>
+        {{ with $desc }}<div class="dv-step-desc">{{ . }}</div>{{ end }}
+      </div>
+    </div>
+  {{ end }}
+</div>

@@ -1,0 +1,29 @@
+<!-- Get 5 last posted/updated posts -->
+{{ $MAX_SIZE := 5 }}
+{{ $all_posts := slice }}
+
+{{ range $index, $post := where site.RegularPages "Type" "in" site.Params.mainSections }}
+  {{ $datetime := $post.Lastmod | default $post.Date }}
+  {{ $elem := printf "%s::%d" ($datetime.Format "20060102150405") $index }}
+  {{ $all_posts = $all_posts | append $elem }}
+{{ end }}
+
+{{ $all_posts = sort $all_posts "value" "desc" }}
+{{ $update_list := first $MAX_SIZE $all_posts }}
+
+{{ if gt (len $update_list) 0 }}
+  <section id="access-lastmod">
+    <h2 class="panel-heading">{{ T "panel.lastmod" }}</h2>
+    <ul class="content list-unstyled ps-0 pb-1 ms-1 mt-2">
+      {{ range $item := $update_list }}
+        {{ $parts := split $item "::" }}
+        {{ $index := index $parts 1 | int }}
+        {{ $post := index (where site.RegularPages "Type" "in" site.Params.mainSections) $index }}
+        <li class="text-truncate lh-lg">
+          <a href="{{ $post.RelPermalink }}">{{ $post.Title }}</a>
+        </li>
+      {{ end }}
+    </ul>
+  </section>
+  <!-- #access-lastmod -->
+{{ end }}

@@ -1,0 +1,4 @@
+{{ $enableComment := .Params.comments | default .Site.Params.comments.enable }}
+{{ if and $enableComment .Site.Params.comments.provider }}
+  {{ partial (printf "comments/%s.html" .Site.Params.comments.provider) . }}
+{{ end }}

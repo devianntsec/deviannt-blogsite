@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categorías on devianntsec</title>
+    <link>http://localhost:1313/es/categories/</link>
+    <description>Recent content in Categorías on devianntsec</description>
+    <generator>Hugo</generator>
+    <language>es</language>
+    <atom:link href="http://localhost:1313/es/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Linux</title>
+      <link>http://localhost:1313/es/categories/linux/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/es/categories/linux/</guid>
+      <description>&lt;p&gt;Técnicas de escalada de privilegios local, investigación a nivel de kernel y explotación de componentes del sistema Linux.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Security</title>
+      <link>http://localhost:1313/es/categories/security/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/es/categories/security/</guid>
+      <description>&lt;p&gt;Análisis detallados de CVEs, explotación binaria, vulnerabilidades de kernel e investigación de seguridad ofensiva.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Web</title>
+      <link>http://localhost:1313/es/categories/web/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/es/categories/web/</guid>
+      <description>&lt;p&gt;Fallos de lógica server-side, prototype pollution, ataques de deserialización y cadenas de explotación web.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Windows</title>
+      <link>http://localhost:1313/es/categories/windows/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/es/categories/windows/</guid>
+      <description>&lt;p&gt;Internos del kernel de Windows, investigación de vulnerabilidades en drivers, explotación de heap y cadenas de elevación de privilegios.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Nodejs on devianntsec</title>
+    <link>http://localhost:1313/tags/nodejs/</link>
+    <description>Recent content in Nodejs on devianntsec</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 03 Jul 2026 15:37:13 -0400</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/nodejs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CVE-2025-55182 · React2Shell: RCE in React Server Components via Prototype Pollution</title>
+      <link>http://localhost:1313/cve-2025-55182-react2shell-rce-react-server-components/</link>
+      <pubDate>Wed, 22 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/cve-2025-55182-react2shell-rce-react-server-components/</guid>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;strong&gt;TL;DR:&lt;/strong&gt; React&amp;rsquo;s Flight deserializer evaluates any object with a &lt;code&gt;.then&lt;/code&gt; method as a Promise, regardless of its actual type. An attacker poisons &lt;code&gt;Object.prototype.then&lt;/code&gt; through a crafted multipart POST, forcing the server to execute arbitrary JavaScript via the &lt;code&gt;Function&lt;/code&gt; constructor. The result is exfiltrated through the &lt;code&gt;X-Action-Redirect&lt;/code&gt; HTTP header as a redirect parameter. No authentication required. Deterministic. &lt;strong&gt;CVSS v3.1: 10.0 (Critical).&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;1-context--react-server-components-and-the-attack-surface&#34; id=1-context--react-server-components-and-the-attack-surface&gt;&#xD;&#xA;  &#xD;&#xA;    &lt;span class=&#34;me-2&#34;&gt;1. Context — React Server Components and the Attack Surface&lt;/span&gt;&#xD;&#xA;    &lt;a href=&#34;#1-context--react-server-components-and-the-attack-surface&#34; class=&#34;anchor text-muted&#34;&gt;&lt;i class=&#34;fas fa-hashtag&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xD;&#xA;  &#xD;&#xA;&lt;/h2&gt;&lt;p&gt;React Server Components (RSC) were introduced experimentally in React 18 and stabilized as a production-ready feature in &lt;strong&gt;React 19&lt;/strong&gt;, alongside &lt;strong&gt;Server Actions&lt;/strong&gt;: a model where UI components execute directly on the server and communicate with the client through a custom serialization layer called the &lt;strong&gt;Flight protocol&lt;/strong&gt;. When the client invokes a Server Action, it sends a multipart POST request with a serialized payload. The server deserializes it, executes the action, and streams back the result.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,20 @@
+{{ define "main" }}
+  {{ $lang := .Site.Language.Lang }}
+
+  <div id="page-tag">
+    <h1 class="ps-lg-2">
+      <i class="fa fa-tag fa-fw text-muted"></i>
+      {{ .Data.Term }}
+      <span class="lead text-muted ps-2">{{ len .Pages }}</span>
+    </h1>
+    <ul class="content ps-0">
+      {{ range .Pages }}
+        <li class="d-flex justify-content-between px-md-3">
+          <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+          <span class="dash flex-grow-1"></span>
+          {{ partial "datetime.html" (dict "date" .Date "lang" $lang "class" "text-muted small text-nowrap") }}
+        </li>
+      {{ end }}
+    </ul>
+  </div>
+{{ end }}

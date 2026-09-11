@@ -1,0 +1,22 @@
+{
+  "name": "blog-static-assets",
+  "private": true,
+  "description": "Dependencias solo para vendorizar assets self-hosted del theme Chirpy (ver scripts/vendor-assets.mjs)",
+  "scripts": {
+    "vendor-assets": "node scripts/vendor-assets.mjs",
+    "prebuild": "npm run vendor-assets"
+  },
+  "devDependencies": {
+    "@fortawesome/fontawesome-free": "6.7.1",
+    "tocbot": "4.32.2",
+    "mermaid": "11.4.0",
+    "dayjs": "1.11.13",
+    "glightbox": "^3.3.1",
+    "loading-attribute-polyfill": "^2.1.1",
+    "clipboard": "^2.0.11",
+    "mathjax-full": "^3.2.1",
+    "@fontsource/jetbrains-mono": "^5.3.0",
+    "@fontsource/azeret-mono": "^5.3.0",
+    "@fontsource/inter": "^5.3.0"
+  }
+}

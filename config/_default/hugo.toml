@@ -1,0 +1,29 @@
+# The base URL for the site — update this to your final domain
+baseURL = 'https://blog.deviannt.com/'
+# The title of the site.
+title = 'devianntsec'
+# Enable Git info
+enableGitInfo = true
+# Default content language.
+defaultContentLanguage = "en"
+defaultContentLanguageInSubdir = false
+# CJK support — can set to false since this is an EN-only blog
+hasCJKLanguage = false
+
+# Use local theme from themes/hugo-theme-chirpy/
+theme = "hugo-theme-chirpy"
+
+[pagination]
+  pagerSize = 5
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+  page = ["HTML"]
+  section = ["HTML", "RSS"]
+
+[permalinks]
+  post = "/:slug"
+
+  [module]
+[[module.imports]]
+  path = "github.com/gohugoio/hugo-mod-bootstrap-scss/v5"

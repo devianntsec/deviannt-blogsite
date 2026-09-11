@@ -1,0 +1,59 @@
+{{/*
+  layouts/partials/sidebar-bottom.html
+  ─────────────────────────────────────────────────────────────
+  Renders the bottom section of the sidebar if the theme calls
+  this partial separately (some Chirpy versions do).
+
+  In our custom setup, the theme toggle and social links are
+  already rendered directly in layouts/partials/sidebar.html,
+  so this partial is kept for compatibility but its elements
+  are styled to not conflict with the sidebar.html output.
+
+  If the theme stops calling sidebar.html and reverts to calling
+  sidebar-bottom.html, this file provides a fallback.
+*/}}
+
+<div id="sidebar-bottom" class="dv-sidebar-bottom">
+
+  {{/* ── Theme toggle ─────────────────────────────────────
+       Matches the button in sidebar.html.
+       JS in metadata-hook.html binds to id="dv-mode-toggle".
+  ── */}}
+  <button id="dv-mode-toggle" class="dv-theme-toggle" aria-label="Toggle theme">
+    <span class="dv-bulb-icon"></span>
+    <span class="dv-bulb-label"></span>
+  </button>
+
+  {{/* ── Social links ─────────────────────────────────────
+       Iterates .Site.Params.social.links from params.toml.
+       Uses icon-only buttons (no text labels).
+  ── */}}
+  {{- with .Site.Params.social }}
+  <div class="dv-social-links">
+    {{- range .links }}
+      {{- if eq .type "github" }}
+    <a href="https://github.com/{{ .id }}"
+       class="dv-social-btn"
+       target="_blank" rel="noopener"
+       aria-label="GitHub">
+      <i class="{{ .icon }}"></i>
+    </a>
+      {{- else if eq .type "email" }}
+    <a href="mailto:{{ .id }}"
+       class="dv-social-btn"
+       aria-label="Email">
+      <i class="{{ .icon }}"></i>
+    </a>
+      {{- else }}
+    <a href="{{ .id }}"
+       class="dv-social-btn"
+       target="_blank" rel="noopener"
+       aria-label="{{ .type }}">
+      <i class="{{ .icon }}"></i>
+    </a>
+      {{- end }}
+    {{- end }}
+  </div>
+  {{- end }}
+
+</div>

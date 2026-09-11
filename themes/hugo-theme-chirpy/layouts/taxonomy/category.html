@@ -1,0 +1,19 @@
+{{ define "main" }}
+<div id="page-category">
+  <h1 class="ps-lg-2">
+    <i class="far fa-folder-open fa-fw text-muted"></i>
+    {{ .Title }}
+    <span class="lead text-muted ps-2">{{ len .Pages }}</span>
+  </h1>
+
+  <ul class="content ps-0">
+    {{ range .Pages }}
+      <li class="d-flex justify-content-between px-md-3">
+        <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+        <span class="dash flex-grow-1"></span>
+        <span class="text-muted small text-nowrap">{{ .Date | time.Format ":date_medium" }}</span>
+      </li>
+    {{ end }}
+  </ul>
+</div>
+{{ end }}

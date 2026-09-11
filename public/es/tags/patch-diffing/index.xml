@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Patch-Diffing on devianntsec</title>
+    <link>http://localhost:1313/es/tags/patch-diffing/</link>
+    <description>Recent content in Patch-Diffing on devianntsec</description>
+    <generator>Hugo</generator>
+    <language>es</language>
+    <lastBuildDate>Fri, 03 Jul 2026 15:37:13 -0400</lastBuildDate>
+    <atom:link href="http://localhost:1313/es/tags/patch-diffing/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CVE-2024-30051 · Heap Overflow en Windows DWM: de un error de división entera a SYSTEM</title>
+      <link>http://localhost:1313/es/cve-2024-30051-heap-overflow-en-windows-dwm-de-un-error-de-divisi%C3%B3n-entera-a-system/</link>
+      <pubDate>Wed, 06 May 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/es/cve-2024-30051-heap-overflow-en-windows-dwm-de-un-error-de-divisi%C3%B3n-entera-a-system/</guid>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;strong&gt;TL;DR:&lt;/strong&gt; &lt;code&gt;CCommandBuffer::Initialize&lt;/code&gt; en &lt;code&gt;dwmcore.dll&lt;/code&gt; llama a &lt;code&gt;GetBufferSize()&lt;/code&gt; dos veces y trunca uno de los resultados mediante división entera antes de pasarlo a &lt;code&gt;new[]&lt;/code&gt;, mientras deja el segundo resultado sin modificar para &lt;code&gt;memcpy&lt;/code&gt;. La diferencia es exactamente &lt;code&gt;0x8F&lt;/code&gt; bytes. Un heap spray de objetos &lt;code&gt;CHolographicInteropTexture&lt;/code&gt; convierte ese overflow en una llamada a &lt;code&gt;LoadLibraryA&lt;/code&gt; dentro de &lt;code&gt;dwm.exe&lt;/code&gt;. Requiere una sesión de usuario local. Determinista. &lt;strong&gt;Integrity Level SYSTEM&lt;/strong&gt;. Parcheado en KB5037771 (mayo 2024).&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

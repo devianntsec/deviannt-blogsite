@@ -1,0 +1,37 @@
+{{/*
+  layouts/partials/metadata-hook.html
+  Orquestador: SEO/meta, runtime JS y overrides CSS del tema.
+  Antes: 678 líneas mezclando los tres. Ahora cada pieza vive en su
+  propio archivo y este partial solo los conecta:
+
+    - SEO/meta  -> layouts/partials/seo-meta.html
+    - JS        -> assets/js/site-runtime.js   (dark-mode boot, avatar
+                   cache, redirect 404, animación de título, theme
+                   toggle, soft-navigation, guard de TOC)
+    - CSS       -> assets/css/overrides.css    (parches con !important
+                   acumulados, antes en un <style> inline)
+*/}}
+
+{{ partial "seo-meta.html" . }}
+
+{{- $style   := resources.Get "css/custom.scss"    | toCSS | minify -}}
+{{- $syntax  := resources.Get "css/syntax.css"     | minify -}}
+{{- $overr   := resources.Get "css/overrides.css"  | minify -}}
+{{- $runtime := resources.Get "js/site-runtime.js" | minify -}}
+
+<link rel="stylesheet" href="{{ $syntax.Permalink }}" id="dv-syntax-css">
+
+{{- if eq .Kind "404" }}
+<script>window.__dv404 = true;</script>
+{{- end }}
+
+{{/*
+  El script se carga sin defer/async, en la misma posición que el
+  IIFE de boot original, para preservar el timing: debe correr antes
+  del primer paint para evitar flash de tema incorrecto (FOUC de
+  dark/light mode) y para restaurar el avatar cacheado a tiempo.
+*/}}
+<script src="{{ $runtime.Permalink }}"></script>
+
+<link rel="stylesheet" href="{{ $style.Permalink }}">
+<link rel="stylesheet" href="{{ $overr.Permalink }}">

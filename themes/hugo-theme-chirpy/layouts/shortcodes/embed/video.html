@@ -1,0 +1,45 @@
+{{- $src := .Get "src" -}}
+{{- $title := .Get "title" -}}
+{{- $poster := .Get "poster" -}}
+{{- $types := split (.Get "types" | default "") "|" -}}
+
+{{- /* Process video URL */ -}}
+{{- if not (strings.Contains $src "://") -}}
+  {{- $src = relURL $src -}}
+{{- end -}}
+
+{{- /* Process poster URL */ -}}
+{{- $posterAttr := "" -}}
+{{- if $poster -}}
+  {{- if not (strings.Contains $poster "://") -}}
+    {{- $poster = relURL $poster -}}
+  {{- end -}}
+  {{- $posterAttr = printf `poster="%s"` $poster -}}
+{{- end -}}
+
+{{- /* Build attributes */ -}}
+{{- $attributes := slice "controls" -}}
+{{- if .Get "autoplay" -}}{{- $attributes = $attributes | append "autoplay" -}}{{- end -}}
+{{- if .Get "loop" -}}{{- $attributes = $attributes | append "loop" -}}{{- end -}}
+{{- if .Get "muted" -}}{{- $attributes = $attributes | append "muted" -}}{{- end -}}
+{{- $attributes = delimit $attributes " " -}}
+
+<div class="video-container">
+  <video class="embed-video file" {{ $posterAttr | safeHTMLAttr }} {{ $attributes | safeHTMLAttr }}>
+    {{- $extension := path.Ext $src | strings.TrimPrefix "." -}}
+    {{- $types = $types | append $extension | uniq -}}
+    {{- $filepath := strings.TrimSuffix (printf ".%s" $extension) $src -}}
+
+    {{- range $types -}}
+      {{- $type := . -}}
+      {{- $src := printf "%s.%s" $filepath $type -}}
+      <source src="{{ $src }}" type="video/{{ $type }}">
+    {{- end -}}
+
+    Your browser doesn't support the video tag. Here's a
+    <a href="{{ $src }}">link to the video file</a> instead.
+  </video>
+  {{- if $title -}}
+    <em>{{ $title }}</em>
+  {{- end -}}
+</div>

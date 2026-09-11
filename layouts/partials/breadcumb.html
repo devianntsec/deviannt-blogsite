@@ -1,0 +1,41 @@
+{{/*
+  layouts/partials/breadcumb.html   (sic — filename matches theme hook)
+  ─────────────────────────────────────────────────────────────
+  Renders a breadcrumb navigation trail for the current page.
+
+  Behaviour:
+    - On the home page: shows only the home label.
+    - On all other pages: walks .Ancestors in reverse (root → parent)
+      and appends the current page title at the end (not linked).
+
+  The "Home" / "Inicio" label is derived from the site language
+  so it works for both English and Spanish routes.
+
+  Styled by the Chirpy theme's default #breadcrumb styles;
+  brand-blue hover override lives in custom.scss §31.
+*/}}
+
+{{- $lang     := .Site.Language.Lang -}}
+{{- $homeName := cond (eq $lang "es") "Inicio" "Home" -}}
+
+<nav id="breadcrumb" aria-label="Breadcrumb">
+  {{- if not .IsHome -}}
+
+    {{/* Walk ancestor pages from root to immediate parent */}}
+    {{- range .Ancestors.Reverse -}}
+      {{- if .IsHome -}}
+        <a href="{{ .RelPermalink }}">{{ $homeName }}</a>
+      {{- else -}}
+        <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+      {{- end -}}
+      <span class="breadcrumb-sep">›</span>
+    {{- end -}}
+
+    {{/* Current page — not linked */}}
+    <span>{{ .Title }}</span>
+
+  {{- else -}}
+    {{/* We are on the home page — just show the label */}}
+    <span>{{ $homeName }}</span>
+  {{- end -}}
+</nav>

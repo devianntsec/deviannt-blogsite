@@ -1,0 +1,9 @@
+# .htaccess — blog.deviannt.com
+#
+# Se mantiene en el repo como referencia histórica y por si el build
+# se despliega en un servidor Apache en el futuro.
+#
+# Todo lo que antes hacía este archivo está portado al Cloudflare Worker
+# Lo único que sigue siendo relevante para Apache si alguna vez se reactiva:
+AddDefaultCharset UTF-8
+Options -Indexes

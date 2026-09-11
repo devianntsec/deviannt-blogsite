@@ -1,0 +1,5 @@
+<div class="code-block">
+  <div class="code-header"> <span data-label-text="{{ if .Attributes.file }}{{ .Attributes.file }}{{ else }}{{ partial "language-alias.html" (dict "language" .Type) }}{{ end }}">{{ if .Attributes.file }}<i class="far fa-file-code fa-fw"></i>{{ else }}<i class="fas fa-code fa-fw small"></i>{{ end }}</span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div>
+  {{ $result := transform.HighlightCodeBlock . }}
+  {{ $result.Wrapped }}
+</div>

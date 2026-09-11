@@ -1,0 +1,70 @@
+{{/* 
+  Convert the alias of the syntax language to the official name
+  See: <https://github.com/rouge-ruby/rouge/wiki/List-of-supported-languages-and-lexers>
+*/}}
+
+{{ $lang := .language | default "" }}
+
+{{ $result := "" }}
+
+{{ if eq $lang "actionscript" "as" "as3" }}
+  {{ $result = "ActionScript" }}
+{{ else if eq $lang "applescript" }}
+  {{ $result = "AppleScript" }}
+{{ else if eq $lang "brightscript" "bs" "brs" }}
+  {{ $result = "BrightScript" }}
+{{ else if eq $lang "cfscript" "cfc" }}
+  {{ $result = "CFScript" }}
+{{ else if eq $lang "coffeescript" "coffee" "coffee-script" }}
+  {{ $result = "CoffeeScript" }}
+{{ else if eq $lang "cs" "csharp" }}
+  {{ $result = "C#" }}
+{{ else if eq $lang "erl" }}
+  {{ $result = "Erlang" }}
+{{ else if eq $lang "graphql" }}
+  {{ $result = "GraphQL" }}
+{{ else if eq $lang "haskell" "hs" }}
+  {{ $result = "Haskell" }}
+{{ else if eq $lang "javascript" "js" }}
+  {{ $result = "JavaScript" }}
+{{ else if eq $lang "make" "mf" "gnumake" "bsdmake" }}
+  {{ $result = "Makefile" }}
+{{ else if eq $lang "md" "mkd" }}
+  {{ $result = "Markdown" }}
+{{ else if eq $lang "m" }}
+  {{ $result = "Matlab" }}
+{{ else if eq $lang "objective_c" "objc" "obj-c" "obj_c" "objectivec" }}
+  {{ $result = "Objective-C" }}
+{{ else if eq $lang "perl" "pl" }}
+  {{ $result = "Perl" }}
+{{ else if eq $lang "php" "php3" "php4" "php5" }}
+  {{ $result = "PHP" }}
+{{ else if eq $lang "py" }}
+  {{ $result = "Python" }}
+{{ else if eq $lang "rb" }}
+  {{ $result = "Ruby" }}
+{{ else if eq $lang "rs" "no_run" "ignore" "should_panic" }}
+  {{ $result = "Rust" }}
+{{ else if eq $lang "bash" "zsh" "ksh" "sh" }}
+  {{ $result = "Shell" }}
+{{ else if eq $lang "st" "squeak" }}
+  {{ $result = "Smalltalk" }}
+{{ else if eq $lang "tex" }}
+  {{ $result = "TeX" }}
+{{ else if eq $lang "latex" }}
+  {{ $result = "LaTex" }}
+{{ else if eq $lang "ts" "typescript" }}
+  {{ $result = "TypeScript" }}
+{{ else if eq $lang "vb" "visualbasic" }}
+  {{ $result = "Visual Basic" }}
+{{ else if eq $lang "vue" "vuejs" }}
+  {{ $result = "Vue.js" }}
+{{ else if eq $lang "yml" }}
+  {{ $result = "YAML" }}
+{{ else if eq $lang "css" "html" "scss" "ssh" "toml" "xml" "yaml" "json" }}
+  {{ $result = upper $lang }}
+{{ else }}
+  {{ $result = title $lang }}
+{{ end }}
+
+{{ return $result }} 

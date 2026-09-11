@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Security on devianntsec</title>
+    <link>http://localhost:1313/es/categories/security/</link>
+    <description>Recent content in Security on devianntsec</description>
+    <generator>Hugo</generator>
+    <language>es</language>
+    <atom:link href="http://localhost:1313/es/categories/security/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CVE-2021-4034 · PwnKit: Escalada de Privilegios Local en pkexec de polkit</title>
+      <link>http://localhost:1313/es/cve-2021-4034-pwnkit-escalada-de-privilegios-local-en-pkexec-de-polkit/</link>
+      <pubDate>Wed, 27 May 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/es/cve-2021-4034-pwnkit-escalada-de-privilegios-local-en-pkexec-de-polkit/</guid>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;strong&gt;TL;DR:&lt;/strong&gt; Cuando se invoca &lt;code&gt;pkexec&lt;/code&gt; con un vector de argumentos vacío (&lt;code&gt;argc=0&lt;/code&gt;), una&#xA;lectura fuera de límites trata &lt;code&gt;envp[0]&lt;/code&gt; como &lt;code&gt;argv[1]&lt;/code&gt;, y una escritura OOB de vuelta en&#xA;&lt;code&gt;envp&lt;/code&gt; permite al atacante reinyectar &lt;code&gt;GCONV_PATH&lt;/code&gt; en el entorno sanitizado de un binario&#xA;SUID-root. El subsistema iconv de glibc carga entonces una biblioteca compartida controlada&#xA;por el atacante cuya &lt;code&gt;gconv_init()&lt;/code&gt; se ejecuta con EUID 0. Sin autenticación. Determinista.&#xA;&lt;strong&gt;CVSS 7.8 (High).&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;1-contexto--polkit-y-pkexec&#34; id=1-contexto--polkit-y-pkexec&gt;&#xD;&#xA;  &#xD;&#xA;    &lt;span class=&#34;me-2&#34;&gt;1. Contexto — polkit y pkexec&lt;/span&gt;&#xD;&#xA;    &lt;a href=&#34;#1-contexto--polkit-y-pkexec&#34; class=&#34;anchor text-muted&#34;&gt;&lt;i class=&#34;fas fa-hashtag&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xD;&#xA;  &#xD;&#xA;&lt;/h2&gt;&lt;p&gt;polkit (anteriormente PolicyKit) es el framework de autorización utilizado por todos los&#xA;entornos de escritorio Linux principales para permitir que usuarios sin privilegios ejecuten&#xA;comandos específicos con privilegios elevados según políticas predefinidas. &lt;code&gt;pkexec&lt;/code&gt; es el&#xA;binario SUID-root de polkit: el único programa de esta cadena que realmente lleva privilegios&#xA;root en disco.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>CVE-2024-30051 · Heap Overflow en Windows DWM: de un error de división entera a SYSTEM</title>
+      <link>http://localhost:1313/es/cve-2024-30051-heap-overflow-en-windows-dwm-de-un-error-de-divisi%C3%B3n-entera-a-system/</link>
+      <pubDate>Wed, 06 May 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/es/cve-2024-30051-heap-overflow-en-windows-dwm-de-un-error-de-divisi%C3%B3n-entera-a-system/</guid>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;strong&gt;TL;DR:&lt;/strong&gt; &lt;code&gt;CCommandBuffer::Initialize&lt;/code&gt; en &lt;code&gt;dwmcore.dll&lt;/code&gt; llama a &lt;code&gt;GetBufferSize()&lt;/code&gt; dos veces y trunca uno de los resultados mediante división entera antes de pasarlo a &lt;code&gt;new[]&lt;/code&gt;, mientras deja el segundo resultado sin modificar para &lt;code&gt;memcpy&lt;/code&gt;. La diferencia es exactamente &lt;code&gt;0x8F&lt;/code&gt; bytes. Un heap spray de objetos &lt;code&gt;CHolographicInteropTexture&lt;/code&gt; convierte ese overflow en una llamada a &lt;code&gt;LoadLibraryA&lt;/code&gt; dentro de &lt;code&gt;dwm.exe&lt;/code&gt;. Requiere una sesión de usuario local. Determinista. &lt;strong&gt;Integrity Level SYSTEM&lt;/strong&gt;. Parcheado en KB5037771 (mayo 2024).&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>CVE-2024-51324 · BYOVD: Tres Primitivas de Kernel no Documentadas en BdApiUtil64.sys</title>
+      <link>http://localhost:1313/es/cve-2024-51324-byovd-tres-primitivas-de-kernel-no-documentadas-en-bdapiutil64.sys/</link>
+      <pubDate>Mon, 27 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/es/cve-2024-51324-byovd-tres-primitivas-de-kernel-no-documentadas-en-bdapiutil64.sys/</guid>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;strong&gt;TL;DR:&lt;/strong&gt; &lt;code&gt;BdApiUtil64.sys&lt;/code&gt; crea &lt;code&gt;\Device\BdApiUtil&lt;/code&gt; con &lt;code&gt;SecurityDescriptor = NULL&lt;/code&gt; —&#xA;accesible desde cualquier proceso en cualquier nivel de integridad. El handler de terminación&#xA;usa &lt;code&gt;PsLookupProcessByProcessId&lt;/code&gt; + &lt;code&gt;ObOpenObjectByPointer(KernelMode)&lt;/code&gt;, bypaseando&#xA;&lt;code&gt;SeAccessCheck&lt;/code&gt; incondicionalmente. &lt;code&gt;ZwOpenProcess&lt;/code&gt; está completamente ausente de la tabla de&#xA;importaciones. El análisis con Ghidra revela dos primitivas adicionales sin documentación pública&#xA;previa: borrado de archivo arbitrario (&lt;code&gt;0x80002648&lt;/code&gt;) y borrado de archivo en uso con bypass de&#xA;&lt;code&gt;SectionObjectPointer&lt;/code&gt; (&lt;code&gt;0x8000264C&lt;/code&gt;). Sin autenticación. Determinista para objetivos no-PPL.&#xA;&lt;strong&gt;NVD: Awaiting Analysis · ADP CISA: CVSS 3.8 (Low) · CWE-269.&lt;/strong&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>CVE-2025-55182 · React2Shell: RCE en React Server Components vía Prototype Pollution</title>
+      <link>http://localhost:1313/es/cve-2025-55182-react2shell-rce-react-server-components/</link>
+      <pubDate>Wed, 22 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/es/cve-2025-55182-react2shell-rce-react-server-components/</guid>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;strong&gt;TL;DR:&lt;/strong&gt; El deserializador Flight de React evalúa como Promise cualquier objeto que tenga un método &lt;code&gt;.then&lt;/code&gt;, independientemente de su tipo real. Un atacante envenena &lt;code&gt;Object.prototype.then&lt;/code&gt; mediante un POST multipart manipulado, lo que fuerza al servidor a ejecutar JavaScript arbitrario a través del constructor de &lt;code&gt;Function&lt;/code&gt;. El resultado se exfiltra por la cabecera HTTP &lt;code&gt;X-Action-Redirect&lt;/code&gt; como parámetro de redirección. Sin autenticación. Determinista. &lt;strong&gt;CVSS v3.1: 10.0 (Critical).&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;1-contexto--react-server-components-y-la-superficie-de-ataque&#34; id=1-contexto--react-server-components-y-la-superficie-de-ataque&gt;&#xD;&#xA;  &#xD;&#xA;    &lt;span class=&#34;me-2&#34;&gt;1. Contexto — React Server Components y la superficie de ataque&lt;/span&gt;&#xD;&#xA;    &lt;a href=&#34;#1-contexto--react-server-components-y-la-superficie-de-ataque&#34; class=&#34;anchor text-muted&#34;&gt;&lt;i class=&#34;fas fa-hashtag&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xD;&#xA;  &#xD;&#xA;&lt;/h2&gt;&lt;p&gt;Los React Server Components (RSC) fueron introducidos de forma experimental en React 18 y estabilizados como feature lista para producción en &lt;strong&gt;React 19&lt;/strong&gt;, junto con las &lt;strong&gt;Server Actions&lt;/strong&gt;: un modelo en el que los componentes de UI se ejecutan directamente en el servidor y se comunican con el cliente mediante una capa de serialización propia denominada el &lt;strong&gt;protocolo Flight&lt;/strong&gt;. Cuando el cliente invoca una Server Action, envía una petición POST multipart con un payload serializado. El servidor lo deserializa, ejecuta la acción y devuelve el resultado en streaming.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

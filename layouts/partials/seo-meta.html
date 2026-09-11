@@ -1,0 +1,56 @@
+{{/*
+  layouts/partials/seo-meta.html
+  Meta tags: hreflang, canonical, OpenGraph/Twitter (home + posts).
+  Extraído de metadata-hook.html (antes mezclado con JS/CSS).
+*/}}
+{{ partial "hreflang.html" . }}
+<link rel="canonical" href="{{ .Permalink }}">
+
+{{/* OG image para posts individuales */}}
+{{ if and .IsPage .Params.image }}
+  {{ $ogImage := .Params.image.path | default .Params.image }}
+  <meta property="og:image" content="{{ $ogImage }}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="{{ $ogImage }}">
+{{ end }}
+
+{{ $lang := .Site.Language.Lang }}
+{{- if .IsHome -}}
+{{- if eq $lang "es" -}}
+<meta name="description" content="Annais Molina Fuentes (devianntsec) — investigadora de seguridad ofensiva. Análisis de CVEs, write-ups de reverse engineering y exploit development. CVE-2025-55182 (CVSS 10.0).">
+<meta property="og:title" content="devianntsec | investigación de seguridad y más">
+<meta property="og:description" content="Análisis de CVEs y cadenas de exploits — documentado desde el primer error hasta la PoC funcionando.">
+<meta property="og:image" content="https://blog.deviannt.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://blog.deviannt.com/es/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_CL">
+<meta property="og:site_name" content="devianntsec">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@devianntsec">
+<meta name="twitter:creator" content="@devianntsec">
+<meta name="twitter:title" content="devianntsec | investigación de seguridad y más">
+<meta name="twitter:description" content="Análisis de CVEs y cadenas de exploits — documentado desde el primer error hasta la PoC funcionando.">
+<meta name="twitter:image" content="https://blog.deviannt.com/og-image.png">
+{{- else -}}
+<meta name="description" content="Annais Molina Fuentes (devianntsec) — offensive security researcher. CVE teardowns, reverse engineering write-ups, and exploit development. CVE-2025-55182 (CVSS 10.0).">
+<meta property="og:title" content="devianntsec | security research &amp; beyond">
+<meta property="og:description" content="CVE teardowns and exploit chains — documented from the first wrong turn to the working PoC.">
+<meta property="og:image" content="https://blog.deviannt.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://blog.deviannt.com/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="devianntsec">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@devianntsec">
+<meta name="twitter:creator" content="@devianntsec">
+<meta name="twitter:title" content="devianntsec | security research &amp; beyond">
+<meta name="twitter:description" content="CVE teardowns and exploit chains — documented from the first wrong turn to the working PoC.">
+<meta name="twitter:image" content="https://blog.deviannt.com/og-image.png">
+{{- end -}}
+{{- end -}}

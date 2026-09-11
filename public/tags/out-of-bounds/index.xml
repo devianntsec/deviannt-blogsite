@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Out-of-Bounds on devianntsec</title>
+    <link>http://localhost:1313/tags/out-of-bounds/</link>
+    <description>Recent content in Out-of-Bounds on devianntsec</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 03 Jul 2026 15:37:13 -0400</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/out-of-bounds/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CVE-2021-4034 · PwnKit: Local Privilege Escalation in polkit&#39;s pkexec</title>
+      <link>http://localhost:1313/cve-2021-4034-pwnkit-local-privilege-escalation-in-polkits-pkexec/</link>
+      <pubDate>Wed, 27 May 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/cve-2021-4034-pwnkit-local-privilege-escalation-in-polkits-pkexec/</guid>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;strong&gt;TL;DR:&lt;/strong&gt; When &lt;code&gt;pkexec&lt;/code&gt; is invoked with an empty argument vector (&lt;code&gt;argc=0&lt;/code&gt;), an&#xA;out-of-bounds read treats &lt;code&gt;envp[0]&lt;/code&gt; as &lt;code&gt;argv[1]&lt;/code&gt;, and an OOB write back into&#xA;&lt;code&gt;envp&lt;/code&gt; lets the attacker re-inject &lt;code&gt;GCONV_PATH&lt;/code&gt; into the sanitized environment of a&#xA;SUID-root binary. glibc&amp;rsquo;s iconv subsystem then loads an attacker-controlled shared&#xA;library whose &lt;code&gt;gconv_init()&lt;/code&gt; executes with EUID 0. No authentication. Deterministic.&#xA;&lt;strong&gt;CVSS 7.8 (High).&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;1-context--polkit-and-pkexec&#34; id=1-context--polkit-and-pkexec&gt;&#xD;&#xA;  &#xD;&#xA;    &lt;span class=&#34;me-2&#34;&gt;1. Context — polkit and pkexec&lt;/span&gt;&#xD;&#xA;    &lt;a href=&#34;#1-context--polkit-and-pkexec&#34; class=&#34;anchor text-muted&#34;&gt;&lt;i class=&#34;fas fa-hashtag&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xD;&#xA;  &#xD;&#xA;&lt;/h2&gt;&lt;p&gt;polkit (formerly PolicyKit) is the authorization framework used by all major Linux desktop&#xA;environments to allow unprivileged users to run specific commands with elevated privileges&#xA;according to predefined policies. &lt;code&gt;pkexec&lt;/code&gt; is polkit&amp;rsquo;s SUID-root binary: the only program&#xA;in this chain that actually carries root privileges on disk.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

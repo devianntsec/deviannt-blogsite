@@ -1,0 +1,32 @@
+<nav class="post-navigation d-flex justify-content-between" aria-label="Post Navigation">
+  {{ $previous := i18n "post.button.previous" }}
+  {{ $next := i18n "post.button.next" }}
+
+  {{ with .PrevInSection }}
+    <a
+      href="{{ .RelPermalink }}"
+      class="btn btn-outline-primary"
+      aria-label="{{ $previous }}"
+    >
+      <p>{{ .Title }}</p>
+    </a>
+  {{ else }}
+    <div class="btn btn-outline-primary disabled" aria-label="{{ $previous }}">
+      <p>-</p>
+    </div>
+  {{ end }}
+
+  {{ with .NextInSection }}
+    <a
+      href="{{ .RelPermalink }}"
+      class="btn btn-outline-primary"
+      aria-label="{{ $next }}"
+    >
+      <p>{{ .Title }}</p>
+    </a>
+  {{ else }}
+    <div class="btn btn-outline-primary disabled" aria-label="{{ $next }}">
+      <p>-</p>
+    </div>
+  {{ end }}
+</nav>

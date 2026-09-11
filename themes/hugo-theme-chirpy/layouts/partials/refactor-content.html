@@ -1,0 +1,21 @@
+{{ $content := .Content }}
+
+<!-- Change checkbox icons -->
+{{ if findRE `<input.*type="checkbox"` $content }}
+  <!-- first replace the li with task-list-item class -->
+  {{ $content = replaceRE `<li>(\s*)<input` `<li class="task-list-item">$1<input` $content }}
+  {{ $content = replaceRE `<li class="([^"]*)"(\s*)<input` `<li class="task-list-item $1"$2<input` $content }}
+  
+  <!-- then add task-list class to the parent ul of the li with task-list-item class -->
+  {{ $content = replaceRE `<ul>(\s*)<li class="task-list-item` `<ul class="task-list">$1<li class="task-list-item` $content }}
+  {{ $content = replaceRE `<ul class="([^"]*)"(\s*)<li class="task-list-item` `<ul class="task-list $1"$2<li class="task-list-item` $content }}
+  
+  <!-- replace all checked checkbox format -->
+  {{ $content = replaceRE `<input.*?checked.*?type="checkbox".*?>` `<i class="fas fa-check-circle fa-fw checked"></i>` $content }}
+  {{ $content = replaceRE `<input.*?type="checkbox".*?checked.*?>` `<i class="fas fa-check-circle fa-fw checked"></i>` $content }}
+  
+  <!-- replace all unchecked checkbox format -->
+  {{ $content = replaceRE `<input.*?type="checkbox".*?>` `<i class="far fa-circle fa-fw"></i>` $content }}
+{{ end }}
+
+{{ $content | safeHTML }}

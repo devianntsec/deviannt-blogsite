@@ -1,0 +1,1119 @@
+<!doctype html>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  
+  
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/main.min.e505c517e337bb3c960ed62bae6db6bbb5b0da455e0ef842692667b19852d70a.css">
+</head>
+<html lang="es">
+  
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f7f7f7">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1b1b1e">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta
+    name="viewport"
+    content="width=device-width, user-scalable=no, initial-scale=1, shrink-to-fit=no, viewport-fit=cover"
+  ><meta property="og:url" content="http://localhost:1313/es/archives/">
+  <meta property="og:site_name" content="devianntsec">
+  <meta property="og:title" content="Archivo">
+  <meta property="og:description" content="Annais Molina Fuentes (devianntsec) — offensive security researcher. CVE teardowns, exploit chains, reverse engineering write-ups.">
+  <meta property="og:locale" content="es">
+  <meta property="og:type" content="article">
+    <meta property="article:modified_time" content="2026-03-28T00:17:34-03:00">
+
+  
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Archivo">
+  <meta name="twitter:description" content="Annais Molina Fuentes (devianntsec) — offensive security researcher. CVE teardowns, exploit chains, reverse engineering write-ups.">
+
+  <meta itemprop="name" content="Archivo">
+  <meta itemprop="description" content="Annais Molina Fuentes (devianntsec) — offensive security researcher. CVE teardowns, exploit chains, reverse engineering write-ups.">
+  <meta itemprop="dateModified" content="2026-03-28T00:17:34-03:00">
+  <title>
+    
+      Archivo |
+    
+    devianntsec
+  </title>
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/favicons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/img/favicons/favicon-16x16.png">
+
+<link rel="shortcut icon" href="/img/favicons/favicon.ico">
+<meta name="apple-mobile-web-app-title" content="devianntsec">
+<meta name="application-name" content="devianntsec">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/img/favicons/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+  
+  
+  
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/main.min.e505c517e337bb3c960ed62bae6db6bbb5b0da455e0ef842692667b19852d70a.css">
+  
+  <link rel="stylesheet" href="/lib/fonts/main.css">
+  
+  <link rel="stylesheet" href="/lib/fontawesome-free/css/all.min.css">
+  
+  
+    <link rel="stylesheet" href="/lib/tocbot/tocbot.min.css">
+  
+  
+    <link rel="stylesheet" href="/">
+  
+  
+    
+    <link rel="stylesheet" href="/lib/glightbox/glightbox.min.css">
+  
+  
+  <script src="/js/modules/theme.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+    
+  
+  
+    
+  
+  
+    
+  
+  
+    
+  
+
+
+
+
+
+
+
+  <script src="/lib/dayjs/dayjs.min.js"></script>
+
+  <script src="/lib/dayjs/locale/en.js"></script>
+
+  <script src="/lib/dayjs/plugin/relativeTime.js"></script>
+
+  <script src="/lib/dayjs/plugin/localizedFormat.js"></script>
+
+
+
+
+  
+<script defer src="/js/misc.js"></script>
+
+
+
+
+
+  
+  
+
+
+
+  
+    <link rel="alternate" hreflang="en" href="http://localhost:1313/archives/">
+  
+    <link rel="alternate" hreflang="es" href="http://localhost:1313/es/archives/">
+  
+  
+  
+  
+    
+      
+    
+  
+    
+  
+  <link rel="alternate" hreflang="x-default" href="http://localhost:1313/archives/">
+
+<link rel="canonical" href="http://localhost:1313/es/archives/">
+
+
+
+
+<link rel="stylesheet" href="http://localhost:1313/css/syntax.min.css" id="dv-syntax-css">
+
+
+<script src="http://localhost:1313/js/site-runtime.min.js"></script>
+
+<link rel="stylesheet" href="http://localhost:1313/css/custom.min.css">
+<link rel="stylesheet" href="http://localhost:1313/css/overrides.min.css">
+
+</head>
+  <body>
+    
+
+<aside aria-label="Sidebar" id="sidebar" class="d-flex flex-column align-items-end">
+
+  
+  <header class="profile-wrapper">
+
+    
+    <div class="dv-avatar-bracket">
+      
+      <span class="dv-c tl"></span>
+      <span class="dv-c tr"></span>
+      <span class="dv-c bl"></span>
+      <span class="dv-c br"></span>
+
+      <a href="/es/" id="avatar" class="rounded-circle"><img src="http://localhost:1313/img/commons/avatar.jpg"
+               width="112" height="112"
+               alt="avatar"
+               onerror="this.style.display='none'"></a>
+    </div>
+
+    
+    
+
+<div class="site-title-deviannt">
+  <a href="/es/">
+    <span class="dv-title-name">
+      <span class="dv-base"></span>
+      <span class="dv-highlight"></span>
+      <span class="dv-bar-l"></span>
+      <span class="dv-bar-r"></span>
+      <span class="dv-dot-tl"></span>
+      <span class="dv-dot-br"></span>
+      <span class="dv-text">deviannt</span>
+    </span>
+  </a>
+</div>
+
+
+    
+    
+      <p class="site-subtitle fst-italic mb-0">// investigación en seguridad &amp; más</p>
+    
+
+  </header>
+
+
+  
+  <nav class="flex-column flex-grow-1 w-100 ps-0">
+    <ul class="nav">
+
+      
+      
+        
+        <li class="nav-item">
+          <a href="/" class="nav-link">
+            <i class="fa-fw fas fa-house"></i>
+            <span>INICIO</span>
+          </a>
+        </li>
+      
+        
+        <li class="nav-item">
+          <a href="/categories/" class="nav-link">
+            <i class="fa-fw fas fa-stream"></i>
+            <span>CATEGORÍAS</span>
+          </a>
+        </li>
+      
+        
+        <li class="nav-item">
+          <a href="/tags/" class="nav-link">
+            <i class="fa-fw fas fa-tags"></i>
+            <span>ETIQUETAS</span>
+          </a>
+        </li>
+      
+        
+        <li class="nav-item">
+          <a href="/archives/" class="nav-link">
+            <i class="fa-fw fas fa-archive"></i>
+            <span>ARCHIVO</span>
+          </a>
+        </li>
+      
+        
+        <li class="nav-item">
+          <a href="/about/" class="nav-link">
+            <i class="fa-fw fas fa-info-circle"></i>
+            <span>SOBRE MÍ</span>
+          </a>
+        </li>
+      
+
+
+      
+      
+        
+        
+
+        
+        
+        
+        
+        
+          
+
+          
+          
+        
+
+        
+        
+          
+        
+
+<li class="nav-item mt-4"><a class="nav-link" href="http://localhost:1313/archives/" data-hard-nav="true" data-lang-url="http://localhost:1313/archives/" data-lang-fallback="http://localhost:1313" onclick="document.cookie='blog_lang=en;path=/;max-age=31536000'"><i class="fa-fw fas fa-language"></i><span>ENGLISH</span></a></li>
+      
+
+
+      
+      
+        <li class="nav-item">
+          <a class="nav-link no-hover dv-theme-row">
+            <i class="fa-fw fas fa-circle-half-stroke"></i>
+            <button
+            type="button"
+            id="mode-toggle"
+            class="dv-theme-select"
+            aria-label="Switch theme"
+            >
+              <span class="dv-theme-select__val">dark</span>
+              
+              <span class="dv-theme-select__arrow" aria-hidden="true">&#8250;</span>
+            </button>
+          </a>
+        </li>
+      
+      
+      
+      <li class="nav-item mt-2">
+        <a href="https://deviannt.com"
+           class="nav-link dv-portfolio-link"
+           target="_blank"
+           rel="noopener noreferrer"
+           data-hard-nav="true">
+          <i class="fa-fw fas fa-arrow-left"></i>
+          <span>portfolio</span>
+        </a>
+      </li>
+
+    </ul>
+  </nav>
+
+
+  
+  <div class="dv-social-only" style="border-top: none; padding-top: 0; width: 100%;">
+
+    
+        <div class="dv-status-badge-wrap">
+      <div class="dv-status-badge">
+        <span class="dv-status-dot"></span>
+        disponible para: charlas · consultoría
+      </div>
+    </div>
+
+    
+    
+    <div class="dv-social-icons" style="border-top: 1px solid rgba(59,130,246,0.1); padding-top: 0.75rem; margin-top: 0;">
+      
+        
+
+          
+            
+            
+            
+              
+            
+
+            
+              <a
+                class="dv-social-icon-box"
+                href="https://github.com/devianntsec"
+                aria-label="github"
+                target="_blank" rel="noopener noreferrer"
+                
+              >
+                <i class="fab fa-github"></i>
+              </a>
+            
+          
+
+        
+      
+        
+
+          
+            
+            
+            
+              
+            
+
+            
+              <a
+                class="dv-social-icon-box"
+                href="https://www.linkedin.com/in/annais-molina-fuentes/"
+                aria-label="linkedin"
+                target="_blank" rel="noopener noreferrer"
+                
+              >
+                <i class="fab fa-linkedin"></i>
+              </a>
+            
+          
+
+        
+      
+        
+      
+        
+
+          
+            
+            
+            
+              
+            
+
+            
+              <a
+                class="dv-social-icon-box"
+                href="https://t.me/devianntsec"
+                aria-label="telegram"
+                target="_blank" rel="noopener noreferrer"
+                
+              >
+                <i class="fab fa-telegram"></i>
+              </a>
+            
+          
+
+        
+      
+        
+
+          
+            
+            <button
+              type="button"
+              class="dv-social-icon-box"
+              aria-label="email"
+              data-email="me@deviannt.com"
+              onclick="(function(btn){
+                var email = btn.getAttribute('data-email');
+                var lang = document.documentElement.getAttribute('lang') || 'en';
+                var msg = lang === 'es'
+                  ? '¡' + email + ' copiado al portapapeles!'
+                  : email + ' copied to clipboard!';
+                navigator.clipboard.writeText(email).then(function(){
+                  var t = document.getElementById('dv-copy-toast');
+                  if (!t) {
+                    t = document.createElement('div');
+                    t.id = 'dv-copy-toast';
+                    document.body.appendChild(t);
+                  }
+                  t.textContent = msg;
+                  t.classList.add('visible');
+                  setTimeout(function(){ t.classList.remove('visible'); }, 2500);
+                });
+              })(this)"
+              style="background:none;border:none;padding:0;cursor:pointer;"
+            >
+              <i class="fas fa-envelope"></i>
+            </button>
+
+          
+
+        
+      
+    </div>
+
+  </div>
+
+</aside>
+    <div id="main-wrapper" class="d-flex justify-content-center">
+      <div class="container d-flex flex-column px-xxl-5">
+        
+<header id="topbar-wrapper" class="flex-shrink-0" aria-label="Top Bar">
+  <div id="topbar" class="d-flex align-items-center justify-content-between px-lg-3 h-100">
+    <nav id="breadcrumb" aria-label="Breadcrumb">
+      
+      
+      
+      
+
+      
+        <span>
+          <a href="/es/">Home</a>
+        </span>
+        
+        
+          
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+
+          
+          
+            <span>Archivo</span>  
+          
+
+
+        
+      
+    </nav>
+    
+
+    <button type="button" id="sidebar-trigger" class="btn btn-link" aria-label="Sidebar">
+      <i class="fas fa-bars fa-fw"></i>
+    </button>
+
+    <div id="topbar-title">
+      Archives
+    </div>
+
+    <button type="button" id="search-trigger" class="btn btn-link" aria-label="Search">
+      <i class="fas fa-search fa-fw"></i>
+    </button>
+
+    <search id="search" class="align-items-center ms-3 ms-lg-0">
+      <i class="fas fa-search fa-fw"></i>
+      <input
+        class="form-control"
+        id="search-input"
+        type="search"
+        aria-label="search"
+        autocomplete="off"
+        placeholder="Search..."
+      >
+    </search>
+    <button type="button" class="btn btn-link text-decoration-none" id="search-cancel">Cancel</button>
+  </div>
+</header>
+        <div class="row flex-grow-1">
+          <main aria-label="Main Content" class="col-12 col-lg-11 col-xl-9 px-md-4">
+            
+  
+  
+  
+  <article class="px-1">
+    <h1 class="dynamic-title">
+      Archives
+    </h1>
+    <div class="content">
+      <div id="archives" class="pl-xl-3">
+        
+        
+        
+
+        
+          
+
+          
+            
+
+            <time class="year lead d-block">2026</time>
+            <ul class="list-unstyled">
+
+            
+          
+
+          <li>
+            
+            <span class="date day" data-ts="1779840000" data-df="DD"> 27</span>
+            <span class="date month small text-muted ms-1" data-ts="1779840000" data-df="MMM">
+              %b
+            </span>
+            <a href="/es/cve-2021-4034-pwnkit-escalada-de-privilegios-local-en-pkexec-de-polkit/">CVE-2021-4034 · PwnKit: Escalada de Privilegios Local en pkexec de polkit</a>
+          </li>
+
+          
+        
+          
+
+          
+
+          <li>
+            
+            <span class="date day" data-ts="1778025600" data-df="DD"> 06</span>
+            <span class="date month small text-muted ms-1" data-ts="1778025600" data-df="MMM">
+              %b
+            </span>
+            <a href="/es/cve-2024-30051-heap-overflow-en-windows-dwm-de-un-error-de-divisi%C3%B3n-entera-a-system/">CVE-2024-30051 · Heap Overflow en Windows DWM: de un error de división entera a SYSTEM</a>
+          </li>
+
+          
+        
+          
+
+          
+
+          <li>
+            
+            <span class="date day" data-ts="1777248000" data-df="DD"> 27</span>
+            <span class="date month small text-muted ms-1" data-ts="1777248000" data-df="MMM">
+              %b
+            </span>
+            <a href="/es/cve-2024-51324-byovd-tres-primitivas-de-kernel-no-documentadas-en-bdapiutil64.sys/">CVE-2024-51324 · BYOVD: Tres Primitivas de Kernel no Documentadas en BdApiUtil64.sys</a>
+          </li>
+
+          
+        
+          
+
+          
+
+          <li>
+            
+            <span class="date day" data-ts="1776816000" data-df="DD"> 22</span>
+            <span class="date month small text-muted ms-1" data-ts="1776816000" data-df="MMM">
+              %b
+            </span>
+            <a href="/es/cve-2025-55182-react2shell-rce-react-server-components/">CVE-2025-55182 · React2Shell: RCE en React Server Components vía Prototype Pollution</a>
+          </li>
+
+          </ul>
+        
+      </div>
+    </div>
+  </article>
+
+          </main>
+
+          
+          <aside aria-label="Panel" id="panel-wrapper" class="col-xl-3 ps-2 text-muted">
+            <div class="access">
+              
+              
+            </div>
+            
+  
+
+
+
+
+
+  
+  
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+
+    <section id="access-trending-posts">
+      
+      <h2 class="panel-heading">Posts más visitados</h2>
+      <ul class="content list-unstyled ps-0 pb-1 ms-1 mt-2" style="font-size: 0.8em;">
+        
+          
+          
+<li class="text-truncate lh-lg">
+  <a href="/es/cve-2025-55182-react2shell-rce-react-server-components/">CVE-2025-55182 · React2Shell: RCE en React Server Components vía Prototype Pollution</a>
+</li>
+          
+        
+      </ul>
+    </section>
+  
+
+
+
+
+
+  <section id="access-trending-tags">
+    <h2 class="panel-heading">Etiquetas populares</h2>
+    <div class="d-flex flex-wrap mt-3 mb-1 me-3">
+      
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+      
+ 
+  
+  
+    
+  
+  <a class="post-tag btn btn-outline-primary" href="/es/tags/cve/">cve</a>
+
+  
+  
+    
+  
+  <a class="post-tag btn btn-outline-primary" href="/es/tags/windows/">windows</a>
+
+  
+  
+    
+  
+  <a class="post-tag btn btn-outline-primary" href="/es/tags/byovd/">byovd</a>
+
+  
+  
+    
+  
+  <a class="post-tag btn btn-outline-primary" href="/es/tags/defense-evasion/">defense-evasion</a>
+
+  
+  
+    
+  
+  <a class="post-tag btn btn-outline-primary" href="/es/tags/deserialization/">deserialization</a>
+
+  
+  
+    
+  
+  <a class="post-tag btn btn-outline-primary" href="/es/tags/driver/">driver</a>
+
+    </div>
+  </section>
+
+
+          </aside>
+        </div>
+
+        <div class="row">
+          
+          <div id="tail-wrapper" class="col-12 col-lg-11 col-xl-9 px-md-4">
+            
+            
+
+<footer class="dv-footer">
+  <span>
+    &copy; 2026
+    <a href="https://github.com/devianntsec"
+       target="_blank" rel="noopener">Annais Molina Fuentes</a>
+    &nbsp;&mdash;&nbsp; All rights reserved.
+  </span>
+</footer>
+
+
+<div id="dv-route-announcer" class="dv-visually-hidden" aria-live="polite" aria-atomic="true"></div>
+
+
+<div id="dv-copy-toast"></div>
+
+
+<div id="dv-copy-toast"></div>
+
+<style>
+  .dv-visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .dv-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    padding: 1.2rem 1.5rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: #475569;
+    border-top: 1px solid rgba(59, 130, 246, 0.1);
+    margin-top: 2rem;
+  }
+
+  .dv-footer a {
+    color: #60A5FA;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .dv-footer a:hover {
+    color: #93C5FD;
+  }
+
+  .dv-footer-stack {
+    opacity: 0.55;
+    font-size: 0.65rem;
+    letter-spacing: 0.05em;
+  }
+
+  html[data-mode='light'] .dv-footer {
+    color: #64748B;
+    border-top-color: rgba(37, 99, 235, 0.12);
+  }
+
+  html[data-mode='light'] .dv-footer a {
+    color: #2563EB;
+  }
+
+  html[data-mode='light'] .dv-footer a:hover {
+    color: #1D4ED8;
+  }
+
+   
+  #dv-copy-toast {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%) translateY(80px);
+    background: #3B82F6;
+    color: #fff;
+    padding: 10px 22px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    box-shadow: 0 4px 20px rgba(59, 130, 246, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    opacity: 0;
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+                opacity 0.35s ease;
+    z-index: 100000;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+
+  #dv-copy-toast.visible {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
+</style>
+
+
+          </div>
+        </div>
+        <div id="search-result-wrapper" class="d-flex justify-content-center d-none">
+  <div class="col-11 content">
+    <div id="search-hints">
+      
+    </div>
+    <div id="search-results" class="d-flex flex-wrap justify-content-center text-muted mt-3"></div>
+  </div>
+</div>
+
+<script>
+  const DEFAULT_CONFIG = {
+    search: {
+      minChars: 1,              
+      maxResults: 5,            
+      fields: {                 
+        title: true,
+        description: true,
+        section: true,
+        contents: true
+      },
+      
+      strictMode: true          
+    }
+  };
+
+  class FastSearch {
+    constructor({
+      searchInput, resultsContainer, json,
+      searchResultTemplate = null,
+      noResultsText = null,
+    }) {
+      this.searchInput = searchInput;
+      this.resultsContainer = resultsContainer;
+      this.json = json;
+      this.searchResultTemplate = searchResultTemplate;
+      this.noResultsText = noResultsText;
+      
+      this.init();
+    }
+
+    init() {
+      this.loadSearchIndex();
+      this.searchInput.addEventListener('input', (event) => {
+        if (!this.searchIndex) {
+          this.resultsContainer.innerHTML = '<li class="search-message">Loading search index...</li>';
+          return;
+        }
+        this.performSearch(this.searchInput.value);
+      });
+    }
+
+    
+    async loadSearchIndex() {
+      try {
+        const response = await fetch(this.json);
+        if (!response.ok) throw new Error('Failed to load search index');
+        const data = await response.json();
+        
+        this.searchIndex = data.map(item => ({
+          ...item,
+          
+          searchableTitle: item.title?.toLowerCase() || '',
+          searchableDesc: item.desc?.toLowerCase() || '',
+          searchableSection: item.section?.toLowerCase() || '',
+          searchableContents: item.contents?.toLowerCase() || ''
+        }));
+        } catch (error) {
+          console.error('Error loading search index:', error);
+        this.resultsContainer.innerHTML = '<li class="search-message">Error loading search index...</li>';
+      }
+    }
+
+    escapeHtml(unsafe) {
+      if (!unsafe) return '';
+      return unsafe
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+    
+    
+    containsTerm(text, term) {
+      if (!text || !term) return false;
+      return text.includes(term);
+    }
+
+    performSearch(query) {
+      
+      query = query.toLowerCase().trim();
+      
+      
+      if (!query || !this.searchIndex || query.length < DEFAULT_CONFIG.search.minChars) {
+        this.resultsContainer.innerHTML = '';
+        return;
+      }
+
+      
+      const searchTerms = [
+        query, 
+        ...query.split(/\s+/).filter(term => term.length > 0) 
+      ];
+      
+      
+      const uniqueTerms = [...new Set(searchTerms)];
+      
+      
+      const requireFullQueryMatch = DEFAULT_CONFIG.search.strictMode;
+      
+      
+      const results = this.searchIndex
+        .map(item => {
+          
+          const fullQueryMatched = this.checkFieldsForMatch(item, uniqueTerms[0]);
+          
+          
+          if (requireFullQueryMatch && !fullQueryMatched) {
+            return { item, score: 0, matched: false };
+          }
+          
+          
+          let score = 0;
+          let matchedTermsCount = 0;
+          let matchedInTitle = false;
+          
+          
+          uniqueTerms.forEach((term, index) => {
+            
+            const isFullQuery = index === 0;
+            const matched = this.checkFieldsForMatch(item, term);
+            
+            if (matched) {
+              matchedTermsCount++;
+              
+              
+              if (matched.inTitle) {
+                score += isFullQuery ? 10 : 5;
+                matchedInTitle = true;
+              }
+              if (matched.inDesc) {
+                score += isFullQuery ? 8 : 4;
+              }
+              if (matched.inSection) {
+                score += isFullQuery ? 6 : 3;
+              }
+              if (matched.inContents) {
+                score += isFullQuery ? 4 : 2;
+              }
+            }
+          });
+          
+          
+          const matchRatio = matchedTermsCount / uniqueTerms.length;
+          
+          
+          const finalScore = score * matchRatio * (matchedInTitle ? 1.5 : 1);
+          
+          return {
+            item,
+            score: finalScore,
+            matched: fullQueryMatched 
+          };
+        })
+        .filter(result => result.matched)
+        .sort((a, b) => b.score - a.score)
+        .slice(0, DEFAULT_CONFIG.search.maxResults)
+        .map(result => result.item);
+
+      
+      if (results.length === 0) {
+        this.resultsContainer.innerHTML = '<p class="mt-5">Oops! No results found.</p>';
+        return;
+      }
+
+      const searchItems = results.map((item) => {
+        let categories = '';
+        let tags = '';
+        if (item.categories) {
+          categories = item.categories.join(', ');
+          categories = `<div class="me-sm-4"><i class="far fa-folder fa-fw"></i>${categories}</div>`;
+        }
+        if (item.tags) {
+          tags = item.tags.join(', ');
+          tags = `<div><i class="fa fa-tag fa-fw"></i>${tags}</div>`
+        }
+        return `
+        <article class="px-1 px-sm-2 px-lg-4 px-xl-0">
+          <header>
+            <h2><a href="${this.escapeHtml(item.permalink)}">${this.escapeHtml(item.title)}</a></h2>
+            <div class="post-meta d-flex flex-column flex-sm-row text-muted mt-1 mb-1">
+              ${categories}
+              ${tags}
+            </div>
+          </header>
+          <p>${this.escapeHtml(item.contents)}</p>
+        </article>
+      `;
+      }).join('');
+      
+      this.resultsContainer.innerHTML = searchItems;
+    }
+    
+    
+    checkFieldsForMatch(item, term) {
+      const matches = {
+        inTitle: false,
+        inDesc: false,
+        inSection: false,
+        inContents: false
+      };
+      
+      
+      if (DEFAULT_CONFIG.search.fields.title && this.containsTerm(item.searchableTitle, term)) {
+        matches.inTitle = true;
+      }
+      
+      if (DEFAULT_CONFIG.search.fields.description && this.containsTerm(item.searchableDesc, term)) {
+        matches.inDesc = true;
+      }
+      
+      if (DEFAULT_CONFIG.search.fields.section && this.containsTerm(item.searchableSection, term)) {
+        matches.inSection = true;
+      }
+      
+      if (DEFAULT_CONFIG.search.fields.contents && this.containsTerm(item.searchableContents, term)) {
+        matches.inContents = true;
+      }
+      
+      
+      if (matches.inTitle || matches.inDesc || matches.inSection || matches.inContents) {
+        return matches;
+      }
+      
+      
+      return false;
+    }
+  }
+
+  const search = new FastSearch({
+    searchInput: document.getElementById('search-input'),
+    resultsContainer: document.getElementById('search-results'),
+    json: `\/es\/index.json`
+  });
+
+</script>
+      </div>
+
+      <aside aria-label="Scroll to Top">
+        <button id="back-to-top" type="button" class="btn btn-lg btn-box-shadow">
+          <i class="fas fa-angle-up"></i>
+        </button>
+      </aside>
+    </div>
+
+    <div id="mask" class="d-none position-fixed w-100 h-100 z-1"></div>
+  </body>
+</html>

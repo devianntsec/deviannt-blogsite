@@ -1,0 +1,29 @@
+[[main]]
+  name = "Home"
+  url = "/"
+  weight = 1
+  pre = "fa-house"
+
+[[main]]
+  name = "Categories"
+  url = "/categories/"
+  weight = 2
+  pre = "fa-stream"
+
+[[main]]
+  name = "Tags"
+  url = "/tags/"
+  weight = 3
+  pre = "fa-tags"
+
+[[main]]
+  name = "Archives"
+  url = "/archives/"
+  weight = 4
+  pre = "fa-archive"
+
+[[main]]
+  name = "About"
+  url = "/about/"
+  weight = 5
+  pre = "fa-info-circle"

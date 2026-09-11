@@ -1,0 +1,64 @@
+/*
+ * assets/css/overrides.css
+ * Parches CSS acumulados por sucesivos ajustes (antes <style> inline
+ * en metadata-hook.html). Casi todo lleva !important porque pisa reglas
+ * del tema Chirpy con selectores de igual o mayor especificidad — se
+ * respetó tal cual para no cambiar comportamiento visual al migrar.
+ */
+  .dv-bar-r, .dv-dot-br { visibility: hidden; }
+  .dv-base    { opacity: 0; }
+  .dv-highlight { width: 0 !important; }
+  #main-wrapper { transition: opacity 0.15s ease; }
+  #main-wrapper.dv-transitioning { opacity: 0; }
+
+/* Topbar title: una sola línea, font-size pequeño, sin recorte */
+  @media (max-width: 849px) {
+    #topbar-title {
+      font-size: 0.72rem !important;
+      white-space: nowrap !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+      max-width: calc(100vw - 100px) !important;
+      flex: 1 1 0 !important;
+      min-width: 0 !important;
+      text-align: center !important;
+    }
+  }
+
+  /* ============================================================
+     ESTILOS DEL BUSCADOR (extraídos de forceLinkEmButtonCardsLists)
+     Solo se aplican en modo claro.
+     ============================================================ */
+  html.light #search,
+  html.light search#search {
+    width: 100% !important;
+    border-radius: 1rem !important;
+    border: 1px solid #DEE2E6 !important;
+    background: #FFFFFF !important;
+    padding: 0 0.5rem !important;
+    box-shadow: none !important;
+  }
+  @media (min-width: 850px) {
+    html.light #search,
+    html.light search#search {
+      display: flex !important;
+    }
+  }
+  html.light #search i,
+  html.light search#search i {
+    color: #1E3A5F !important;
+    opacity: 1 !important;
+  }
+  html.light #search-input {
+    background: transparent !important;
+    border: none !important;
+    color: #1E3A5F !important;
+    font-family: 'JetBrains Mono', monospace !important;
+  }
+  html.light #search-input::placeholder {
+    color: #94A3B8 !important;
+  }
+  html.light #search-input:focus {
+    outline: none !important;
+    box-shadow: none !important;
+  }

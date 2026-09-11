@@ -1,0 +1,34 @@
+{{/*
+  layouts/partials/language-selector.html
+  ─────────────────────────────────────────────────────────────
+  Outputs the display name of the current language.
+  Used by the Chirpy theme to populate the language indicator
+  in the topbar (if the theme calls this partial).
+
+  Note: The interactive language-toggle link that performs the
+  actual navigation lives in layouts/partials/sidebar.html.
+  This partial is purely for display purposes.
+
+  Returns nothing if the site is not multilingual.
+*/}}
+
+{{ if hugo.IsMultilingual }}
+  {{ $currentLang := .Site.Language.Lang }}
+  {{ $siteBase    := strings.TrimSuffix "/" .Site.BaseURL }}
+
+  {{/* Build the fallback URL for the other language's root */}}
+  {{ $otherUrl      := printf "%s/es/" $siteBase }}
+  {{ $currentName   := "English" }}
+  {{ if eq $currentLang "es" }}
+    {{ $otherUrl    = printf "%s/en/" $siteBase }}
+    {{ $currentName = "Español" }}
+  {{ end }}
+
+  {{/* If a translation of this page exists, prefer its URL */}}
+  {{ range .Translations }}
+    {{ $otherUrl = .Permalink }}
+  {{ end }}
+
+  {{/* Output only the current language name (navigation is in sidebar.html) */}}
+  {{ $currentName }}
+{{ end }}

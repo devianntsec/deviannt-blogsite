@@ -1,0 +1,42 @@
+{{/*
+  layouts/partials/sidebar-title.html
+  ─────────────────────────────────────────────────────────────
+  Renders the animated "deviannt" title in the sidebar.
+
+  All child spans are positioned by CSS (custom.scss §7) and
+  animated by JS (metadata-hook.html → runAnimate / applyFinalState).
+
+  Span roles:
+    .dv-base      — Full-width low-opacity blue rectangle, fades in
+                    after the animation completes.
+    .dv-highlight — Sweeping blue overlay that animates from 0 → full
+                    width on post pages.
+    .dv-bar-l     — Fixed left vertical blue bar.
+    .dv-bar-r     — Right vertical blue bar that slides to its final x
+                    position during the animation.
+    .dv-dot-tl    — Fixed top-left blue dot.
+    .dv-dot-br    — Bottom-right blue dot that slides with .dv-bar-r.
+    .dv-text      — The visible "deviannt" text, sits on top (z-index).
+
+  On nav pages (home, archives, categories, tags, about, 404):
+    → applyFinalState() is called — all elements snap to their
+      final positions immediately, no animation.
+
+  On post pages:
+    → runAnimate() is called — the highlight bar sweeps in with
+      a 900ms cubic-bezier ease after a 500ms delay.
+*/}}
+
+<div class="site-title-deviannt">
+  <a href="{{ .Site.Home.RelPermalink }}">
+    <span class="dv-title-name">
+      <span class="dv-base"></span>
+      <span class="dv-highlight"></span>
+      <span class="dv-bar-l"></span>
+      <span class="dv-bar-r"></span>
+      <span class="dv-dot-tl"></span>
+      <span class="dv-dot-br"></span>
+      <span class="dv-text">deviannt</span>
+    </span>
+  </a>
+</div>

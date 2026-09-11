@@ -1,0 +1,72 @@
+# boolean type, the global switch for TOC in posts.
+toc = true
+# the avatar on sidebar, should be a relative path to /assets.
+avatar = "img/commons/avatar.jpg"
+author = "devianntsec"
+
+# Default theme — always dark for this brand
+defaultTheme = "dark"
+
+description = "Annais Molina Fuentes (devianntsec) — offensive security researcher. CVE teardowns, exploit chains, reverse engineering write-ups."
+
+[params]
+  images = ["https://blog.deviannt.com/og-image.png"]
+  
+[assets]
+  # Self-hosted static assets, default to false.
+  self_host = true
+
+[analytics]
+  [analytics.cloudflare]
+    id = "76aea43575a443d1aabf00530015e1c0"
+
+[social]
+  name = "Annais Molina Fuentes"
+  url = "https://github.com/devianntsec"
+
+[[social.links]]
+  type = "github"
+  id = "devianntsec"
+  icon = "fab fa-github"
+
+[[social.links]]
+  type = "linkedin"
+  id = "https://www.linkedin.com/in/annais-molina-fuentes/"
+  icon = "fab fa-linkedin"
+
+[[social.links]]
+  type = "instagram"
+  id = "https://www.instagram.com/devianntsec"
+  icon = "fab fa-instagram"
+
+[[social.links]]
+  type = "telegram"
+  id = "https://t.me/devianntsec"
+  icon = "fab fa-telegram"
+
+[[social.links]]
+  type = "email"
+  id = "me@deviannt.com"
+  icon = "fas fa-envelope"
+
+[comments]
+  enable = false
+  provider = ""
+
+[comments.disqus]
+  shortname = ""
+
+[comments.utterances]
+  repo = ""
+  issue_term = ""
+
+[comments.giscus]
+  repo = ""
+  repo_id = ""
+  category = ""
+  category_id = ""
+  mapping = ""
+  strict = ""
+  input_position = ""
+  lang = ""
+  reactions_enabled = ""

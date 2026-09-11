@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Etiquetas on devianntsec</title>
+    <link>http://localhost:1313/es/tags/</link>
+    <description>Recent content in Etiquetas on devianntsec</description>
+    <generator>Hugo</generator>
+    <language>es</language>
+    <atom:link href="http://localhost:1313/es/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cve</title>
+      <link>http://localhost:1313/es/tags/cve/</link>
+      <pubDate>Wed, 27 May 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/es/tags/cve/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Linux</title>
+      <link>http://localhost:1313/es/tags/linux/</link>
+      <pubDate>Wed, 27 May 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/es/tags/linux/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Lpe</title>
+      <link>http://localhost:1313/es/tags/lpe/</link>
+      <pubDate>Wed, 27 May 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/es/tags/lpe/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Out-of-Bounds</title>
+      <link>http://localhost:1313/es/tags/out-of-bounds/</link>
+      <pubDate>Wed, 27 May 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/es/tags/out-of-bounds/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Polkit</title>
+      <link>http://localhost:1313/es/tags/polkit/</link>
+      <pubDate>Wed, 27 May 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/es/tags/polkit/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Suid</title>
+      <link>http://localhost:1313/es/tags/suid/</link>
+      <pubDate>Wed, 27 May 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/es/tags/suid/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Heap-Overflow</title>
+      <link>http://localhost:1313/es/tags/heap-overflow/</link>
+      <pubDate>Wed, 06 May 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/es/tags/heap-overflow/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Patch-Diffing</title>
+      <link>http://localhost:1313/es/tags/patch-diffing/</link>
+      <pubDate>Wed, 06 May 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/es/tags/patch-diffing/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Privilege-Escalation</title>
+      <link>http://localhost:1313/es/tags/privilege-escalation/</link>
+      <pubDate>Wed, 06 May 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/es/tags/privilege-escalation/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Windows</title>
+      <link>http://localhost:1313/es/tags/windows/</link>
+      <pubDate>Wed, 06 May 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/es/tags/windows/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Byovd</title>
+      <link>http://localhost:1313/es/tags/byovd/</link>
+      <pubDate>Mon, 27 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/es/tags/byovd/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Defense-Evasion</title>
+      <link>http://localhost:1313/es/tags/defense-evasion/</link>
+      <pubDate>Mon, 27 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/es/tags/defense-evasion/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Driver</title>
+      <link>http://localhost:1313/es/tags/driver/</link>
+      <pubDate>Mon, 27 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/es/tags/driver/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Kernel</title>
+      <link>http://localhost:1313/es/tags/kernel/</link>
+      <pubDate>Mon, 27 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/es/tags/kernel/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Deserialization</title>
+      <link>http://localhost:1313/es/tags/deserialization/</link>
+      <pubDate>Wed, 22 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/es/tags/deserialization/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Nodejs</title>
+      <link>http://localhost:1313/es/tags/nodejs/</link>
+      <pubDate>Wed, 22 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/es/tags/nodejs/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Prototype-Pollution</title>
+      <link>http://localhost:1313/es/tags/prototype-pollution/</link>
+      <pubDate>Wed, 22 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/es/tags/prototype-pollution/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Rce</title>
+      <link>http://localhost:1313/es/tags/rce/</link>
+      <pubDate>Wed, 22 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/es/tags/rce/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>React</title>
+      <link>http://localhost:1313/es/tags/react/</link>
+      <pubDate>Wed, 22 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/es/tags/react/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,29 @@
+[[main]]
+  name = "Inicio"
+  url = "/"
+  weight = 1
+  pre = "fa-house"
+
+[[main]]
+  name = "Categorías"
+  url = "/categories/"
+  weight = 2
+  pre = "fa-stream"
+
+[[main]]
+  name = "Etiquetas"
+  url = "/tags/"
+  weight = 3
+  pre = "fa-tags"
+
+[[main]]
+  name = "Archivo"
+  url = "/archives/"
+  weight = 4
+  pre = "fa-archive"
+
+[[main]]
+  name = "Sobre mí"
+  url = "/about/"
+  weight = 5
+  pre = "fa-info-circle"

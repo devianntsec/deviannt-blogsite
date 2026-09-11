@@ -1,0 +1,74 @@
+{{- $title   := .Get "title"  | default "" -}}
+{{- $label   := .Get "label"  | default "" -}}
+{{- $height  := .Get "height" | default "240" -}}
+{{- $id      := printf "dv-diag-%d" now.UnixNano -}}
+{{- $hpx     := printf "min-height:%spx" $height | safeCSS -}}
+{{- $hpxsvg  := printf "min-height:%spx;display:block" $height | safeCSS -}}
+
+{{- $a11yTitle := $title | default $label | default "Diagram" -}}
+{{- $a11yDesc  := $label | default $title -}}
+
+<div class="dv-diagram-wrap" id="{{ $id }}">
+  {{- if $title }}
+  <div class="dv-diagram-title">{{ $title }}</div>
+  {{- end }}
+  <div class="dv-diagram-viewport">
+    <div class="dv-diagram-canvas-wrap">
+      <div class="dv-diagram-hint">
+        <span class="dv-diagram-hint-icon">⤓</span>
+        click to focus · drag · scroll to zoom
+      </div>
+      {{- if $label }}
+      <div class="dv-diagram-label">// {{ $label }}</div>
+      {{- end }}
+      <div class="dv-diagram-canvas" style="{{ $hpx }}">
+        <svg class="dv-diagram-svg"
+             xmlns="http://www.w3.org/2000/svg"
+             width="100%"
+             style="{{ $hpxsvg }}"
+             role="img"
+             aria-labelledby="{{ $id }}-svg-title{{ if $a11yDesc }} {{ $id }}-svg-desc{{ end }}">
+          <title id="{{ $id }}-svg-title">{{ $a11yTitle }}</title>
+          {{- if $a11yDesc }}
+          <desc id="{{ $id }}-svg-desc">{{ $a11yDesc }}</desc>
+          {{- end }}
+          <defs>
+            <marker id="{{ $id }}-arr-default" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+              <polygon points="0 0, 8 3, 0 6" fill="rgba(59,130,246,0.65)"/>
+            </marker>
+            <marker id="{{ $id }}-arr-active" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+              <polygon points="0 0, 8 3, 0 6" fill="#3B82F6"/>
+            </marker>
+            <marker id="{{ $id }}-arr-danger" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+              <polygon points="0 0, 8 3, 0 6" fill="#EF4444"/>
+            </marker>
+            <marker id="{{ $id }}-arr-ok" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+              <polygon points="0 0, 8 3, 0 6" fill="#10B981"/>
+            </marker>
+            <marker id="{{ $id }}-arr-warn" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+              <polygon points="0 0, 8 3, 0 6" fill="#F59E0B"/>
+            </marker>
+            <marker id="{{ $id }}-arr-purple" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+              <polygon points="0 0, 8 3, 0 6" fill="#8B5CF6"/>
+            </marker>
+            <filter id="{{ $id }}-glow">
+              <feGaussianBlur stdDeviation="2.5" result="blur"/>
+              <feMerge>
+                <feMergeNode in="blur"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          </defs>
+          {{ .Inner }}
+        </svg>
+      </div>
+    </div>
+    <div class="dv-diagram-controls">
+      <button class="dv-diagram-btn" data-action="zoom-in" title="Zoom in" aria-label="Zoom in">+</button>
+      <button class="dv-diagram-btn" data-action="zoom-out" title="Zoom out" aria-label="Zoom out">−</button>
+      <button class="dv-diagram-btn" data-action="reset" title="Reset view" aria-label="Reset view">⨀</button>
+    </div>
+  </div>
+</div>
+
+<script>window.__dvDiagramInit && window.__dvDiagramInit('{{ $id }}');</script>

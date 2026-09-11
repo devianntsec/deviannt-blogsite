@@ -1,0 +1,61 @@
+{{/* layouts/partials/access.html */}}
+
+{{ $lang := .Site.Language.Lang }}
+
+{{/* ── Trending Posts ── */}}
+{{ with .Site.Data.trending }}
+  {{ $slugs := .posts }}
+  {{ if $slugs }}
+    {{ $pageMap := dict }}
+    {{ range $.Site.RegularPages }}
+      {{ $pageMap = merge $pageMap (dict .File.ContentBaseName .) }}
+    {{ end }}
+
+    <section id="access-trending-posts">
+      {{/*  CAMBIO: Título dinámico por idioma  */}}
+      <h2 class="panel-heading">
+        {{- if eq $lang "es" -}}
+          Posts más visitados
+        {{- else -}}
+          Trending Posts
+        {{- end -}}
+      </h2>
+      <ul class="content list-unstyled ps-0 pb-1 ms-1 mt-2" style="font-size: 0.8em;">
+        {{ range $slugs }}
+          {{ $page := index $pageMap . }}
+          {{ with $page }}
+<li class="text-truncate lh-lg">
+  <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+</li>
+          {{ end }}
+        {{ end }}
+      </ul>
+    </section>
+  {{ end }}
+{{ end }}
+
+{{/* ── Trending Tags ── */}}
+{{ $tags := .Site.Taxonomies.tags }}
+{{ if $tags }}
+  <section id="access-trending-tags">
+    <h2 class="panel-heading">
+      {{- if eq $lang "es" -}}Etiquetas populares{{- else -}}Trending Tags{{- end -}}
+    </h2>
+    <div class="d-flex flex-wrap mt-3 mb-1 me-3">
+      {{ $sorted := slice }}
+      {{ range $name, $pages := $tags }}
+        {{ $sorted = $sorted | append (dict "name" $name "count" (len $pages)) }}
+      {{ end }}
+      {{ $sorted = sort $sorted "count" "desc" }}
+ {{ range first 6 $sorted }}
+  {{ $tagURL := printf "/tags/%s/" (.name | urlize) | relURL }}
+  {{ if eq $lang "es" }}
+    {{ $tagURL = printf "/es/tags/%s/" (.name | urlize) }}
+  {{ end }}
+  <a class="post-tag btn btn-outline-primary" href="{{ $tagURL }}">
+    {{- .name -}}
+  </a>
+{{ end }}
+    </div>
+  </section>
+{{ end }}

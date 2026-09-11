@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Kernel on devianntsec</title>
+    <link>http://localhost:1313/es/tags/kernel/</link>
+    <description>Recent content in Kernel on devianntsec</description>
+    <generator>Hugo</generator>
+    <language>es</language>
+    <lastBuildDate>Fri, 03 Jul 2026 15:37:13 -0400</lastBuildDate>
+    <atom:link href="http://localhost:1313/es/tags/kernel/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CVE-2024-51324 · BYOVD: Tres Primitivas de Kernel no Documentadas en BdApiUtil64.sys</title>
+      <link>http://localhost:1313/es/cve-2024-51324-byovd-tres-primitivas-de-kernel-no-documentadas-en-bdapiutil64.sys/</link>
+      <pubDate>Mon, 27 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/es/cve-2024-51324-byovd-tres-primitivas-de-kernel-no-documentadas-en-bdapiutil64.sys/</guid>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;strong&gt;TL;DR:&lt;/strong&gt; &lt;code&gt;BdApiUtil64.sys&lt;/code&gt; crea &lt;code&gt;\Device\BdApiUtil&lt;/code&gt; con &lt;code&gt;SecurityDescriptor = NULL&lt;/code&gt; —&#xA;accesible desde cualquier proceso en cualquier nivel de integridad. El handler de terminación&#xA;usa &lt;code&gt;PsLookupProcessByProcessId&lt;/code&gt; + &lt;code&gt;ObOpenObjectByPointer(KernelMode)&lt;/code&gt;, bypaseando&#xA;&lt;code&gt;SeAccessCheck&lt;/code&gt; incondicionalmente. &lt;code&gt;ZwOpenProcess&lt;/code&gt; está completamente ausente de la tabla de&#xA;importaciones. El análisis con Ghidra revela dos primitivas adicionales sin documentación pública&#xA;previa: borrado de archivo arbitrario (&lt;code&gt;0x80002648&lt;/code&gt;) y borrado de archivo en uso con bypass de&#xA;&lt;code&gt;SectionObjectPointer&lt;/code&gt; (&lt;code&gt;0x8000264C&lt;/code&gt;). Sin autenticación. Determinista para objetivos no-PPL.&#xA;&lt;strong&gt;NVD: Awaiting Analysis · ADP CISA: CVSS 3.8 (Low) · CWE-269.&lt;/strong&gt;&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

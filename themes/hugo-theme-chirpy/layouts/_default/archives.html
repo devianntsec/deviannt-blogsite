@@ -1,0 +1,41 @@
+{{ define "main" }}
+  {{ $lang := .Site.Language.Lang }}
+  {{ $df_strftime_m := i18n "df.archives.strftime" | default "/ %m" }}
+  {{ $df_dayjs_m := i18n "df.archives.dayjs" | default "/ MM" }}
+  <article class="px-1">
+    <h1 class="dynamic-title">
+      {{ i18n "tabs.archives" }}
+    </h1>
+    <div class="content">
+      <div id="archives" class="pl-xl-3">
+        {{ $pages := where .Site.RegularPages "Type" "post" }}
+        {{ $last_year := "" }}
+        {{ $pages_count := len $pages }}
+        
+        {{ range $index, $page := $pages }}
+          {{ $cur_year := .Date.Format "2006" }}
+
+          {{ if ne $cur_year $last_year }}
+            {{ if ne $last_year "" }}</ul>{{ end }}
+
+            <time class="year lead d-block">{{ $cur_year }}</time>
+            <ul class="list-unstyled">
+
+            {{ $last_year = $cur_year }}
+          {{ end }}
+
+          <li>
+            {{ $ts := .Date.Format "2006-01-02T15:04:05Z07:00" }}
+            <span class="date day" data-ts="{{ .Date.Unix }}" data-df="DD"> {{ .Date.Format "02" }}</span>
+            <span class="date month small text-muted ms-1" data-ts="{{ .Date.Unix }}" data-df="{{ $df_dayjs_m }}">
+              {{ .Date.Format $df_strftime_m }}
+            </span>
+            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+          </li>
+
+          {{ if eq (add $index 1) $pages_count }}</ul>{{ end }}
+        {{ end }}
+      </div>
+    </div>
+  </article>
+{{ end }}

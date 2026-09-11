@@ -1,0 +1,94 @@
+AddDefaultCharset UTF-8
+
+# ---------------------------------------------------------------------------
+# Security headers
+# ---------------------------------------------------------------------------
+<IfModule mod_headers.c>
+  # Force HTTPS for a full year, including subdomains, and allow HSTS preload
+  Header always set Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
+
+  # Stop browsers from MIME-sniffing responses away from the declared Content-Type
+  Header always set X-Content-Type-Options "nosniff"
+
+  # Block this site from being framed (clickjacking protection)
+  Header always set X-Frame-Options "DENY"
+
+  # Send full referrer only to same-origin, trim it for cross-origin requests
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+
+  # Disable powerful browser features you don't use
+  Header always set Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=(), usb=()"
+
+  # Content-Security-Policy: everything self-hosted, only cdnjs allowed for the
+  # MathJax polyfill (per js-selector.html) and Cloudflare Web Analytics beacon.
+  # Adjust if you add new external scripts/styles/fonts later.
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://cloudflareinsights.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
+
+  # CORS for JSON/XML feeds (search index, RSS, sitemap)
+  <FilesMatch "\.(json|xml)$">
+    Header set Access-Control-Allow-Origin "https://deviannt.com"
+    Header set Access-Control-Allow-Methods "GET"
+    Header set Access-Control-Allow-Headers "Content-Type"
+  </FilesMatch>
+</IfModule>
+
+# ---------------------------------------------------------------------------
+# Caching for self-hosted static assets (static/lib/, css, js, fonts, images)
+# ---------------------------------------------------------------------------
+<IfModule mod_expires.c>
+  ExpiresActive On
+
+  # HTML/feeds: revalidate often, content changes frequently
+  ExpiresByType text/html "access plus 0 seconds"
+  ExpiresByType application/rss+xml "access plus 1 hour"
+  ExpiresByType application/json "access plus 1 hour"
+  ExpiresByType application/xml "access plus 1 hour"
+
+  # Long-lived static assets (unhashed filenames from vendor-assets.mjs,
+  # theme CSS/JS, fonts, images)
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType text/javascript "access plus 1 year"
+  ExpiresByType font/woff "access plus 1 year"
+  ExpiresByType font/woff2 "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/avif "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType image/x-icon "access plus 1 year"
+</IfModule>
+
+<IfModule mod_headers.c>
+  # Since filenames aren't fingerprinted, force revalidation instead of
+  # blind long-term caching — combines with ExpiresByType above via
+  # Cache-Control max-age + must-revalidate so updates still get picked up
+  # once the file actually changes on disk.
+  <FilesMatch "\.(css|js|woff2?|png|jpe?g|webp|avif|svg|ico)$">
+    Header set Cache-Control "public, max-age=31536000, must-revalidate"
+  </FilesMatch>
+  <FilesMatch "\.html$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+</IfModule>
+
+Options -Indexes
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTPS} off
+  RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+</IfModule>
+
+ErrorDocument 404 /404.php
+
+# Detección de idioma por país (Cloudflare) — solo en la home, solo primera visita
+<IfModule mod_rewrite.c>
+  RewriteCond %{HTTP_COOKIE} !blog_lang=
+  RewriteCond %{REQUEST_URI} ^/$
+  RewriteRule ^$ /lang-gate.php [L]
+</IfModule>
+
+# CVE-2025-55182
+Redirect 301 /cve-2025-55182-react2shell-rce-in-react-server-components-via-prototype-pollution/ /cve-2025-55182-react2shell-rce-react-server-components/
+Redirect 301 /es/cve-2025-55182-react2shell-rce-en-react-server-components-v%C3%ADa-prototype-pollution/ /es/cve-2025-55182-react2shell-rce-react-server-components/

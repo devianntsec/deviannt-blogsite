@@ -1,0 +1,23 @@
+{{/* 
+  Table of Contents (TOC) partial
+  Checks if TOC should be enabled, then renders it if needed
+*/}}
+
+{{/* Determine if TOC should be enabled */}}
+{{ $enable_toc := false }}
+{{ $page_toc := default true .Params.toc }}  {{/* 如果 .Params.toc 不存在，默认 true */}}
+{{ if and site.Params.toc $page_toc }}
+  {{ if or (findRE "<h2" .Content) (findRE "<h3" .Content) }}
+    {{ $enable_toc = true }}
+  {{ end }}
+{{ end }}
+
+
+{{/* Render TOC if enabled */}}
+{{ if $enable_toc }}
+  <div class="toc-border-cover z-3"></div>
+  <section id="toc-wrapper" class="invisible position-sticky ps-0 pe-4 pb-4">
+    <h2 class="panel-heading ps-3 pb-2 mb-0">{{ i18n "panel.toc" }}</h2>
+    <nav id="toc"></nav>
+  </section>
+{{ end }}

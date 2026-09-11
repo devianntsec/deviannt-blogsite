@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Driver on devianntsec</title>
+    <link>http://localhost:1313/tags/driver/</link>
+    <description>Recent content in Driver on devianntsec</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 03 Jul 2026 15:37:13 -0400</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/driver/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CVE-2024-51324 · BYOVD: Three Undocumented Kernel Primitives in BdApiUtil64.sys</title>
+      <link>http://localhost:1313/cve-2024-51324-byovd-three-undocumented-kernel-primitives-in-bdapiutil64.sys/</link>
+      <pubDate>Mon, 27 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/cve-2024-51324-byovd-three-undocumented-kernel-primitives-in-bdapiutil64.sys/</guid>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;strong&gt;TL;DR:&lt;/strong&gt; &lt;code&gt;BdApiUtil64.sys&lt;/code&gt; creates &lt;code&gt;\Device\BdApiUtil&lt;/code&gt; with &lt;code&gt;SecurityDescriptor = NULL&lt;/code&gt; —&#xA;accessible from any process at any integrity level. The termination handler uses&#xA;&lt;code&gt;PsLookupProcessByProcessId&lt;/code&gt; + &lt;code&gt;ObOpenObjectByPointer(KernelMode)&lt;/code&gt;, bypassing &lt;code&gt;SeAccessCheck&lt;/code&gt;&#xA;unconditionally. &lt;code&gt;ZwOpenProcess&lt;/code&gt; is completely absent from the import table. Ghidra analysis&#xA;reveals two additional primitives with no prior public documentation: arbitrary file deletion&#xA;(&lt;code&gt;0x80002648&lt;/code&gt;) and in-use file deletion with &lt;code&gt;SectionObjectPointer&lt;/code&gt; bypass (&lt;code&gt;0x8000264C&lt;/code&gt;).&#xA;No authentication. Deterministic for non-PPL targets.&#xA;&lt;strong&gt;NVD: Awaiting Analysis · ADP CISA: CVSS 3.8 (Low) · CWE-269.&lt;/strong&gt;&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,111 @@
+{{ define "main" }}
+<article class="px-1">
+  <h1 class="dynamic-title">
+    {{ i18n "tabs.categories" }}
+  </h1>
+  <div class="content">
+    {{ $allPages := where .Site.RegularPages "Type" "post" }}
+    
+    <!-- get all parent categories -->
+    {{ $parentCategories := slice }}
+    {{ range $allPages }}
+      {{ if isset .Params "categories" }}
+        {{ if gt (len .Params.categories) 0 }}
+          {{ $parentCategories = $parentCategories | append (index .Params.categories 0) }}
+        {{ end }}
+      {{ end }}
+    {{ end }}
+    {{ $parentCategories = $parentCategories | uniq | sort }}
+    
+    <!-- create card for each parent category -->
+    {{ range $index, $category := $parentCategories }}
+      {{ $parentName := . }}
+      {{ $subcategories := slice }}
+      {{ $parentPages := slice }}
+      
+      <!-- get all pages and subcategories related to the parent category -->
+      {{ range $allPages }}
+        {{ if isset .Params "categories" }}
+          {{ if gt (len .Params.categories) 0 }}
+            {{ if eq (index .Params.categories 0) $parentName }}
+              {{ $parentPages = $parentPages | append . }}
+              {{ if gt (len .Params.categories) 1 }}
+                {{ $subcategories = $subcategories | append (index .Params.categories 1) }}
+              {{ end }}
+            {{ end }}
+          {{ end }}
+        {{ end }}
+      {{ end }}
+      {{ $subcategories = $subcategories | uniq | sort }}
+
+      <div class="card categories mb-3">
+        <div id="h_{{ $index }}" class="card-header d-flex justify-content-between hide-border-bottom">
+          <span class="ms-2">
+            <i class="far fa-folder{{ if gt (len $subcategories) 0 }}-open{{ end }} fa-fw"></i>
+            <a href="{{ "categories/" | absLangURL }}{{ $parentName | urlize }}" class="mx-2">{{ $parentName }}</a>
+            <span class="text-muted small font-weight-light">
+              {{ if gt (len $subcategories) 0 }}
+                {{ len $subcategories }}
+                {{ if gt (len $subcategories) 1 }}
+                  {{ i18n "categories.category_measure" | default (i18n "categories.category_measure.plural") }},
+                {{ else }}
+                  {{ i18n "categories.category_measure" | default (i18n "categories.category_measure.singular") }},
+                {{ end }}
+              {{ end }}
+              {{ len $parentPages }}
+              {{ if gt (len $parentPages) 1 }}
+                {{ i18n "categories.post_measure" | default (i18n "categories.post_measure.plural") }}
+              {{ else }}
+                {{ i18n "categories.post_measure" | default (i18n "categories.post_measure.singular") }}
+              {{ end }}
+            </span>
+          </span>
+
+          {{ if gt (len $subcategories) 0 }}
+            <a href="#l_{{ $index }}" data-bs-toggle="collapse" aria-expanded="false" aria-label="{{ $parentName }}-trigger" class="category-trigger hide-border-bottom">
+              <i class="fas fa-fw fa-angle-down"></i>
+            </a>
+          {{ else }}
+            <span class="disabled">
+              <i class="fas fa-fw fa-angle-right"></i>
+            </span>
+          {{ end }}
+        </div>
+
+        {{ if gt (len $subcategories) 0 }}
+          <div id="l_{{ $index }}" class="collapse show">
+            <ul class="list-group">
+              {{ range $subcategories }}
+                {{ $subCategoryName := . }}
+                
+                <!-- get pages related to the subcategories -->
+                {{ $subPages := slice }}
+                {{ range $parentPages }}
+                  {{ if gt (len .Params.categories) 1 }}
+                    {{ if eq (index .Params.categories 1) $subCategoryName }}
+                      {{ $subPages = $subPages | append . }}
+                    {{ end }}
+                  {{ end }}
+                {{ end }}
+                
+                <li class="list-group-item">
+                  <i class="far fa-folder fa-fw"></i>
+                  <a href="{{ "categories/" | absLangURL }}{{ $subCategoryName | urlize }}" class="mx-2">{{ $subCategoryName }}</a>
+                  <span class="text-muted small font-weight-light">
+                    {{ len $subPages }}
+                    {{ if gt (len $subPages) 1 }}
+                      {{ i18n "categories.post_measure" | default (i18n "categories.post_measure.plural") }}
+                    {{ else }}
+                      {{ i18n "categories.post_measure" | default (i18n "categories.post_measure.singular") }}
+                    {{ end }}
+                  </span>
+                </li>
+              {{ end }}
+            </ul>
+          </div>
+        {{ end }}
+      </div>
+    {{ end }}
+  </div>
+</article>
+{{ end }}

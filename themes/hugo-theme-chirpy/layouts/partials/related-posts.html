@@ -1,0 +1,95 @@
+<!-- Recommend the other 3 posts according to the tags and categories of the current post. -->
+
+{{ $TOTAL_SIZE := 3 }}
+{{ $TAG_SCORE := 1 }}
+{{ $CATEGORY_SCORE := 0.5 }}
+{{ $SEPARATOR := ":" }}
+
+{{ $currentPage := . }}
+{{ $allPosts := where .Site.RegularPages "Type" "post" }}
+{{ $matchPosts := slice }}
+
+<!-- Get posts with matching categories -->
+{{ range $currentPage.Params.categories }}
+  {{ $categoryPosts := where $allPosts "Params.categories" "intersect" (slice .) }}
+  {{ $matchPosts = $matchPosts | union $categoryPosts }}
+{{ end }}
+
+<!-- Get posts with matching tags -->
+{{ range $currentPage.Params.tags }}
+  {{ $tagPosts := where $allPosts "Params.tags" "intersect" (slice .) }}
+  {{ $matchPosts = $matchPosts | union $tagPosts }}
+{{ end }}
+
+
+{{ $scoreList := slice }}
+
+{{ range $i, $post := $matchPosts }}
+  {{ if eq $post.RelPermalink $currentPage.RelPermalink }}
+    {{ continue }}
+  {{ end }}
+
+  {{ $score := 0 }}
+
+  <!-- Calculate tag score -->
+  {{ range $post.Params.tags }}
+    {{ if in $currentPage.Params.tags . }}
+      {{ $score = add $score $TAG_SCORE }}
+    {{ end }}
+  {{ end }}
+
+  <!-- Calculate category score -->
+  {{ range $post.Params.categories }}
+    {{ if in $currentPage.Params.categories . }}
+      {{ $score = add $score $CATEGORY_SCORE }}
+    {{ end }}
+  {{ end }}
+
+  {{ if gt $score 0 }}
+    {{ $scoreItem := printf "%s%s%d" (string $score) $SEPARATOR $i }}
+    {{ $scoreList = $scoreList | append $scoreItem }}
+  {{ end }}
+{{ end }}
+
+{{ $indexList := slice }}
+
+{{ if gt (len $scoreList) 0 }}
+  {{ $scoreList = sort $scoreList "value" "desc" }}
+  {{ range first $TOTAL_SIZE $scoreList }}
+    {{ $parts := split . $SEPARATOR }}
+    {{ $index := index $parts 1 | int }}
+    {{ $indexList = $indexList | append $index }}
+  {{ end }}
+{{ end }}
+
+{{ $relatePosts := slice }}
+
+{{ range $indexList }}
+  {{ $i := . }}
+  {{ $post := index $matchPosts $i }}
+  {{ $relatePosts = $relatePosts | append $post }}
+{{ end }}
+
+{{ if gt (len $relatePosts) 0 }}
+  <aside id="related-posts" aria-labelledby="related-label">
+    <h3 class="mb-4" id="related-label">
+      {{ i18n "post.relate_posts" }}
+    </h3>
+    <nav class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4 mb-4">
+      {{ range $relatePosts }}
+        <article class="col">
+          <a href="{{ .RelPermalink }}" class="post-preview card h-100">
+            <div class="card-body">
+              {{ partial "datetime.html" (dict "date" .Date "lang" site.Language.Lang) }}
+              <h4 class="pt-0 my-2">{{ .Title }}</h4>
+              <div class="text-muted">
+                <p>{{ partial "post-description.html" . }}</p>
+              </div>
+            </div>
+          </a>
+        </article>
+      {{ end }}
+    </nav>
+  </aside>
+  <!-- #related-posts -->
+{{ end }}

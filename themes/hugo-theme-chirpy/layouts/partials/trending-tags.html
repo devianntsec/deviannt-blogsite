@@ -1,0 +1,32 @@
+<!-- The trending tags list -->
+{{ $MAX := 10 }}
+{{ $allTags := slice }}
+
+<!-- Get all tags with their counts -->
+{{ range $name, $taxonomy := .Site.Taxonomies.tags }}
+  {{ $allTags = $allTags | append (dict "name" $name "count" $taxonomy.Count) }}
+{{ end }}
+
+<!-- Sort by count (descending) and then by name (ascending) -->
+{{ $sortedTags := sort $allTags "count" "desc" }}
+{{ $sortedTags = sort $sortedTags "name" "asc" }}
+
+<!-- Get top N unique tags -->
+{{ $trendingTags := slice }}
+{{ range $i, $tag := $sortedTags }}
+  {{ if lt (len $trendingTags) $MAX }}
+    {{ $trendingTags = $trendingTags | append $tag.name }}
+  {{ end }}
+{{ end }}
+
+{{ if gt (len $trendingTags) 0 }}
+  <section>
+    <h2 class="panel-heading">{{ T "panel.trending_tags" }}</h2>
+    <div class="d-flex flex-wrap mt-3 mb-1 me-3">
+      {{ range $trendingTags }}
+        {{ $tag_path := printf "tags/%s/" (urlize .) }}
+        <a class="post-tag btn btn-outline-primary" href="{{ $tag_path | absLangURL }}">{{ . }}</a>
+      {{ end }}
+    </div>
+  </section>
+{{ end }}

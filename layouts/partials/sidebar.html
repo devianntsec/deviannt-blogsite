@@ -1,0 +1,224 @@
+{{/*
+  layouts/partials/sidebar.html
+  ─────────────────────────────────────────────────────────────
+  Custom sidebar layout for devianntsec.
+
+  Structure:
+    <aside>
+      <header>           — Avatar + animated title + tagline
+      <nav>              — Main menu items
+                           Language toggle (multilingual)
+                           Theme toggle (dark / light)
+      <div.dv-social-only> — "Available for hire" badge
+                             Social icon row
+*/}}
+
+<aside aria-label="Sidebar" id="sidebar" class="d-flex flex-column align-items-end">
+
+  {{/* ════════════════════════════════════════════════════════
+       HEADER — Avatar + Title + Tagline
+  ════════════════════════════════════════════════════════ */}}
+  <header class="profile-wrapper">
+
+    {{/* ── Avatar wrapped in bracket-corner decoration ── */}}
+    <div class="dv-avatar-bracket">
+      {{/* L-shaped corner accents */}}
+      <span class="dv-c tl"></span>
+      <span class="dv-c tr"></span>
+      <span class="dv-c bl"></span>
+      <span class="dv-c br"></span>
+
+      <a href="{{ .Site.Home.RelPermalink }}" id="avatar" class="rounded-circle">
+        {{- if .Site.Params.avatar -}}
+          <img src="{{ .Site.Params.avatar | absURL }}"
+               width="112" height="112"
+               alt="avatar"
+               onerror="this.style.display='none'">
+        {{- end -}}
+      </a>
+    </div>
+
+    {{/* ── Animated title bar (JS in metadata-hook.html drives the animation) ── */}}
+    {{ partial "sidebar-title.html" . }}
+
+    {{/* ── Tagline (set in config/_default/languages.toml) ── */}}
+    {{ if .Site.Params.tagline }}
+      <p class="site-subtitle fst-italic mb-0">{{ .Site.Params.tagline }}</p>
+    {{ end }}
+
+  </header>
+
+
+  {{/* ════════════════════════════════════════════════════════
+       NAVIGATION
+  ════════════════════════════════════════════════════════ */}}
+  <nav class="flex-column flex-grow-1 w-100 ps-0">
+    <ul class="nav">
+
+      {{/* ── Main menu items (from config/_default/menus.toml or front matter) ── */}}
+      {{ range .Site.Menus.main }}
+        {{ $active := eq (.URL) $.RelPermalink }}
+        <li class="nav-item{{ if $active }} active{{ end }}">
+          <a href="{{ .URL }}" class="nav-link{{ if $active }} active{{ end }}">
+            <i class="fa-fw fas {{ .Pre }}"></i>
+            <span>{{ .Name | upper }}</span>
+          </a>
+        </li>
+      {{ end }}
+
+
+      {{/* ── Language Toggle ──────────────────────────────
+           Uses data-hard-nav="true" so the soft-nav engine skips it
+           and JS's resolveLanguageUrl does a HEAD check first to
+           find whether the translated post exists before redirecting.
+      ── */}}
+      {{ if hugo.IsMultilingual }}
+        {{ $currentLang  := .Site.Language.Lang }}
+        {{ $siteBase     := strings.TrimSuffix "/" .Site.BaseURL }}
+
+        {{/* Default: switch to Spanish */}}
+        {{ $otherUrl      := printf "%s/es/" $siteBase }}
+        {{ $otherLangName := "Español" }}
+        {{ $otherLangCode := "es" }}
+        {{ if eq $currentLang "es" }}
+          {{/* We're on Spanish — switch to English */}}
+{{ $otherUrl      = $siteBase }}
+          {{ $otherLangName = "English" }}
+          {{ $otherLangCode = "en" }}
+        {{ end }}
+
+        {{/* If this page has a translation, prefer that URL */}}
+        {{ range $.Translations }}
+          {{ $otherUrl = .Permalink }}
+        {{ end }}
+
+<li class="nav-item mt-4"><a class="nav-link" href="{{ $otherUrl }}" data-hard-nav="true" data-lang-url="{{ $otherUrl }}" data-lang-fallback="{{ if eq $currentLang "es" }}{{ $siteBase }}{{ else }}{{ printf "%s/es/" $siteBase }}{{ end }}" onclick="document.cookie='blog_lang={{ $otherLangCode }};path=/;max-age=31536000'"><i class="fa-fw fas fa-language"></i><span>{{ $otherLangName | upper }}</span></a></li>
+      {{ end }}
+
+
+      {{/* ── Theme Toggle (dark / light) ─────────────────
+           The button ID "mode-toggle" is what metadata-hook.html
+           binds the click listener to. The displayed value ("dark"
+           or "light") is updated by JS on every toggle and on load.
+      ── */}}
+      {{ if not .Site.Params.themeMode }}
+        <li class="nav-item">
+          <a class="nav-link no-hover dv-theme-row">
+            <i class="fa-fw fas fa-circle-half-stroke"></i>
+            <button
+            type="button"
+            id="mode-toggle"
+            class="dv-theme-select"
+            aria-label="Switch theme"
+            >
+              <span class="dv-theme-select__val">dark</span>
+              {{/* Arrow hidden via CSS — kept for potential future use */}}
+              <span class="dv-theme-select__arrow" aria-hidden="true">&#8250;</span>
+            </button>
+          </a>
+        </li>
+      {{ end }}
+      
+      {{/* ── Back to portfolio ───────────────────────────── */}}
+      <li class="nav-item mt-2">
+        <a href="https://deviannt.com"
+           class="nav-link dv-portfolio-link"
+           target="_blank"
+           rel="noopener noreferrer"
+           data-hard-nav="true">
+          <i class="fa-fw fas fa-arrow-left"></i>
+          <span>portfolio</span>
+        </a>
+      </li>
+
+    </ul>
+  </nav>
+
+
+  {{/* ════════════════════════════════════════════════════════
+       BOTTOM — Status badge + Social icons
+       border-top / padding-top intentionally inlined because
+       the social icon row itself carries the top border via CSS.
+  ════════════════════════════════════════════════════════ */}}
+  <div class="dv-social-only" style="border-top: none; padding-top: 0; width: 100%;">
+
+    {{/* ── "Available for hire" badge ── */}}
+        <div class="dv-status-badge-wrap">
+      <div class="dv-status-badge">
+        <span class="dv-status-dot"></span>
+        {{ .Site.Params.statusBadge }}
+      </div>
+    </div>
+
+    {{/* ── Social icon row ── */}}
+    {{/*
+      Iterates .Site.Params.social.links defined in params.toml.
+      Instagram is deliberately excluded (no icon box for it).
+      URL construction per type:
+        github    → https://github.com/{id}
+        email     → clipboard copy with bilingual toast
+        anything  → {id} as-is (already a full URL in params.toml)
+    */}}
+    <div class="dv-social-icons" style="border-top: 1px solid rgba(59,130,246,0.1); padding-top: 0.75rem; margin-top: 0;">
+      {{ range .Site.Params.social.links }}
+        {{ if not (eq .type "instagram") }}
+
+          {{ if eq .type "email" }}
+            {{/* ── Email: copy to clipboard instead of mailto ── */}}
+            <button
+              type="button"
+              class="dv-social-icon-box"
+              aria-label="email"
+              data-email="{{ .id }}"
+              onclick="(function(btn){
+                var email = btn.getAttribute('data-email');
+                var lang = document.documentElement.getAttribute('lang') || 'en';
+                var msg = lang === 'es'
+                  ? '¡' + email + ' copiado al portapapeles!'
+                  : email + ' copied to clipboard!';
+                navigator.clipboard.writeText(email).then(function(){
+                  var t = document.getElementById('dv-copy-toast');
+                  if (!t) {
+                    t = document.createElement('div');
+                    t.id = 'dv-copy-toast';
+                    document.body.appendChild(t);
+                  }
+                  t.textContent = msg;
+                  t.classList.add('visible');
+                  setTimeout(function(){ t.classList.remove('visible'); }, 2500);
+                });
+              })(this)"
+              style="background:none;border:none;padding:0;cursor:pointer;"
+            >
+              <i class="{{ .icon }}"></i>
+            </button>
+
+          {{ else }}
+            {{/* ── All other social links ── */}}
+            {{ $url := "" }}
+            {{ if eq .type "github" }}
+              {{ $url = printf "https://github.com/%s" .id }}
+            {{ else }}
+              {{ $url = .id }}
+            {{ end }}
+
+            {{ if $url }}
+              <a
+                class="dv-social-icon-box"
+                href="{{ $url }}"
+                aria-label="{{ .type }}"
+                target="_blank" rel="noopener noreferrer"
+                {{ if eq .type "mastodon" }}rel="me"{{ end }}
+              >
+                <i class="{{ .icon }}"></i>
+              </a>
+            {{ end }}
+          {{ end }}
+
+        {{ end }}
+      {{ end }}
+    </div>
+
+  </div>
+
+</aside>

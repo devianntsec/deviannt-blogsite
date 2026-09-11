@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 — devianntsec</title>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'JetBrains Mono', 'SF Mono', Monaco, monospace;
+      background: #060910;
+      color: #e2e8f0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow-x: hidden;
+    }
+
+     
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(59,130,246,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(59,130,246,0.04) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .stage {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 4rem 2rem 5rem;
+      width: 100%;
+      max-width: 640px;
+    }
+
+     
+    .num-wrap {
+      position: relative;
+      display: inline-block;
+      line-height: 1;
+      margin-bottom: 2.5rem;
+    }
+
+    .num {
+      font-size: clamp(5.5rem, 18vw, 13rem);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      color: transparent;
+      -webkit-text-stroke: 1.5px rgba(59,130,246,0.45);
+      position: relative;
+      display: block;
+      animation: flicker 7s infinite;
+      user-select: none;
+    }
+
+    .num::before,
+    .num::after {
+      content: attr(data-text);
+      position: absolute;
+      inset: 0;
+      font-family: inherit;
+      font-size: inherit;
+      font-weight: inherit;
+      letter-spacing: inherit;
+      opacity: 0;
+    }
+
+    .num::before {
+      -webkit-text-stroke: 1.5px #EF4444;
+      color: transparent;
+      clip-path: polygon(0 20%, 100% 20%, 100% 38%, 0 38%);
+      transform: translateX(-3px);
+      animation: gr 5s infinite;
+    }
+
+    .num::after {
+      -webkit-text-stroke: 1.5px #3B82F6;
+      color: transparent;
+      clip-path: polygon(0 60%, 100% 60%, 100% 80%, 0 80%);
+      transform: translateX(3px);
+      animation: gb 5s infinite 0.12s;
+    }
+
+     
+    .scanlines {
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0,0,0,0.12) 2px,
+        rgba(0,0,0,0.12) 4px
+      );
+      pointer-events: none;
+      animation: scan 10s linear infinite;
+    }
+
+     
+    .corner {
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      border-color: rgba(59,130,246,0.48);
+      border-style: solid;
+    }
+    .corner.tl { top: -5px;    left: -5px;   border-width: 2px 0 0 2px; }
+    .corner.tr { top: -5px;    right: -5px;  border-width: 2px 2px 0 0; }
+    .corner.bl { bottom: -5px; left: -5px;   border-width: 0 0 2px 2px; }
+    .corner.br { bottom: -5px; right: -5px;  border-width: 0 2px 2px 0; }
+
+     
+    .divider {
+      width: clamp(140px, 30vw, 340px);
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(59,130,246,0.28), transparent);
+      margin-bottom: 1.6rem;
+    }
+
+     
+    .msg {
+      display: flex;
+      flex-direction: column;
+      gap: 0.28rem;
+      margin-bottom: 2.6rem;
+    }
+
+    .line {
+      font-size: clamp(0.74rem, 1.8vw, 0.92rem);
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      color: #475569;
+      opacity: 0;
+      animation: fadein 0.55s ease forwards;
+    }
+
+    .line:nth-child(1) { animation-delay: 0.4s; }
+    .line:nth-child(2) {
+      animation-delay: 0.75s;
+      color: #60A5FA;
+      font-style: italic;
+    }
+
+    .prefix {
+      color: #3B82F6;
+      opacity: 0.55;
+      font-weight: 300;
+      margin-right: 0.4em;
+    }
+
+    .cursor {
+      display: inline-block;
+      width: 7px;
+      height: 0.9em;
+      background: #3B82F6;
+      vertical-align: middle;
+      margin-left: 3px;
+      opacity: 0;
+      animation: blink 1s step-end infinite;
+      animation-delay: 1.4s;
+      animation-fill-mode: forwards;
+    }
+
+     
+    .actions {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      opacity: 0;
+      animation: fadein 0.55s ease 1.1s forwards;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: #475569;
+      text-decoration: none;
+      padding: 0.5rem 1.15rem;
+      border: 1px solid rgba(59,130,246,0.18);
+      background: rgba(59,130,246,0.04);
+      position: relative;
+      transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 2px;
+      background: transparent;
+      transition: background 0.2s ease;
+    }
+
+    .btn:hover {
+      color: #60A5FA;
+      border-color: rgba(59,130,246,0.42);
+      background: rgba(59,130,246,0.08);
+    }
+
+    .btn:hover::before { background: #3B82F6; }
+
+    .btn-arrow {
+      display: inline-block;
+      transition: transform 0.2s ease;
+    }
+    .btn:hover .btn-arrow { transform: translateX(-3px); }
+
+     
+    [data-lang] { display: none; }
+    [data-lang].active { display: inline-flex; }
+    .msg [data-lang] { display: none; }
+    .msg [data-lang].active { display: block; }
+
+     
+    @keyframes fadein {
+      from { opacity: 0; transform: translateY(5px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0; }
+    }
+    @keyframes flicker {
+      0%, 94%, 100% { opacity: 1; }
+      95%  { opacity: 0.75; }
+      96%  { opacity: 1; }
+      97%  { opacity: 0.6; }
+      98%  { opacity: 1; }
+    }
+    @keyframes gr {
+      0%, 88%, 100% { opacity: 0; transform: translateX(0); }
+      89% { opacity: 0.9; transform: translateX(-4px); clip-path: polygon(0 15%, 100% 15%, 100% 33%, 0 33%); }
+      91% { opacity: 0.6; transform: translateX(3px);  clip-path: polygon(0 58%, 100% 58%, 100% 76%, 0 76%); }
+      93% { opacity: 0; }
+    }
+    @keyframes gb {
+      0%, 90%, 100% { opacity: 0; transform: translateX(0); }
+      91% { opacity: 0.9; transform: translateX(4px);  clip-path: polygon(0 63%, 100% 63%, 100% 82%, 0 82%); }
+      93% { opacity: 0.6; transform: translateX(-3px); clip-path: polygon(0 28%, 100% 28%, 100% 46%, 0 46%); }
+      95% { opacity: 0; }
+    }
+    @keyframes scan {
+      from { background-position: 0 0; }
+      to   { background-position: 0 120px; }
+    }
+
+    @media (max-width: 480px) {
+      .actions { flex-direction: column; align-items: center; }
+      .btn { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+  <div class="stage">
+
+    
+    <div class="num-wrap">
+      <div class="corner tl"></div>
+      <div class="corner tr"></div>
+      <div class="corner bl"></div>
+      <div class="corner br"></div>
+      <div class="scanlines"></div>
+      <span class="num" data-text="404">404</span>
+    </div>
+
+    <div class="divider"></div>
+
+    
+    <div class="msg">
+      <div class="line" data-lang="en">
+        <span class="prefix">//</span>A hacker has hijacked this page.
+      </div>
+      <div class="line" data-lang="en">
+        <span class="prefix">//</span>Just kidding. You probably mistyped something.<span class="cursor"></span>
+      </div>
+
+      <div class="line" data-lang="es">
+        <span class="prefix">//</span>Un hacker ha secuestrado esta página.
+      </div>
+      <div class="line" data-lang="es">
+        <span class="prefix">//</span>Es broma. Solo cometiste un typo.<span class="cursor"></span>
+      </div>
+    </div>
+
+    
+    <div class="actions">
+      <a class="btn" data-lang="en" href="https://blog.deviannt.com/">
+        <span class="btn-arrow">←</span>
+        <span>back to blog</span>
+      </a>
+      <a class="btn" data-lang="en" href="https://deviannt.com/">
+        <span class="btn-arrow">←</span>
+        <span>portfolio</span>
+      </a>
+
+      <a class="btn" data-lang="es" href="https://blog.deviannt.com/es/">
+        <span class="btn-arrow">←</span>
+        <span>volver al blog</span>
+      </a>
+      <a class="btn" data-lang="es" href="https://deviannt.com/">
+        <span class="btn-arrow">←</span>
+        <span>portafolio</span>
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+  (function () {
+    
+    var path = window.location.pathname;
+    var lang = 'en';
+
+    if (path.startsWith('/es/') || path === '/es') {
+      lang = 'es';
+    } else {
+      var nav = navigator.language || navigator.userLanguage || '';
+      if (nav.toLowerCase().startsWith('es')) lang = 'es';
+    }
+
+    document.documentElement.setAttribute('lang', lang);
+
+    
+    document.querySelectorAll('[data-lang]').forEach(function (el) {
+      if (el.getAttribute('data-lang') === lang) {
+        el.classList.add('active');
+      }
+    });
+  })();
+  </script>
+</body>
+</html>

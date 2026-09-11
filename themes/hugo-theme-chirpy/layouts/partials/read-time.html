@@ -1,0 +1,35 @@
+<!-- Calculate the post's reading time, and display the word count in tooltip -->
+{{ $content := .content }}
+{{ $words := len (split $content " ") }}
+
+<!-- words per minute -->
+{{ $wpm := 180 }}
+{{ $min_time := 1 }}
+
+{{ $read_time := div $words $wpm }}
+
+{{ if lt $read_time 1 }}
+  {{ $read_time = $min_time }}
+{{ end }}
+
+{{ $lang := .lang | default site.Language.Lang }}
+{{ $read_prompt := i18n "post.read_time.prompt" (dict "Language" $lang) }}
+
+<!-- return element -->
+<span
+  class="readtime"
+  data-bs-toggle="tooltip"
+  data-bs-placement="bottom"
+  title="{{ $words }} {{ i18n "post.words" (dict "Language" $lang) }}"
+>
+  <em>
+    {{- $read_time -}}
+    {{ " " }}
+    {{- i18n "post.read_time.unit" (dict "Language" $lang) -}}
+  </em>
+  {{- if .prompt -}}
+    {{- $prompt_words := len (split $read_prompt " ") -}}
+    {{- if le $prompt_words 1 -}}{{ " " }}{{- end -}}
+    {{ $read_prompt }}
+  {{- end -}}
+</span>

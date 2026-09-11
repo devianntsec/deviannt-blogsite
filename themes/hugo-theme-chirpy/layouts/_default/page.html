@@ -1,0 +1,16 @@
+{{ define "main" }}
+  <article class="px-1">
+    {{ if or (eq .Layout "page") (eq .Type "tabs") }}
+      {{ $tab_key := .Title | lower }}
+      {{ $title := index (index .Site.Data.locales .Site.Language.Lang).tabs $tab_key | default .Title }}
+      <h1 class="dynamic-title">
+        {{ $title }}
+      </h1>
+      <div class="content">
+        {{ .Content }}
+      </div>
+    {{ else }}
+      {{ .Content }}
+    {{ end }}
+  </article>
+{{ end }}

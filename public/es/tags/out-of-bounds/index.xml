@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Out-of-Bounds on devianntsec</title>
+    <link>http://localhost:1313/es/tags/out-of-bounds/</link>
+    <description>Recent content in Out-of-Bounds on devianntsec</description>
+    <generator>Hugo</generator>
+    <language>es</language>
+    <lastBuildDate>Fri, 03 Jul 2026 15:37:13 -0400</lastBuildDate>
+    <atom:link href="http://localhost:1313/es/tags/out-of-bounds/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CVE-2021-4034 · PwnKit: Escalada de Privilegios Local en pkexec de polkit</title>
+      <link>http://localhost:1313/es/cve-2021-4034-pwnkit-escalada-de-privilegios-local-en-pkexec-de-polkit/</link>
+      <pubDate>Wed, 27 May 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/es/cve-2021-4034-pwnkit-escalada-de-privilegios-local-en-pkexec-de-polkit/</guid>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;strong&gt;TL;DR:&lt;/strong&gt; Cuando se invoca &lt;code&gt;pkexec&lt;/code&gt; con un vector de argumentos vacío (&lt;code&gt;argc=0&lt;/code&gt;), una&#xA;lectura fuera de límites trata &lt;code&gt;envp[0]&lt;/code&gt; como &lt;code&gt;argv[1]&lt;/code&gt;, y una escritura OOB de vuelta en&#xA;&lt;code&gt;envp&lt;/code&gt; permite al atacante reinyectar &lt;code&gt;GCONV_PATH&lt;/code&gt; en el entorno sanitizado de un binario&#xA;SUID-root. El subsistema iconv de glibc carga entonces una biblioteca compartida controlada&#xA;por el atacante cuya &lt;code&gt;gconv_init()&lt;/code&gt; se ejecuta con EUID 0. Sin autenticación. Determinista.&#xA;&lt;strong&gt;CVSS 7.8 (High).&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;1-contexto--polkit-y-pkexec&#34; id=1-contexto--polkit-y-pkexec&gt;&#xD;&#xA;  &#xD;&#xA;    &lt;span class=&#34;me-2&#34;&gt;1. Contexto — polkit y pkexec&lt;/span&gt;&#xD;&#xA;    &lt;a href=&#34;#1-contexto--polkit-y-pkexec&#34; class=&#34;anchor text-muted&#34;&gt;&lt;i class=&#34;fas fa-hashtag&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xD;&#xA;  &#xD;&#xA;&lt;/h2&gt;&lt;p&gt;polkit (anteriormente PolicyKit) es el framework de autorización utilizado por todos los&#xA;entornos de escritorio Linux principales para permitir que usuarios sin privilegios ejecuten&#xA;comandos específicos con privilegios elevados según políticas predefinidas. &lt;code&gt;pkexec&lt;/code&gt; es el&#xA;binario SUID-root de polkit: el único programa de esta cadena que realmente lleva privilegios&#xA;root en disco.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

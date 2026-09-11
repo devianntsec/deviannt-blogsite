@@ -1,0 +1,77 @@
+<!-- The paginator for post list on HomePage -->
+<nav aria-label="Page Navigation">
+  <ul class="pagination align-items-center mt-4 mb-0">
+    <!-- left arrow -->
+    <li class="page-item {{ if not .Paginator.HasPrev }}disabled{{ end }}">
+      <a class="page-link" href="{{ if .Paginator.HasPrev }}{{ .Paginator.Prev.URL }}{{ else }}#{{ end }}" aria-label="previous-page">
+        <i class="fas fa-angle-left"></i>
+      </a>
+    </li>
+
+    <!-- page numbers -->
+    {{ $paginator := .Paginator }}
+    {{ $current := $paginator.PageNumber }}
+    {{ $total := $paginator.TotalPages }}
+    {{ $leftEllipsis := false }}
+    {{ $rightEllipsis := false }}
+
+    {{ range $paginator.Pagers }}
+      {{ $pageNum := .PageNumber }}
+      {{ $show := false }}
+      {{ $pre := sub $current 1 }}
+      {{ $next := add $current 1 }}
+      {{ $preLess := sub $pre 1 }}
+      {{ $nextMore := add $next 1 }}
+
+      {{ if eq $current 1 }}
+        {{ if or (le $pageNum 3) (eq $pageNum $total) }}
+          {{ $show = true }}
+        {{ end }}
+      {{ else if eq $current $total }}
+        {{ if or (eq $pageNum 1) (ge $pageNum $preLess) }}
+          {{ $show = true }}
+        {{ end }}
+      {{ else }}
+        {{ if or (eq $pageNum 1) (eq $pageNum $total) }}
+          {{ $show = true }}
+        {{ else if and (ge $pageNum $pre) (le $pageNum $next) }}
+          {{ $show = true }}
+        {{ end }}
+      {{ end }}
+
+      {{ if $show }}
+        <!-- show number -->
+        <li class="page-item {{ if eq $pageNum $current }}active{{ end }}">
+          <a class="page-link" href="{{ .URL }}">{{ $pageNum }}</a>
+        </li>
+      {{ else }}
+        <!-- hide number -->
+        {{ if and (lt $pageNum $pre) (not $leftEllipsis) }}
+          <li class="page-item disabled">
+            <span class="page-link">...</span>
+          </li>
+          {{ $leftEllipsis = true }}
+        {{ else if and (gt $pageNum $next) (not $rightEllipsis) }}
+          <li class="page-item disabled">
+            <span class="page-link">...</span>
+          </li>
+          {{ $rightEllipsis = true }}
+        {{ end }}
+      {{ end }}
+    {{ end }}
+
+    <!-- mobile pagination -->
+    <li class="page-index align-middle">
+      <span>{{ $paginator.PageNumber }}</span>
+      <span class="text-muted">/ {{ $paginator.TotalPages }}</span>
+    </li>
+
+    <!-- right arrow -->
+    <li class="page-item {{ if not $paginator.HasNext }}disabled{{ end }}">
+      <a class="page-link" href="{{ if $paginator.HasNext }}{{ $paginator.Next.URL }}{{ else }}#{{ end }}" aria-label="next-page">
+        <i class="fas fa-angle-right"></i>
+      </a>
+    </li>
+  </ul>
+</nav>
+<!-- .pagination -->

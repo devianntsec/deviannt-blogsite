@@ -1,0 +1,17 @@
+[en]
+  languageName = "English"
+  languageCode = "en"
+  weight = 1
+  title = "devianntsec"
+  [en.params]
+    tagline = "// security research & beyond"
+    statusBadge = "open for: talks · consulting"
+
+[es]
+  languageName = "Español"
+  languageCode = "es"
+  weight = 2
+  title = "devianntsec"
+  [es.params]
+    tagline = "// investigación en seguridad & más"
+    statusBadge = "disponible para: charlas · consultoría"

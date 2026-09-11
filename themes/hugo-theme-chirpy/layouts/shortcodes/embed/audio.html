@@ -1,0 +1,27 @@
+{{ $src := .Get "src" | strings.TrimSpace }}
+{{ $title := .Get "title" | strings.TrimSpace }}
+{{ $types := split (.Get "types" | default "") "|" }}
+
+{{ if not (strings.Contains $src "://") }}
+  {{ $src = relURL $src }}
+{{ end }}
+
+<p>
+  <audio class="embed-audio" controls>
+    {{ $extension := path.Ext $src | strings.TrimPrefix "." }}
+    {{ $types = $types | append $extension }}
+    {{ $filepath := strings.TrimSuffix $extension $src }}
+
+    {{ range $types }}
+      {{ $type := . }}
+      {{ $src := print $filepath $type }}
+      <source src="{{ $src }}" type="audio/{{ $type }}">
+    {{ end }}
+
+    Your browser does not support the audio tag. Here is a
+    <a href="{{ $src }}">link to the audio file</a> instead.
+  </audio>
+  {{ with $title }}
+    <em>{{ . }}</em>
+  {{ end }}
+</p>

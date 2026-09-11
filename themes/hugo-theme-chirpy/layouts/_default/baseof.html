@@ -1,0 +1,53 @@
+<!doctype html>
+<head>
+  {{ $opts := dict 
+    "transpiler" "dartsass"
+    "targetPath" "css/main.css"
+    "enableSourceMap" true
+  }}
+  {{ $sass := resources.Get "scss/main.bundle.scss" }}
+  {{ $style := $sass | toCSS $opts | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ $style.Permalink }}">
+</head>
+<html lang="{{ .Site.LanguageCode }}">
+  {{ partial "head.html" . }}
+  <body>
+    {{ partial "sidebar.html" . }}
+    <div id="main-wrapper" class="d-flex justify-content-center">
+      <div class="container d-flex flex-column px-xxl-5">
+        {{ partial "topbar.html" . }}
+        <div class="row flex-grow-1">
+          <main aria-label="Main Content" class="col-12 col-lg-11 col-xl-9 px-md-4">
+            {{ block "main" . }}{{ end }}
+          </main>
+
+          <!-- panel -->
+          <aside aria-label="Panel" id="panel-wrapper" class="col-xl-3 ps-2 text-muted">
+            <div class="access">
+              {{ partialCached "update-list.html" . }}
+              {{ partialCached "trending-tags.html" . }}
+            </div>
+            {{ block "panel" . }}{{ end }}
+          </aside>
+        </div>
+
+        <div class="row">
+          <!-- tail -->
+          <div id="tail-wrapper" class="col-12 col-lg-11 col-xl-9 px-md-4">
+            {{ block "tail" . }}{{ end }}
+            {{ partialCached "footer.html" . }}
+          </div>
+        </div>
+        {{ partial "search-results.html" . }}
+      </div>
+
+      <aside aria-label="Scroll to Top">
+        <button id="back-to-top" type="button" class="btn btn-lg btn-box-shadow">
+          <i class="fas fa-angle-up"></i>
+        </button>
+      </aside>
+    </div>
+
+    <div id="mask" class="d-none position-fixed w-100 h-100 z-1"></div>
+  </body>
+</html>

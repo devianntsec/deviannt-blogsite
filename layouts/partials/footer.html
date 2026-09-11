@@ -1,0 +1,109 @@
+{{/*
+  layouts/partials/footer.html
+  Override del footer del tema Chirpy.
+  Reemplaza los créditos del tema por los propios del blog.
+*/}}
+
+<footer class="dv-footer">
+  <span>
+    &copy; {{ now.Year }}
+    <a href="{{ .Site.Params.social.url | default "https://github.com/devianntsec" }}"
+       target="_blank" rel="noopener">Annais Molina Fuentes</a>
+    &nbsp;&mdash;&nbsp; All rights reserved.
+  </span>
+</footer>
+
+{{/* ── Región aria-live: anuncia el título de la página tras soft-nav ── */}}
+<div id="dv-route-announcer" class="dv-visually-hidden" aria-live="polite" aria-atomic="true"></div>
+
+{{/* ── Toast para clipboard copy del email ── */}}
+<div id="dv-copy-toast"></div>
+
+{{/* ── Toast para clipboard copy del email ── */}}
+<div id="dv-copy-toast"></div>
+
+<style>
+  .dv-visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .dv-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    padding: 1.2rem 1.5rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: #475569;
+    border-top: 1px solid rgba(59, 130, 246, 0.1);
+    margin-top: 2rem;
+  }
+
+  .dv-footer a {
+    color: #60A5FA;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .dv-footer a:hover {
+    color: #93C5FD;
+  }
+
+  .dv-footer-stack {
+    opacity: 0.55;
+    font-size: 0.65rem;
+    letter-spacing: 0.05em;
+  }
+
+  html[data-mode='light'] .dv-footer {
+    color: #64748B;
+    border-top-color: rgba(37, 99, 235, 0.12);
+  }
+
+  html[data-mode='light'] .dv-footer a {
+    color: #2563EB;
+  }
+
+  html[data-mode='light'] .dv-footer a:hover {
+    color: #1D4ED8;
+  }
+
+  /* ── Toast ── */
+  #dv-copy-toast {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%) translateY(80px);
+    background: #3B82F6;
+    color: #fff;
+    padding: 10px 22px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    box-shadow: 0 4px 20px rgba(59, 130, 246, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    opacity: 0;
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+                opacity 0.35s ease;
+    z-index: 100000;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+
+  #dv-copy-toast.visible {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
+</style>
+

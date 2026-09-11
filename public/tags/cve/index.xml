@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Cve on devianntsec</title>
+    <link>http://localhost:1313/tags/cve/</link>
+    <description>Recent content in Cve on devianntsec</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 03 Jul 2026 15:37:13 -0400</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/cve/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CVE-2021-4034 · PwnKit: Local Privilege Escalation in polkit&#39;s pkexec</title>
+      <link>http://localhost:1313/cve-2021-4034-pwnkit-local-privilege-escalation-in-polkits-pkexec/</link>
+      <pubDate>Wed, 27 May 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/cve-2021-4034-pwnkit-local-privilege-escalation-in-polkits-pkexec/</guid>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;strong&gt;TL;DR:&lt;/strong&gt; When &lt;code&gt;pkexec&lt;/code&gt; is invoked with an empty argument vector (&lt;code&gt;argc=0&lt;/code&gt;), an&#xA;out-of-bounds read treats &lt;code&gt;envp[0]&lt;/code&gt; as &lt;code&gt;argv[1]&lt;/code&gt;, and an OOB write back into&#xA;&lt;code&gt;envp&lt;/code&gt; lets the attacker re-inject &lt;code&gt;GCONV_PATH&lt;/code&gt; into the sanitized environment of a&#xA;SUID-root binary. glibc&amp;rsquo;s iconv subsystem then loads an attacker-controlled shared&#xA;library whose &lt;code&gt;gconv_init()&lt;/code&gt; executes with EUID 0. No authentication. Deterministic.&#xA;&lt;strong&gt;CVSS 7.8 (High).&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;1-context--polkit-and-pkexec&#34; id=1-context--polkit-and-pkexec&gt;&#xD;&#xA;  &#xD;&#xA;    &lt;span class=&#34;me-2&#34;&gt;1. Context — polkit and pkexec&lt;/span&gt;&#xD;&#xA;    &lt;a href=&#34;#1-context--polkit-and-pkexec&#34; class=&#34;anchor text-muted&#34;&gt;&lt;i class=&#34;fas fa-hashtag&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xD;&#xA;  &#xD;&#xA;&lt;/h2&gt;&lt;p&gt;polkit (formerly PolicyKit) is the authorization framework used by all major Linux desktop&#xA;environments to allow unprivileged users to run specific commands with elevated privileges&#xA;according to predefined policies. &lt;code&gt;pkexec&lt;/code&gt; is polkit&amp;rsquo;s SUID-root binary: the only program&#xA;in this chain that actually carries root privileges on disk.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>CVE-2024-30051 · Heap Overflow in Windows DWM: from an Integer Division Bug to SYSTEM</title>
+      <link>http://localhost:1313/cve-2024-30051-heap-overflow-in-windows-dwm-from-an-integer-division-bug-to-system/</link>
+      <pubDate>Wed, 06 May 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/cve-2024-30051-heap-overflow-in-windows-dwm-from-an-integer-division-bug-to-system/</guid>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;strong&gt;TL;DR:&lt;/strong&gt; &lt;code&gt;CCommandBuffer::Initialize&lt;/code&gt; in &lt;code&gt;dwmcore.dll&lt;/code&gt; calls &lt;code&gt;GetBufferSize()&lt;/code&gt; twice and truncates one of the results via integer division before passing it to &lt;code&gt;new[]&lt;/code&gt;, while leaving the second result unmodified for &lt;code&gt;memcpy&lt;/code&gt;. The gap is exactly &lt;code&gt;0x8F&lt;/code&gt; bytes. A heap spray of &lt;code&gt;CHolographicInteropTexture&lt;/code&gt; objects converts that overflow into a call to &lt;code&gt;LoadLibraryA&lt;/code&gt; inside &lt;code&gt;dwm.exe&lt;/code&gt;. Requires a local user session. Deterministic. &lt;strong&gt;Integrity Level SYSTEM&lt;/strong&gt;. Patched in KB5037771 (May 2024).&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;hr&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;This post documents research conducted as part of my Master&amp;rsquo;s Thesis in Cybersecurity at UCAM — Universidad Católica San Antonio de Murcia (Campus Internacional de Ciberseguridad), 2025–2026. All testing was performed on isolated virtual machines with no network exposure. The thesis received a grade of 100/100. The exploit analysis builds on the original PoC by Ricardo Narvaja (Fortra/CoreSecurity); the contributions described here — patch diffing methodology, WinDbg dynamic verification, payload logging, and the 50-session empirical heap spray analysis — are original to this research. {.prompt-info }&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>CVE-2024-51324 · BYOVD: Three Undocumented Kernel Primitives in BdApiUtil64.sys</title>
+      <link>http://localhost:1313/cve-2024-51324-byovd-three-undocumented-kernel-primitives-in-bdapiutil64.sys/</link>
+      <pubDate>Mon, 27 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/cve-2024-51324-byovd-three-undocumented-kernel-primitives-in-bdapiutil64.sys/</guid>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;strong&gt;TL;DR:&lt;/strong&gt; &lt;code&gt;BdApiUtil64.sys&lt;/code&gt; creates &lt;code&gt;\Device\BdApiUtil&lt;/code&gt; with &lt;code&gt;SecurityDescriptor = NULL&lt;/code&gt; —&#xA;accessible from any process at any integrity level. The termination handler uses&#xA;&lt;code&gt;PsLookupProcessByProcessId&lt;/code&gt; + &lt;code&gt;ObOpenObjectByPointer(KernelMode)&lt;/code&gt;, bypassing &lt;code&gt;SeAccessCheck&lt;/code&gt;&#xA;unconditionally. &lt;code&gt;ZwOpenProcess&lt;/code&gt; is completely absent from the import table. Ghidra analysis&#xA;reveals two additional primitives with no prior public documentation: arbitrary file deletion&#xA;(&lt;code&gt;0x80002648&lt;/code&gt;) and in-use file deletion with &lt;code&gt;SectionObjectPointer&lt;/code&gt; bypass (&lt;code&gt;0x8000264C&lt;/code&gt;).&#xA;No authentication. Deterministic for non-PPL targets.&#xA;&lt;strong&gt;NVD: Awaiting Analysis · ADP CISA: CVSS 3.8 (Low) · CWE-269.&lt;/strong&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>CVE-2025-55182 · React2Shell: RCE in React Server Components via Prototype Pollution</title>
+      <link>http://localhost:1313/cve-2025-55182-react2shell-rce-react-server-components/</link>
+      <pubDate>Wed, 22 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/cve-2025-55182-react2shell-rce-react-server-components/</guid>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;strong&gt;TL;DR:&lt;/strong&gt; React&amp;rsquo;s Flight deserializer evaluates any object with a &lt;code&gt;.then&lt;/code&gt; method as a Promise, regardless of its actual type. An attacker poisons &lt;code&gt;Object.prototype.then&lt;/code&gt; through a crafted multipart POST, forcing the server to execute arbitrary JavaScript via the &lt;code&gt;Function&lt;/code&gt; constructor. The result is exfiltrated through the &lt;code&gt;X-Action-Redirect&lt;/code&gt; HTTP header as a redirect parameter. No authentication required. Deterministic. &lt;strong&gt;CVSS v3.1: 10.0 (Critical).&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;1-context--react-server-components-and-the-attack-surface&#34; id=1-context--react-server-components-and-the-attack-surface&gt;&#xD;&#xA;  &#xD;&#xA;    &lt;span class=&#34;me-2&#34;&gt;1. Context — React Server Components and the Attack Surface&lt;/span&gt;&#xD;&#xA;    &lt;a href=&#34;#1-context--react-server-components-and-the-attack-surface&#34; class=&#34;anchor text-muted&#34;&gt;&lt;i class=&#34;fas fa-hashtag&#34;&gt;&lt;/i&gt;&lt;/a&gt;&#xD;&#xA;  &#xD;&#xA;&lt;/h2&gt;&lt;p&gt;React Server Components (RSC) were introduced experimentally in React 18 and stabilized as a production-ready feature in &lt;strong&gt;React 19&lt;/strong&gt;, alongside &lt;strong&gt;Server Actions&lt;/strong&gt;: a model where UI components execute directly on the server and communicate with the client through a custom serialization layer called the &lt;strong&gt;Flight protocol&lt;/strong&gt;. When the client invokes a Server Action, it sends a multipart POST request with a serialized payload. The server deserializes it, executes the action, and streams back the result.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,13 @@
+{{ if .IsTranslated }}
+  {{ range .AllTranslations }}
+    <link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}">
+  {{ end }}
+  {{/* x-default siempre apunta a la versión en inglés */}}
+  {{ $defaultPage := . }}
+  {{ range .AllTranslations }}
+    {{ if eq .Language.Lang "en" }}
+      {{ $defaultPage = . }}
+    {{ end }}
+  {{ end }}
+  <link rel="alternate" hreflang="x-default" href="{{ $defaultPage.Permalink }}">
+{{ end }}

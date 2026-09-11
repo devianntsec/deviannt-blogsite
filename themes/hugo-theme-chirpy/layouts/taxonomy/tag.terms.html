@@ -1,0 +1,28 @@
+{{ define "main" }}
+<article class="px-1">
+  <h1 class="dynamic-title">
+    {{ i18n "tabs.tags" }}
+  </h1>
+  <div class="content">
+    <div id="tags" class="d-flex flex-wrap mx-xl-2"> 
+      {{ $tags := slice }}
+      {{ range $name, $taxonomy := .Site.Taxonomies.tags }}
+        {{ $tags = $tags | append $name }}
+      {{ end }}
+  
+      {{ $sorted_tags := sort $tags }}
+  
+      {{ range $sorted_tags }}
+        <div>
+          <a class="tag" href="{{ "tags/" | absLangURL }}{{ . | urlize }}/">
+            {{ . -}}
+            <span class="text-muted">{{ len (index $.Site.Taxonomies.tags .) }}</span>
+          </a>
+        </div>
+      {{ end }}
+    </div>
+  </div>
+  
+</article>
+  
+{{ end }}

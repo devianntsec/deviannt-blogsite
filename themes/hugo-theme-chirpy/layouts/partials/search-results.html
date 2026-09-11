@@ -1,0 +1,246 @@
+<div id="search-result-wrapper" class="d-flex justify-content-center d-none">
+  <div class="col-11 content">
+    <div id="search-hints">
+      {{ partial "trending-tags.html" . }}
+    </div>
+    <div id="search-results" class="d-flex flex-wrap justify-content-center text-muted mt-3"></div>
+  </div>
+</div>
+
+<script>
+  const DEFAULT_CONFIG = {
+    search: {
+      minChars: 1,              // 最小字符数
+      maxResults: 5,            // 最大结果数
+      fields: {                 // 搜索字段
+        title: true,
+        description: true,
+        section: true,
+        contents: true
+      },
+      // 简化搜索配置
+      strictMode: true          // 严格模式：只返回精确匹配结果
+    }
+  };
+
+  class FastSearch {
+    constructor({
+      searchInput, resultsContainer, json,
+      searchResultTemplate = null,
+      noResultsText = null,
+    }) {
+      this.searchInput = searchInput;
+      this.resultsContainer = resultsContainer;
+      this.json = json;
+      this.searchResultTemplate = searchResultTemplate;
+      this.noResultsText = noResultsText;
+      
+      this.init();
+    }
+
+    init() {
+      this.loadSearchIndex();
+      this.searchInput.addEventListener('input', (event) => {
+        if (!this.searchIndex) {
+          this.resultsContainer.innerHTML = '<li class="search-message">Loading search index...</li>';
+          return;
+        }
+        this.performSearch(this.searchInput.value);
+      });
+    }
+
+    // Load the search index
+    async loadSearchIndex() {
+      try {
+        const response = await fetch(this.json);
+        if (!response.ok) throw new Error('Failed to load search index');
+        const data = await response.json();
+        
+        this.searchIndex = data.map(item => ({
+          ...item,
+          // 转换为小写以进行不区分大小写的搜索
+          searchableTitle: item.title?.toLowerCase() || '',
+          searchableDesc: item.desc?.toLowerCase() || '',
+          searchableSection: item.section?.toLowerCase() || '',
+          searchableContents: item.contents?.toLowerCase() || ''
+        }));
+        } catch (error) {
+          console.error('Error loading search index:', error);
+        this.resultsContainer.innerHTML = '<li class="search-message">Error loading search index...</li>';
+      }
+    }
+
+    escapeHtml(unsafe) {
+      if (!unsafe) return '';
+      return unsafe
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+    
+    // 检测文本是否包含查询术语 - 使用严格的精确匹配
+    containsTerm(text, term) {
+      if (!text || !term) return false;
+      return text.includes(term);
+    }
+
+    performSearch(query) {
+      // 清理和标准化查询
+      query = query.toLowerCase().trim();
+      
+      // 检查查询是否有效
+      if (!query || !this.searchIndex || query.length < DEFAULT_CONFIG.search.minChars) {
+        this.resultsContainer.innerHTML = '';
+        return;
+      }
+
+      // 使用空格分隔查询词（对多语言适用）
+      const searchTerms = [
+        query, // 保留整个查询字符串作为必须匹配的项
+        ...query.split(/\s+/).filter(term => term.length > 0) // 添加单独的词
+      ];
+      
+      // 去重
+      const uniqueTerms = [...new Set(searchTerms)];
+      
+      // 要求完整查询必须匹配的标志
+      const requireFullQueryMatch = DEFAULT_CONFIG.search.strictMode;
+      
+      // 搜索
+      const results = this.searchIndex
+        .map(item => {
+          // 首先检查完整查询是否匹配（严格模式下必须匹配）
+          const fullQueryMatched = this.checkFieldsForMatch(item, uniqueTerms[0]);
+          
+          // 如果启用了严格模式且完整查询未匹配，则跳过此项
+          if (requireFullQueryMatch && !fullQueryMatched) {
+            return { item, score: 0, matched: false };
+          }
+          
+          // 计算匹配得分
+          let score = 0;
+          let matchedTermsCount = 0;
+          let matchedInTitle = false;
+          
+          // 检查每个词的匹配情况
+          uniqueTerms.forEach((term, index) => {
+            // 对于整个查询字符串(index=0)，给予更高权重
+            const isFullQuery = index === 0;
+            const matched = this.checkFieldsForMatch(item, term);
+            
+            if (matched) {
+              matchedTermsCount++;
+              
+              // 基于匹配位置计算得分
+              if (matched.inTitle) {
+                score += isFullQuery ? 10 : 5;
+                matchedInTitle = true;
+              }
+              if (matched.inDesc) {
+                score += isFullQuery ? 8 : 4;
+              }
+              if (matched.inSection) {
+                score += isFullQuery ? 6 : 3;
+              }
+              if (matched.inContents) {
+                score += isFullQuery ? 4 : 2;
+              }
+            }
+          });
+          
+          // 计算匹配率
+          const matchRatio = matchedTermsCount / uniqueTerms.length;
+          
+          // 最终得分计算
+          const finalScore = score * matchRatio * (matchedInTitle ? 1.5 : 1);
+          
+          return {
+            item,
+            score: finalScore,
+            matched: fullQueryMatched // 只有完整查询匹配才视为有效
+          };
+        })
+        .filter(result => result.matched)
+        .sort((a, b) => b.score - a.score)
+        .slice(0, DEFAULT_CONFIG.search.maxResults)
+        .map(result => result.item);
+
+      // 显示结果
+      if (results.length === 0) {
+        this.resultsContainer.innerHTML = '<p class="mt-5">{{ i18n "search.no_results" }}</p>';
+        return;
+      }
+
+      const searchItems = results.map((item) => {
+        let categories = '';
+        let tags = '';
+        if (item.categories) {
+          categories = item.categories.join(', ');
+          categories = `<div class="me-sm-4"><i class="far fa-folder fa-fw"></i>${categories}</div>`;
+        }
+        if (item.tags) {
+          tags = item.tags.join(', ');
+          tags = `<div><i class="fa fa-tag fa-fw"></i>${tags}</div>`
+        }
+        return `
+        <article class="px-1 px-sm-2 px-lg-4 px-xl-0">
+          <header>
+            <h2><a href="${this.escapeHtml(item.permalink)}">${this.escapeHtml(item.title)}</a></h2>
+            <div class="post-meta d-flex flex-column flex-sm-row text-muted mt-1 mb-1">
+              ${categories}
+              ${tags}
+            </div>
+          </header>
+          <p>${this.escapeHtml(item.contents)}</p>
+        </article>
+      `;
+      }).join('');
+      
+      this.resultsContainer.innerHTML = searchItems;
+    }
+    
+    // 检查一个词是否匹配指定项的任何字段
+    checkFieldsForMatch(item, term) {
+      const matches = {
+        inTitle: false,
+        inDesc: false,
+        inSection: false,
+        inContents: false
+      };
+      
+      // 检查各个字段
+      if (DEFAULT_CONFIG.search.fields.title && this.containsTerm(item.searchableTitle, term)) {
+        matches.inTitle = true;
+      }
+      
+      if (DEFAULT_CONFIG.search.fields.description && this.containsTerm(item.searchableDesc, term)) {
+        matches.inDesc = true;
+      }
+      
+      if (DEFAULT_CONFIG.search.fields.section && this.containsTerm(item.searchableSection, term)) {
+        matches.inSection = true;
+      }
+      
+      if (DEFAULT_CONFIG.search.fields.contents && this.containsTerm(item.searchableContents, term)) {
+        matches.inContents = true;
+      }
+      
+      // 如果任何字段匹配，则返回匹配信息
+      if (matches.inTitle || matches.inDesc || matches.inSection || matches.inContents) {
+        return matches;
+      }
+      
+      // 否则返回false
+      return false;
+    }
+  }
+
+  const search = new FastSearch({
+    searchInput: document.getElementById('search-input'),
+    resultsContainer: document.getElementById('search-results'),
+    json: `{{ path.Join .Site.Home.RelPermalink "index.json" }}`
+  });
+
+</script>
