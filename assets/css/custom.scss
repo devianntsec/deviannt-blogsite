@@ -273,9 +273,9 @@ html[data-mode='light'] body::before {
   );
 }
 #topbar-wrapper {
-  background: var(--topbar-bg) !important;
-  border-bottom: 1px solid var(--border-color) !important;
-  isolation: isolate !important;
+  background: var(--topbar-bg);
+  border-bottom: 1px solid var(--border-color);
+  isolation: isolate;
   z-index: z(topbar) !important;
 }
 
