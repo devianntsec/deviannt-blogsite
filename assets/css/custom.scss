@@ -220,14 +220,14 @@ body,
 #topbar-title,
 .categories,
 .tag-cloud {
-  font-family: $font-mono !important;
+  font-family: $font-mono;
 }
 
 h1, h2, h3, h4, h5, h6,
 .post-title,
 #topbar-title,
 .site-title {
-  font-family: $font-heading !important;
+  font-family: $font-heading;
   font-weight: 500;
   letter-spacing: 0.02em;
 }
@@ -250,9 +250,9 @@ body::before {
 html[data-mode='light'] body::before {
   background-image:
     linear-gradient(var(--border-color) 1px, transparent 1px),
-    linear-gradient(90deg, var(--border-color) 1px, transparent 1px) !important;
-  background-size: 40px 40px !important;
-  opacity: 0.35 !important;
+    linear-gradient(90deg, var(--border-color) 1px, transparent 1px);
+  background-size: 40px 40px;
+  opacity: 0.35;
 }
 
 /* ──────────────────────────────────────────────────────────────
@@ -1064,7 +1064,7 @@ html[data-mode='light'] {
 .post-content h2 {
   border-bottom: 1px solid rgba(59,130,246,0.15);
   padding-bottom: 0.3em;
-  color: var(--heading-color) !important;
+  color: var(--heading-color);
   &::before {
     content: '## ';
     color: var(--dv-primary);
@@ -1079,10 +1079,10 @@ html[data-mode='light'] {
   font-weight: 300;
 }
 html[data-mode='light'] .post-content h2 {
-  border-bottom-color: rgba(29, 95, 212, 0.20) !important;
-  &::before { color: var(--dv-accent) !important; }
+  border-bottom-color: rgba(29, 95, 212, 0.20);
+  &::before { color: var(--dv-accent); }
 }
-html[data-mode='light'] .post-content h3::before { color: var(--dv-accent) !important; }
+html[data-mode='light'] .post-content h3::before { color: var(--dv-accent); }
 
 /* ──────────────────────────────────────────────────────────────
    16. NIGHT OWL CODE THEME (Chroma override)
@@ -1420,7 +1420,7 @@ html[data-mode='light'] {
       }
     }
   }
-  thead tr { background: transparent !important; }
+  thead tr { background: transparent; }
   thead th {
     background: var(--dv-table-thead-bg);
     color: var(--dv-table-th-color);
@@ -1447,9 +1447,9 @@ html[data-mode='light'] {
     }
   }
   tbody tr {
-    background: transparent !important;
+    background: transparent;
     transition: background 0.15s ease;
-    &:hover { background: var(--dv-table-row-hover) !important; }
+    &:hover { background: var(--dv-table-row-hover); }
     &:last-child td { border-bottom: none; }
   }
   tbody td {
@@ -1476,29 +1476,29 @@ html[data-mode='light'] {
 html[data-mode='light'] {
   .post-content div.table-wrapper, .content div.table-wrapper,
   .post-content div.table-responsive, .content div.table-responsive {
-    background: #FFFFFF !important;
-    border: 1px solid var(--border-color) !important;
+    background: #FFFFFF;
+    border: 1px solid var(--border-color);
   }
-  .post-content table, .content table { color: #334155 !important; }
+  .post-content table, .content table { color: #334155; }
   .post-content thead th, .content thead th {
-    background: #F0F2F7 !important;
-    color: var(--text-muted) !important;
-    border-bottom: 1px solid var(--dv-gray-200) !important;
+    background: #F0F2F7;
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--dv-gray-200);
     code {
-      background: rgba(37, 99, 235, 0.10) !important;
-      border-color: rgba(37, 99, 235, 0.20) !important;
-      color: var(--dv-primary) !important;
+      background: rgba(37, 99, 235, 0.10);
+      border-color: rgba(37, 99, 235, 0.20);
+      color: var(--dv-primary);
     }
   }
   .post-content tbody td:not(.lntd), .content tbody td:not(.lntd) {
-    color: #334155 !important;
-    border-bottom: 1px solid #E2E6EF !important;
+    color: #334155;
+    border-bottom: 1px solid #E2E6EF;
     code {
-      background: rgba(37, 99, 235, 0.08) !important;
-      color: var(--dv-primary) !important;
+      background: rgba(37, 99, 235, 0.08);
+      color: var(--dv-primary);
     }
   }
-  .post-content tbody tr:hover, .content tbody tr:hover { background: rgba(37, 99, 235, 0.04) !important; }
+  .post-content tbody tr:hover, .content tbody tr:hover { background: rgba(37, 99, 235, 0.04); }
 }
 
 /* ──────────────────────────────────────────────────────────────
