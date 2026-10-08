@@ -296,7 +296,7 @@ html[data-mode='light'] body::before {
 }
 
 @media (min-width: 992px) {
-  #topbar { padding-left: 60px; }
+  #topbar { padding-left: 60px !important; }
   #breadcrumb { margin-left: -0.75rem; }
 }
 
