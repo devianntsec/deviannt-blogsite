@@ -625,34 +625,34 @@ html[data-mode='light'] .dv-social-icons { border-top: 1px solid var(--border-co
   width: 36px !important;
   height: 36px !important;
   flex-shrink: 0 !important;
-  background: var(--dv-social-bg) !important;
+  background: var(--dv-social-bg);
   border: 1.5px solid var(--dv-social-border) !important;
-  text-decoration: none !important;
-  color: var(--dv-accent) !important;
+  text-decoration: none;
+  color: var(--dv-accent);
   transition:
     border-color 0.25s ease,
     background 0.25s ease,
     transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 0.25s ease !important;
+    box-shadow 0.25s ease;
 
   i {
     font-size: 0.85rem !important;
-    color: var(--dv-accent) !important;
-    transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1) !important;
+    color: var(--dv-accent);
+    transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
   }
   &:hover {
-    border-color: var(--dv-primary) !important;
-    background: var(--dv-social-hover-bg) !important;
+    border-color: var(--dv-primary);
+    background: var(--dv-social-hover-bg);
     transform: translateY(-2px) !important;
-    box-shadow: var(--dv-social-hover-shadow) !important;
+    box-shadow: var(--dv-social-hover-shadow);
     i {
       transform: scale(1.15) !important;
-      color: var(--dv-social-icon-hover) !important;
+      color: var(--dv-social-icon-hover);
     }
   }
 }
 html[data-mode='light'] .dv-social-icon-box {
-  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06) !important;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06);
 }
 
 /* ──────────────────────────────────────────────────────────────
@@ -2364,32 +2364,32 @@ html[data-mode='light'] #page-category ul.content li {
    ────────────────────────────────────────────────────────────── */
 
 #sidebar nav li.nav-item a.dv-portfolio-link {
-  color: #1E3A5F !important;
+  color: #1E3A5F;
   border-top: 1px solid rgba(59, 130, 246, 0.1) !important;
   margin-top: 0.25rem !important;
   padding-top: 0.75rem !important;
   font-size: 0.75rem !important;
   letter-spacing: 0.18em !important;
-  opacity: 0.7 !important;
-  transition: color 0.2s ease, opacity 0.2s ease, background 0.2s ease, border-left 0.2s ease !important;
+  opacity: 0.7;
+  transition: color 0.2s ease, opacity 0.2s ease, background 0.2s ease, border-left 0.2s ease;
 
-  i { transition: transform 0.2s ease !important; font-size: 0.7rem !important; }
+  i { transition: transform 0.2s ease; font-size: 0.7rem !important; }
 
   &:hover {
-    color: var(--dv-accent) !important;
-    background: rgba(59, 130, 246, 0.1) !important;
+    color: var(--dv-accent);
+    background: rgba(59, 130, 246, 0.1);
     border-left: 1.5px solid var(--dv-primary) !important;
-    opacity: 1 !important;
+    opacity: 1;
     padding-left: 0.6rem !important;
     i { transform: translateX(-3px) !important; }
   }
 }
 html[data-mode='light'] #sidebar nav li.nav-item a.dv-portfolio-link {
-  color: var(--dv-gray-100) !important;
-  border-top-color: var(--border-color) !important;
+  color: var(--dv-gray-100);
+  border-top-color: var(--border-color);
   &:hover {
-    color: var(--dv-primary) !important;
-    background: rgba(37, 99, 235, 0.08) !important;
+    color: var(--dv-primary);
+    background: rgba(37, 99, 235, 0.08);
     border-left: 1.5px solid var(--dv-accent) !important;
   }
 }
