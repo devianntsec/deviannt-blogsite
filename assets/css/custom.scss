@@ -1447,9 +1447,9 @@ html[data-mode='light'] {
     }
   }
   tbody tr {
-    background: transparent;
+    background: transparent !important;
     transition: background 0.15s ease;
-    &:hover { background: var(--dv-table-row-hover); }
+    &:hover { background: var(--dv-table-row-hover) !important; }
     &:last-child td { border-bottom: none; }
   }
   tbody td {
