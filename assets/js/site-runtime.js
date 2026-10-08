@@ -634,6 +634,28 @@
 
   function dvClamp(v, lo, hi) { return Math.min(hi, Math.max(lo, v)); }
 
+  /* Espera a que estén cargadas las fuentes reales de los <text> del diagrama antes de medir
+     con getBBox(). Con font-display: swap, medir antes da proporciones distintas según qué
+     cargue primero, y el viewBox se fija una sola vez. Tope de 3 s: si una fuente falla o
+     tarda, el diagrama se mide igualmente. */
+  function dvFontsReady(svg) {
+    var fonts = document.fonts;
+    if (!fonts || !fonts.load) return Promise.resolve();
+    var bySpec = {};
+    Array.prototype.forEach.call(svg.querySelectorAll('text'), function(t) {
+      var cs = getComputedStyle(t);
+      var spec = cs.fontStyle + ' ' + cs.fontWeight + ' ' + cs.fontSize + ' ' + cs.fontFamily;
+      bySpec[spec] = (bySpec[spec] || '') + (t.textContent || '');
+    });
+    var loads = Object.keys(bySpec).map(function(spec) {
+      var chars = Array.from(new Set(bySpec[spec])).join('').slice(0, 400) || 'a';
+      return fonts.load(spec, chars).catch(function() {});
+    });
+    var done = Promise.all(loads).then(function() { return fonts.ready; }).catch(function() {});
+    var timeout = new Promise(function(resolve) { setTimeout(resolve, 3000); });
+    return Promise.race([done, timeout]);
+  }
+
   window.__dvDiagramInit = function(id) {
     var wrap = document.getElementById(id);
     if (!wrap) return;
@@ -748,6 +770,7 @@
     var svg = wrap.querySelector('.dv-diagram-svg');
     if (!svg) { viewport.style.cursor = 'default'; return; }
 
+    dvFontsReady(svg).then(function() {
     requestAnimationFrame(function() {
       requestAnimationFrame(function() {
 
@@ -820,6 +843,7 @@
         } catch(e) {}
 
       });
+    });
     });
 
     viewport.style.cursor = 'default';
