@@ -659,38 +659,38 @@ html[data-mode='light'] .dv-social-icon-box {
    9. SIDEBAR — Theme Toggle
    ────────────────────────────────────────────────────────────── */
 
-.dv-theme-select__arrow { display: none !important; }
+.dv-theme-select__arrow { display: none; }
 
 .dv-theme-row {
-  display: flex !important;
-  align-items: center !important;
-  cursor: default !important;
-  pointer-events: none !important;
+  display: flex;
+  align-items: center;
+  cursor: default;
+  pointer-events: none;
 }
 
 .dv-theme-select {
-  background: transparent !important;
-  border: none !important;
-  padding: 0 !important;
-  font: inherit !important;
-  color: var(--dv-nav-text) !important;
-  cursor: pointer !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  gap: 3px !important;
-  font-weight: 500 !important;
-  letter-spacing: inherit !important;
-  text-transform: uppercase !important;
-  pointer-events: auto !important;
-  transition: color 0.15s !important;
-  outline: none !important;
-  line-height: 1 !important;
-  box-sizing: border-box !important;
+  background: transparent;
+  border: none;
+  padding: 0;
+  font: inherit;
+  color: var(--dv-nav-text);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-weight: 500;
+  letter-spacing: inherit;
+  text-transform: uppercase;
+  pointer-events: auto;
+  transition: color 0.15s;
+  outline: none;
+  line-height: 1;
+  box-sizing: border-box;
 
-  &:hover { color: var(--dv-accent) !important; }
+  &:hover { color: var(--dv-accent); }
 }
-.dv-theme-select__val { line-height: 1 !important; }
-html[data-mode='light'] #sidebar select { color: var(--dv-nav-text) !important; }
+.dv-theme-select__val { line-height: 1; }
+html[data-mode='light'] #sidebar select { color: var(--dv-nav-text); }
 
 /* ──────────────────────────────────────────────────────────────
    10. SIDEBAR — Status Badge
@@ -997,63 +997,63 @@ html[data-mode='light'] {
 
 #search-wrapper,
 .search-wrapper {
-  background: var(--dv-search-bg) !important;
-  border: 1px solid var(--dv-search-border) !important;
-  border-radius: 6px !important;
-  display: flex !important;
-  align-items: center !important;
-  gap: 8px !important;
-  padding: 5px 12px !important;
-  transition: border-color 0.2s ease, background 0.2s ease !important;
+  background: var(--dv-search-bg);
+  border: 1px solid var(--dv-search-border);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 12px;
+  transition: border-color 0.2s ease, background 0.2s ease;
 
   &:focus-within {
-    border-color: var(--dv-search-focus-border) !important;
-    background: var(--dv-search-focus-bg) !important;
+    border-color: var(--dv-search-focus-border);
+    background: var(--dv-search-focus-bg);
   }
   i, svg {
-    color: var(--dv-accent-blue) !important;
-    opacity: 0.6 !important;
-    font-size: 0.8rem !important;
+    color: var(--dv-accent-blue);
+    opacity: 0.6;
+    font-size: 0.8rem;
   }
   kbd {
-    margin-left: auto !important;
-    font-size: 9px !important;
-    font-family: $font-heading !important;
-    background: rgba(59, 130, 246, 0.12) !important;
-    border: 1px solid rgba(59, 130, 246, 0.25) !important;
-    border-radius: 3px !important;
-    color: var(--dv-accent-blue) !important;
-    padding: 1px 5px !important;
-    letter-spacing: 0.04em !important;
+    margin-left: auto;
+    font-size: 9px;
+    font-family: $font-heading;
+    background: rgba(59, 130, 246, 0.12);
+    border: 1px solid rgba(59, 130, 246, 0.25);
+    border-radius: 3px;
+    color: var(--dv-accent-blue);
+    padding: 1px 5px;
+    letter-spacing: 0.04em;
   }
 }
 #search-trigger i, label[for="search"] i {
-  color: var(--dv-accent-blue) !important;
-  opacity: 0.6 !important;
-  font-size: 0.8rem !important;
+  color: var(--dv-accent-blue);
+  opacity: 0.6;
+  font-size: 0.8rem;
 }
 #search-input,
 input#search {
-  font-family: $font-heading !important;
-  font-size: 0.72rem !important;
-  letter-spacing: 0.06em !important;
-  color: var(--dv-search-text) !important;
-  background: transparent !important;
-  border: none !important;
+  font-family: $font-heading;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: var(--dv-search-text);
+  background: transparent;
+  border: none;
   outline: none !important;
 
   &::placeholder {
-    color: var(--dv-search-placeholder) !important;
-    font-family: $font-heading !important;
-    letter-spacing: 0.06em !important;
+    color: var(--dv-search-placeholder);
+    font-family: $font-heading;
+    letter-spacing: 0.06em;
   }
 }
 html[data-mode='light'] {
-  #search-wrapper i, .search-wrapper i { color: var(--dv-accent) !important; }
+  #search-wrapper i, .search-wrapper i { color: var(--dv-accent); }
   #search-wrapper kbd, .search-wrapper kbd {
-    background: rgba(37, 99, 235, 0.08) !important;
-    border-color: var(--border-color) !important;
-    color: var(--dv-accent) !important;
+    background: rgba(37, 99, 235, 0.08);
+    border-color: var(--border-color);
+    color: var(--dv-accent);
   }
 }
 
