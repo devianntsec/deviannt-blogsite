@@ -1709,22 +1709,22 @@ html[data-mode='light'] .dv-step-desc  { color: var(--text-muted); }
   @extend %dv-card;
 
   .card-title, h3, a {
-    font-family: $font-heading !important;
-    font-size: 0.92rem !important;
-    font-weight: 500 !important;
+    font-family: $font-heading;
+    font-size: 0.92rem;
+    font-weight: 500;
     color: var(--text-color) !important;
     text-decoration: none !important;
   }
   .card-header {
-    background: rgba(59, 130, 246, 0.12) !important;
+    background: rgba(59, 130, 246, 0.12);
     border-bottom: 1px solid rgba(59, 130, 246, 0.25) !important;
   }
 }
 html[data-mode='light'] .card.categories.mb-3 {
-  background: #FFFFFF !important;
+  background: #FFFFFF;
   border-color: var(--border-color) !important;
   .card-header {
-    background: rgba(37, 99, 235, 0.06) !important;
+    background: rgba(37, 99, 235, 0.06);
     border-bottom: 1px solid var(--border-color) !important;
   }
   .card-title, h3, a { color: var(--text-color) !important; }
