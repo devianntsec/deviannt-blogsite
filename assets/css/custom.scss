@@ -291,7 +291,7 @@ html[data-mode='light'] body::before {
     width: calc(100% + var(--dv-topbar-gap, 0.75rem) * 2 + var(--dv-topbar-panel, 0px)) !important;
   }
   #main-wrapper > .container {
-    padding-top: 0;
+    padding-top: 0 !important;
   }
 }
 
