@@ -625,10 +625,10 @@ html[data-mode='light'] .dv-social-icons { border-top: 1px solid var(--border-co
   width: 36px !important;
   height: 36px !important;
   flex-shrink: 0 !important;
-  background: var(--dv-social-bg);
+  background: var(--dv-social-bg) !important;
   border: 1.5px solid var(--dv-social-border) !important;
   text-decoration: none;
-  color: var(--dv-accent);
+  color: var(--dv-accent) !important;
   transition:
     border-color 0.25s ease,
     background 0.25s ease,
@@ -641,8 +641,8 @@ html[data-mode='light'] .dv-social-icons { border-top: 1px solid var(--border-co
     transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
   }
   &:hover {
-    border-color: var(--dv-primary);
-    background: var(--dv-social-hover-bg);
+    border-color: var(--dv-primary) !important;
+    background: var(--dv-social-hover-bg) !important;
     transform: translateY(-2px) !important;
     box-shadow: var(--dv-social-hover-shadow);
     i {
@@ -2386,7 +2386,7 @@ html[data-mode='light'] #page-category ul.content li {
 }
 html[data-mode='light'] #sidebar nav li.nav-item a.dv-portfolio-link {
   color: var(--dv-gray-100);
-  border-top-color: var(--border-color);
+  border-top-color: var(--border-color) !important;
   &:hover {
     color: var(--dv-primary);
     background: rgba(37, 99, 235, 0.08);
