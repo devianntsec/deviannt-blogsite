@@ -38,6 +38,7 @@ const browser = await chromium.launch(
   process.env.CHROME_PATH ? { executablePath: process.env.CHROME_PATH } : {},
 );
 const errors = [];
+const aborted = new Map();   // peticiones externas que el kit bloquea (tipo + url → nº de veces)
 
 async function autoScroll(page) {
   await page.evaluate(async () => {
@@ -96,6 +97,8 @@ async function shoot({ url, vp, mode }) {
     const req = route.request();
     if (new URL(req.url()).origin === ORIGIN) return route.continue();
     if (req.resourceType() === 'image') return route.fulfill({ status: 200, contentType: 'image/png', body: PLACEHOLDER });
+    const k = req.resourceType() + ' ' + req.url().slice(0, 150);
+    aborted.set(k, (aborted.get(k) || 0) + 1);
     return route.abort(); // analítica, CDNs: fuera
   });
   const page = await ctx.newPage();
@@ -166,5 +169,9 @@ console.log('\n');
 await browser.close();
 server.close();
 fs.writeFileSync(path.join(outDir, '_errors.log'), errors.join('\n'));
+fs.writeFileSync(path.join(outDir, '_aborted.log'),
+  [...aborted].sort((x, y) => y[1] - x[1]).map(([k, n]) => `${n}×  ${k}`).join('\n'));
+const blockedCss = [...aborted.keys()].filter((k) => /^(stylesheet|font) /.test(k));
+if (blockedCss.length) console.log(`⚠ el kit bloquea ${blockedCss.length} hoja(s)/fuente(s) externas que producción sí carga (ver shots/${outName}/_aborted.log)`);
 console.log(errors.length ? `⚠ ${errors.length} errores de página/captura (ver shots/${outName}/_errors.log)` : '✓ sin errores JS');
 console.log(`Capturas en vr/shots/${outName}`);
