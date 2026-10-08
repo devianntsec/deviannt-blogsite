@@ -697,48 +697,48 @@ html[data-mode='light'] #sidebar select { color: var(--dv-nav-text) !important; 
    ────────────────────────────────────────────────────────────── */
 
 .dv-status-badge-wrap {
-  display: flex !important;
-  justify-content: center !important;
-  width: 100% !important;
-  margin: 0 0 10px 0 !important;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 0 0 10px 0;
 }
 .dv-status-badge {
-  display: inline-flex !important;
-  align-items: center !important;
-  gap: 8px !important;
-  padding: 8px 14px !important;
-  background: var(--dv-status-bg) !important;
-  border: 1px solid var(--dv-status-border) !important;
-  font-family: $font-ui !important;
-  font-size: 11px !important;
-  font-weight: 500 !important;
-  letter-spacing: normal !important;
-  text-transform: none !important;
-  color: var(--dv-status-text) !important;
-  cursor: default !important;
-  user-select: none !important;
-  transition: border-color 0.25s ease, background 0.25s ease !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  background: var(--dv-status-bg);
+  border: 1px solid var(--dv-status-border);
+  font-family: $font-ui;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: normal;
+  text-transform: none;
+  color: var(--dv-status-text);
+  cursor: default;
+  user-select: none;
+  transition: border-color 0.25s ease, background 0.25s ease;
 
   &:hover {
-    border-color: var(--dv-status-hover-border) !important;
-    background: var(--dv-status-hover-bg) !important;
+    border-color: var(--dv-status-hover-border);
+    background: var(--dv-status-hover-bg);
   }
 }
 html[data-mode='light'] .dv-status-badge {
-  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.06) !important;
+  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.06);
 }
 .dv-status-dot {
-  flex-shrink: 0 !important;
-  width: 7px !important;
-  height: 7px !important;
-  border-radius: 50% !important;
-  background: #22c55e !important;
+  flex-shrink: 0;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #22c55e;
   box-shadow:
     0 0 6px rgba(34, 197, 94, 0.8),
-    0 0 12px rgba(34, 197, 94, 0.4) !important;
+    0 0 12px rgba(34, 197, 94, 0.4);
 }
 html[data-mode='light'] .dv-status-dot {
-  box-shadow: 0 0 5px rgba(34,197,94,0.7), 0 0 10px rgba(34,197,94,0.3) !important;
+  box-shadow: 0 0 5px rgba(34,197,94,0.7), 0 0 10px rgba(34,197,94,0.3);
 }
 
 /* ──────────────────────────────────────────────────────────────
@@ -1281,43 +1281,43 @@ html[data-mode='light'] {
    ────────────────────────────────────────────────────────────── */
 
 %dv-callout-shell {
-  padding: 14px 16px 14px 18px !important;
-  border-top: none !important;
-  border-right: none !important;
-  border-bottom: none !important;
-  border-radius: 0 !important;
-  font-family: $font-heading !important;
-  font-size: 0.78rem !important;
-  margin: 1.2rem 0 !important;
-  position: relative !important;
+  padding: 14px 16px 14px 18px;
+  border-top: none;
+  border-right: none;
+  border-bottom: none;
+  border-radius: 0;
+  font-family: $font-heading;
+  font-size: 0.78rem;
+  margin: 1.2rem 0;
+  position: relative;
 }
 %dv-callout-label-shell {
-  display: block !important;
-  font-size: 0.58rem !important;
-  letter-spacing: 0.14em !important;
-  text-transform: uppercase !important;
-  margin-bottom: 6px !important;
-  font-weight: 500 !important;
-  font-family: $font-heading !important;
+  display: block;
+  font-size: 0.58rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  font-weight: 500;
+  font-family: $font-heading;
 }
 
 html[data-mode='dark'] .post-content,
 html:not([data-mode]) .post-content {
   .prompt-tip, .prompt-info, .prompt-warning, .prompt-danger {
     @extend %dv-callout-shell;
-    background: #0B1220 !important;
-    font-weight: 400 !important;
+    background: #0B1220;
+    font-weight: 400;
     p {
-      color: var(--text-color) !important;
-      font-size: 0.78rem !important;
-      line-height: 1.65 !important;
-      margin: 0 !important;
+      color: var(--text-color);
+      font-size: 0.78rem;
+      line-height: 1.65;
+      margin: 0;
     }
   }
-  .prompt-info    { border-left: 3px solid var(--dv-primary) !important; &::before { content: '// info'    !important; color: var(--dv-accent) !important; } }
-  .prompt-tip     { border-left: 3px solid #{sem(ok, dark)} !important;  &::before { content: '// tip'     !important; color: #{sem(ok, dark)} !important; } }
-  .prompt-warning { border-left: 3px solid #{sem(warning, dark)} !important; &::before { content: '// warning' !important; color: #{sem(warning, dark)} !important; } }
-  .prompt-danger  { border-left: 3px solid #{sem(danger, dark)} !important;  &::before { content: '// danger'  !important; color: #{sem(danger, dark)} !important; } }
+  .prompt-info    { border-left: 3px solid var(--dv-primary); &::before { content: '// info'; color: var(--dv-accent); } }
+  .prompt-tip     { border-left: 3px solid #{sem(ok, dark)};  &::before { content: '// tip'; color: #{sem(ok, dark)}; } }
+  .prompt-warning { border-left: 3px solid #{sem(warning, dark)}; &::before { content: '// warning'; color: #{sem(warning, dark)}; } }
+  .prompt-danger  { border-left: 3px solid #{sem(danger, dark)};  &::before { content: '// danger'; color: #{sem(danger, dark)}; } }
   .prompt-tip::before, .prompt-info::before, .prompt-warning::before, .prompt-danger::before {
     @extend %dv-callout-label-shell;
   }
@@ -1325,49 +1325,49 @@ html:not([data-mode]) .post-content {
 
 .dv-callout {
   @extend %dv-callout-shell;
-  border-left: 3px solid !important;
-  background: var(--card-bg) !important;
-  font-weight: 400 !important;
+  border-left: 3px solid;
+  background: var(--card-bg);
+  font-weight: 400;
 }
 .dv-callout-label { @extend %dv-callout-label-shell; }
 .dv-callout-text {
-  display: block !important;
-  color: var(--text-color) !important;
-  font-size: 0.78rem !important;
-  line-height: 1.65 !important;
+  display: block;
+  color: var(--text-color);
+  font-size: 0.78rem;
+  line-height: 1.65;
 }
-.dv-callout--info    { border-color: var(--dv-primary) !important; .dv-callout-label { color: var(--dv-accent) !important; } }
-.dv-callout--ok      { border-color: #{sem(ok, dark)} !important;      .dv-callout-label { color: #{sem(ok, dark)} !important; } }
-.dv-callout--warning { border-color: #{sem(warning, dark)} !important; .dv-callout-label { color: #{sem(warning, dark)} !important; } }
-.dv-callout--danger  { border-color: #{sem(danger, dark)} !important;  .dv-callout-label { color: #{sem(danger, dark)} !important; } }
+.dv-callout--info    { border-color: var(--dv-primary); .dv-callout-label { color: var(--dv-accent); } }
+.dv-callout--ok      { border-color: #{sem(ok, dark)};      .dv-callout-label { color: #{sem(ok, dark)}; } }
+.dv-callout--warning { border-color: #{sem(warning, dark)}; .dv-callout-label { color: #{sem(warning, dark)}; } }
+.dv-callout--danger  { border-color: #{sem(danger, dark)};  .dv-callout-label { color: #{sem(danger, dark)}; } }
 
 html[data-mode='light'] {
   .post-content .prompt-tip,
   .post-content .prompt-info,
   .post-content .prompt-warning,
   .post-content .prompt-danger {
-    border-top: 1px solid var(--border-color) !important;
-    border-right: 1px solid var(--border-color) !important;
-    border-bottom: 1px solid var(--border-color) !important;
-    border-radius: 0 !important;
-    p { color: #334155 !important; }
+    border-top: 1px solid var(--border-color);
+    border-right: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    border-radius: 0;
+    p { color: #334155; }
   }
-  .post-content .prompt-tip     { background: rgba(5, 150, 105, 0.05) !important;  border-left: 3px solid #{sem(ok, light)} !important;      &::before { color: #{sem(ok, light)} !important; } }
-  .post-content .prompt-info    { background: rgba(37, 99, 235, 0.05) !important;  border-left: 3px solid var(--dv-accent) !important;        &::before { color: var(--dv-accent) !important; } }
-  .post-content .prompt-warning { background: rgba(180, 83, 9, 0.05) !important;   border-left: 3px solid #{sem(warning, light)} !important;  &::before { color: #{sem(warning, light)} !important; } }
-  .post-content .prompt-danger  { background: rgba(220, 38, 38, 0.05) !important;  border-left: 3px solid #{sem(danger, light)} !important;   &::before { color: #{sem(danger, light)} !important; } }
+  .post-content .prompt-tip     { background: rgba(5, 150, 105, 0.05);  border-left: 3px solid #{sem(ok, light)};      &::before { color: #{sem(ok, light)}; } }
+  .post-content .prompt-info    { background: rgba(37, 99, 235, 0.05);  border-left: 3px solid var(--dv-accent);        &::before { color: var(--dv-accent); } }
+  .post-content .prompt-warning { background: rgba(180, 83, 9, 0.05);   border-left: 3px solid #{sem(warning, light)};  &::before { color: #{sem(warning, light)}; } }
+  .post-content .prompt-danger  { background: rgba(220, 38, 38, 0.05);  border-left: 3px solid #{sem(danger, light)};   &::before { color: #{sem(danger, light)}; } }
 
   .dv-callout {
-    background: #FFFFFF !important;
-    border-top: 1px solid var(--border-color) !important;
-    border-right: 1px solid var(--border-color) !important;
-    border-bottom: 1px solid var(--border-color) !important;
+    background: #FFFFFF;
+    border-top: 1px solid var(--border-color);
+    border-right: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
   }
-  .dv-callout--info    { border-left-color: var(--dv-accent) !important;        .dv-callout-label { color: var(--dv-accent) !important; } }
-  .dv-callout--ok      { border-left-color: #{sem(ok, light)} !important;      .dv-callout-label { color: #{sem(ok, light)} !important; } }
-  .dv-callout--warning { border-left-color: #{sem(warning, light)} !important; .dv-callout-label { color: #{sem(warning, light)} !important; } }
-  .dv-callout--danger  { border-left-color: #{sem(danger, light)} !important;  .dv-callout-label { color: #{sem(danger, light)} !important; } }
-  .dv-callout-text { color: #334155 !important; }
+  .dv-callout--info    { border-left-color: var(--dv-accent);        .dv-callout-label { color: var(--dv-accent); } }
+  .dv-callout--ok      { border-left-color: #{sem(ok, light)};      .dv-callout-label { color: #{sem(ok, light)}; } }
+  .dv-callout--warning { border-left-color: #{sem(warning, light)}; .dv-callout-label { color: #{sem(warning, light)}; } }
+  .dv-callout--danger  { border-left-color: #{sem(danger, light)};  .dv-callout-label { color: #{sem(danger, light)}; } }
+  .dv-callout-text { color: #334155; }
 }
 
 /* ──────────────────────────────────────────────────────────────
@@ -1627,79 +1627,79 @@ html[data-mode='light'] {
    ────────────────────────────────────────────────────────────── */
 
 .dv-step-list {
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 0 !important;
-  margin: 2rem 0 !important;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin: 2rem 0;
 }
 .dv-step {
-  display: flex !important;
-  gap: 20px !important;
-  position: relative !important;
-  &:last-child .dv-step-body { padding-bottom: 4px !important; }
+  display: flex;
+  gap: 20px;
+  position: relative;
+  &:last-child .dv-step-body { padding-bottom: 4px; }
 }
 .dv-step-connector {
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  flex-shrink: 0 !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
 }
 .dv-step-num {
-  width: 28px !important;
-  height: 28px !important;
-  min-width: 28px !important;
-  background: var(--dv-step-num-bg) !important;
-  border: 1.5px solid var(--dv-primary) !important;
-  border-radius: 0 !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  font-family: $font-display !important;
-  font-size: 11px !important;
-  font-weight: 700 !important;
-  color: var(--dv-accent) !important;
-  flex-shrink: 0 !important;
-  position: relative !important;
-  z-index: 1 !important;
+  width: 28px;
+  height: 28px;
+  min-width: 28px;
+  background: var(--dv-step-num-bg);
+  border: 1.5px solid var(--dv-primary);
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: $font-display;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--dv-accent);
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
 
   &.active {
-    background: rgba(59, 130, 246, 0.15) !important;
-    box-shadow: 0 0 16px rgba(59, 130, 246, 0.3) !important;
+    background: rgba(59, 130, 246, 0.15);
+    box-shadow: 0 0 16px rgba(59, 130, 246, 0.3);
   }
 }
 html[data-mode='light'] .dv-step-num.active {
-  background: rgba(37, 99, 235, 0.08) !important;
-  box-shadow: 0 0 14px rgba(37, 99, 235, 0.20) !important;
+  background: rgba(37, 99, 235, 0.08);
+  box-shadow: 0 0 14px rgba(37, 99, 235, 0.20);
 }
 .dv-step-line {
-  flex: 1 !important;
-  width: 1.5px !important;
-  min-height: 24px !important;
-  background: linear-gradient(180deg, var(--dv-primary) 0%, var(--dv-step-line-end) 100%) !important;
+  flex: 1;
+  width: 1.5px;
+  min-height: 24px;
+  background: linear-gradient(180deg, var(--dv-primary) 0%, var(--dv-step-line-end) 100%);
 }
 .dv-step-body {
-  padding-bottom: 28px !important;
-  padding-top: 4px !important;
-  flex: 1 !important;
+  padding-bottom: 28px;
+  padding-top: 4px;
+  flex: 1;
 }
 .dv-step-title {
-  font-family: $font-display !important;
-  font-size: 0.82rem !important;
-  font-weight: 500 !important;
-  color: var(--heading-color) !important;
-  letter-spacing: -0.02em !important;
-  margin-bottom: 4px !important;
-  line-height: 1.3 !important;
+  font-family: $font-display;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--heading-color);
+  letter-spacing: -0.02em;
+  margin-bottom: 4px;
+  line-height: 1.3;
 }
 .dv-step-desc {
-  font-family: $font-heading !important;
-  font-size: 0.72rem !important;
-  font-weight: 200 !important;
-  color: var(--label-color) !important;
-  line-height: 1.65 !important;
+  font-family: $font-heading;
+  font-size: 0.72rem;
+  font-weight: 200;
+  color: var(--label-color);
+  line-height: 1.65;
 }
-html[data-mode='light'] .dv-step-title { color: var(--text-color) !important; }
-html[data-mode='light'] .dv-step-desc  { color: var(--text-muted) !important; }
+html[data-mode='light'] .dv-step-title { color: var(--text-color); }
+html[data-mode='light'] .dv-step-desc  { color: var(--text-muted); }
 
 /* ──────────────────────────────────────────────────────────────
    22. CATEGORIES CARD (extiende %dv-card)
