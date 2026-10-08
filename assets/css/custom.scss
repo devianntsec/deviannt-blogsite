@@ -397,115 +397,115 @@ html[data-mode='light'] #sidebar li.nav-item a[aria-current="page"] {
    ────────────────────────────────────────────────────────────── */
 
 #sidebar .site-title,
-#sidebar .sidebar-title { display: none !important; }
+#sidebar .sidebar-title { display: none; }
 
 .site-title-deviannt {
-  display: flex !important;
-  justify-content: center !important;
-  padding: 0.5rem 0 0.4rem !important;
-  margin: 0 !important;
-  overflow: visible !important;
-  min-height: 56px !important;
-  height: 56px !important;
+  display: flex;
+  justify-content: center;
+  padding: 0.5rem 0 0.4rem;
+  margin: 0;
+  overflow: visible;
+  min-height: 56px;
+  height: 56px;
 
   a {
-    text-decoration: none !important;
+    text-decoration: none;
     color: inherit !important;
-    overflow: visible !important;
+    overflow: visible;
   }
 }
 
 .dv-title-name {
-  position: relative !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  padding: 0 18px !important;
-  font-family: $font-display !important;
-  font-size: 1.45rem !important;
-  font-weight: 700 !important;
-  letter-spacing: -0.08em !important;
-  color: var(--heading-color) !important;
-  text-transform: uppercase !important;
-  line-height: 1 !important;
-  overflow: visible !important;
-  min-height: 36px !important;
-  height: 36px !important;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 18px;
+  font-family: $font-display;
+  font-size: 1.45rem;
+  font-weight: 700;
+  letter-spacing: -0.08em;
+  color: var(--heading-color);
+  text-transform: uppercase;
+  line-height: 1;
+  overflow: visible;
+  min-height: 36px;
+  height: 36px;
 
   .dv-text {
-    position: relative !important;
-    z-index: 1 !important;
-    line-height: 1.2 !important;
-    display: inline-block !important;
+    position: relative;
+    z-index: 1;
+    line-height: 1.2;
+    display: inline-block;
   }
 
   .dv-bar-l,
   .dv-bar-r {
-    display: block !important;
-    position: absolute !important;
-    width: 3px !important;
-    background: var(--dv-primary) !important;
-    z-index: 2 !important;
+    display: block;
+    position: absolute;
+    width: 3px;
+    background: var(--dv-primary);
+    z-index: 2;
   }
   .dv-bar-l {
-    left: 0 !important;
-    top: -4px !important;
-    bottom: -4px !important;
+    left: 0;
+    top: -4px;
+    bottom: -4px;
   }
   .dv-bar-r {
     left: 0;
-    top: 2px !important;
-    bottom: -7px !important;
+    top: 2px;
+    bottom: -7px;
     visibility: hidden;
   }
 
   .dv-dot-tl,
   .dv-dot-br {
-    display: block !important;
-    position: absolute !important;
-    width: 11px !important;
-    height: 11px !important;
-    border-radius: 50% !important;
-    background: var(--dv-primary) !important;
-    z-index: 2 !important;
+    display: block;
+    position: absolute;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: var(--dv-primary);
+    z-index: 2;
   }
   .dv-dot-tl {
-    top: -7px !important;
-    left: 2px !important;
-    transform: translateX(-50%) !important;
+    top: -7px;
+    left: 2px;
+    transform: translateX(-50%);
   }
   .dv-dot-br {
-    bottom: -7px !important;
+    bottom: -7px;
     left: 0;
     visibility: hidden;
   }
 }
 
 .dv-base {
-  position: absolute !important;
-  top: 2px !important;
-  bottom: 2px !important;
-  left: 0 !important;
-  right: 0 !important;
-  background: rgba(59,130,246,0.35) !important;
-  z-index: 0 !important;
+  position: absolute;
+  top: 2px;
+  bottom: 2px;
+  left: 0;
+  right: 0;
+  background: rgba(59,130,246,0.35);
+  z-index: 0;
   opacity: 0;
-  pointer-events: none !important;
-  height: auto !important;
+  pointer-events: none;
+  height: auto;
 }
 .dv-highlight {
-  background: rgba(59,130,246,0.32) !important;
-  pointer-events: none !important;
-  top: 2px !important;
-  bottom: 2px !important;
-  height: auto !important;
+  background: rgba(59,130,246,0.32);
+  pointer-events: none;
+  top: 2px;
+  bottom: 2px;
+  height: auto;
 }
 
 html[data-mode='light'] .dv-title-name {
-  color: var(--text-color) !important;
-  .dv-text { color: var(--text-color) !important; }
+  color: var(--text-color);
+  .dv-text { color: var(--text-color); }
   .dv-bar-l, .dv-bar-r,
-  .dv-dot-tl, .dv-dot-br { background: var(--dv-accent) !important; }
+  .dv-dot-tl, .dv-dot-br { background: var(--dv-accent); }
 }
 
 /* ──────────────────────────────────────────────────────────────
@@ -2005,64 +2005,64 @@ html[data-mode='light'] #back-to-top {
    ────────────────────────────────────────────────────────────── */
 
 .dv-diagram-wrap {
-  margin: 2rem 0 !important;
-  position: relative !important;
+  margin: 2rem 0;
+  position: relative;
 }
 .dv-diagram-title {
-  font-family: $font-heading !important;
-  font-size: 0.62rem !important;
-  font-weight: 600 !important;
-  letter-spacing: 0.2em !important;
-  text-transform: uppercase !important;
-  color: var(--dv-primary) !important;
-  margin-bottom: 8px !important;
-  &::before { content: '// ' !important; opacity: 0.55 !important; }
+  font-family: $font-heading;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--dv-primary);
+  margin-bottom: 8px;
+  &::before { content: '// '; opacity: 0.55; }
 }
 
 .dv-diagram-viewport {
-  background: var(--dv-diagram-viewport-bg) !important;
-  border: 1px solid var(--dv-diagram-viewport-border) !important;
-  position: relative !important;
-  overflow: hidden !important;
-  cursor: default !important;
-  user-select: none !important;
-  -webkit-user-select: none !important;
+  background: var(--dv-diagram-viewport-bg);
+  border: 1px solid var(--dv-diagram-viewport-border);
+  position: relative;
+  overflow: hidden;
+  cursor: default;
+  user-select: none;
+  -webkit-user-select: none;
 
-  &.dv-diagram-focused { cursor: grab !important; &:active { cursor: grabbing !important; } }
+  &.dv-diagram-focused { cursor: grab; &:active { cursor: grabbing; } }
 
   &::before {
-    content: '' !important;
-    display: block !important;
-    position: absolute !important;
-    top: 0 !important; left: 0 !important; right: 0 !important;
-    height: 2px !important;
-    background: linear-gradient(90deg, transparent, var(--dv-primary), transparent) !important;
-    z-index: z(diagram-front) !important;
-    pointer-events: none !important;
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--dv-primary), transparent);
+    z-index: z(diagram-front);
+    pointer-events: none;
   }
 }
 .dv-diagram-canvas-wrap {
-  will-change: transform !important;
-  padding: 0 !important;
-  position: relative !important;
+  will-change: transform;
+  padding: 0;
+  position: relative;
 }
 .dv-diagram-label {
-  font-family: $font-ui !important;
-  font-size: 9px !important;
-  font-weight: 600 !important;
-  letter-spacing: 0.18em !important;
-  text-transform: uppercase !important;
-  color: var(--dv-diagram-label-color) !important;
-  padding: 16px 20px 8px !important;
-  pointer-events: none !important;
-  text-align: center !important;
+  font-family: $font-ui;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--dv-diagram-label-color);
+  padding: 16px 20px 8px;
+  pointer-events: none;
+  text-align: center;
 }
-.dv-diagram-canvas { padding: 20px !important; display: block !important; }
+.dv-diagram-canvas { padding: 20px; display: block; }
 .dv-diagram-svg {
-  display: block !important;
-  width: 100% !important;
-  overflow: visible !important;
-  text { font-family: $font-heading !important; }
+  display: block;
+  width: 100%;
+  overflow: visible;
+  text { font-family: $font-heading; }
 }
 
 @each $cls, $key, $fill-a-dark, $fill-a-light in
@@ -2071,112 +2071,112 @@ html[data-mode='light'] #back-to-top {
 
   @if $key == null {
     .dv-diagram-svg .node-default {
-      fill: var(--dv-diagram-viewport-bg) !important;
-      stroke: #1E3A5F !important;
-      stroke-width: 1.5 !important;
+      fill: var(--dv-diagram-viewport-bg);
+      stroke: #1E3A5F;
+      stroke-width: 1.5;
     }
     html[data-mode='light'] .dv-diagram-svg .node-default {
-      fill: var(--dv-diagram-viewport-bg) !important;
-      stroke: var(--dv-gray-200) !important;
+      fill: var(--dv-diagram-viewport-bg);
+      stroke: var(--dv-gray-200);
     }
     .dv-diagram-svg .edge-default {
-      stroke: rgba(59,130,246,0.45) !important;
-      stroke-width: 1.5 !important;
-      fill: none !important;
+      stroke: rgba(59,130,246,0.45);
+      stroke-width: 1.5;
+      fill: none;
     }
     html[data-mode='light'] .dv-diagram-svg .edge-default {
-      stroke: rgba(37,99,235,0.35) !important;
+      stroke: rgba(37,99,235,0.35);
     }
   } @else {
     .dv-diagram-svg .node-#{$cls} {
-      fill: color-mix(in srgb, #{sem($key, dark)} $fill-a-dark * 100%, transparent) !important;
-      stroke: sem($key, dark) !important;
-      stroke-width: 1.5 !important;
+      fill: color-mix(in srgb, #{sem($key, dark)} $fill-a-dark * 100%, transparent);
+      stroke: sem($key, dark);
+      stroke-width: 1.5;
     }
     html[data-mode='light'] .dv-diagram-svg .node-#{$cls} {
-      fill: color-mix(in srgb, #{sem($key, light)} $fill-a-light * 100%, transparent) !important;
-      stroke: sem($key, light) !important;
+      fill: color-mix(in srgb, #{sem($key, light)} $fill-a-light * 100%, transparent);
+      stroke: sem($key, light);
     }
     .dv-diagram-svg .edge-#{$cls} {
-      stroke: sem($key, dark) !important;
-      stroke-width: if($cls == active, 2, 1.5) !important;
-      fill: none !important;
-      @if $cls == danger { stroke-dasharray: 6 3 !important; }
+      stroke: sem($key, dark);
+      stroke-width: if($cls == active, 2, 1.5);
+      fill: none;
+      @if $cls == danger { stroke-dasharray: 6 3; }
     }
     html[data-mode='light'] .dv-diagram-svg .edge-#{$cls} {
-      stroke: sem($key, light) !important;
+      stroke: sem($key, light);
     }
   }
 }
 
-.dv-diagram-svg .label-primary { fill: var(--heading-color) !important; font-size: 10px !important; font-weight: 500 !important; }
-.dv-diagram-svg .label-muted   { fill: var(--dv-gray-100) !important; font-size: 9px !important;  font-weight: 200 !important; }
-.dv-diagram-svg .label-accent  { fill: var(--dv-accent) !important; font-size: 9px !important;  font-weight: 400 !important; }
+.dv-diagram-svg .label-primary { fill: var(--heading-color); font-size: 10px; font-weight: 500; }
+.dv-diagram-svg .label-muted   { fill: var(--dv-gray-100); font-size: 9px;  font-weight: 200; }
+.dv-diagram-svg .label-accent  { fill: var(--dv-accent); font-size: 9px;  font-weight: 400; }
 @each $cls, $key in (warn warning) (danger danger) (ok ok) (purple purple) {
-  .dv-diagram-svg .label-#{$cls} { fill: sem($key, dark) !important; font-size: 9px !important; }
-  html[data-mode='light'] .dv-diagram-svg .label-#{$cls} { fill: sem($key, light) !important; }
+  .dv-diagram-svg .label-#{$cls} { fill: sem($key, dark); font-size: 9px; }
+  html[data-mode='light'] .dv-diagram-svg .label-#{$cls} { fill: sem($key, light); }
 }
-html[data-mode='light'] .dv-diagram-svg .label-primary { fill: var(--text-color) !important; }
-html[data-mode='light'] .dv-diagram-svg .label-muted   { fill: #64748B !important; }
-html[data-mode='light'] .dv-diagram-svg .label-accent  { fill: var(--dv-accent) !important; }
+html[data-mode='light'] .dv-diagram-svg .label-primary { fill: var(--text-color); }
+html[data-mode='light'] .dv-diagram-svg .label-muted   { fill: #64748B; }
+html[data-mode='light'] .dv-diagram-svg .label-accent  { fill: var(--dv-accent); }
 
 .dv-diagram-hint {
-  position: absolute !important;
-  top: 10px !important;
-  right: 10px !important;
-  font-family: $font-heading !important;
-  font-size: 9px !important;
-  font-weight: 400 !important;
-  letter-spacing: 0.06em !important;
-  color: var(--dv-diagram-hint-color) !important;
-  display: flex !important;
-  align-items: center !important;
-  gap: 5px !important;
-  pointer-events: none !important;
-  z-index: z(diagram-hint) !important;
-  transition: opacity 0.3s !important;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-family: $font-heading;
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  color: var(--dv-diagram-hint-color);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  pointer-events: none;
+  z-index: z(diagram-hint);
+  transition: opacity 0.3s;
 }
-.dv-diagram-hint-icon { font-size: 11px !important; opacity: 0.7 !important; }
-.dv-diagram-viewport.dv-diagram-focused .dv-diagram-hint { opacity: 0 !important; }
+.dv-diagram-hint-icon { font-size: 11px; opacity: 0.7; }
+.dv-diagram-viewport.dv-diagram-focused .dv-diagram-hint { opacity: 0; }
 
 .dv-diagram-controls {
-  position: absolute !important;
-  bottom: 12px !important;
-  right: 12px !important;
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 4px !important;
-  z-index: z(diagram-controls) !important;
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  z-index: z(diagram-controls);
 }
 .dv-diagram-btn {
-  background: transparent !important;
-  border: 1px solid var(--dv-diagram-btn-border) !important;
-  padding: 0 !important;
-  font: inherit !important;
-  color: var(--dv-diagram-btn-color) !important;
-  cursor: pointer !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  width: 26px !important;
-  height: 26px !important;
-  font-family: $font-heading !important;
-  font-size: 14px !important;
-  line-height: 1 !important;
-  transition: border-color 0.15s, color 0.15s, background 0.15s !important;
+  background: transparent;
+  border: 1px solid var(--dv-diagram-btn-border);
+  padding: 0;
+  font: inherit;
+  color: var(--dv-diagram-btn-color);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  font-family: $font-heading;
+  font-size: 14px;
+  line-height: 1;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
 
   &:hover {
-    border-color: var(--dv-primary) !important;
-    color: var(--dv-accent) !important;
-    background: rgba(59,130,246,0.08) !important;
+    border-color: var(--dv-primary);
+    color: var(--dv-accent);
+    background: rgba(59,130,246,0.08);
   }
 }
 html[data-mode='light'] .dv-diagram-btn {
-  background: #FFFFFF !important;
+  background: #FFFFFF;
   &:hover {
-    border-color: var(--dv-accent) !important;
-    color: var(--dv-primary) !important;
-    background: rgba(37,99,235,0.06) !important;
+    border-color: var(--dv-accent);
+    color: var(--dv-primary);
+    background: rgba(37,99,235,0.06);
   }
 }
 
