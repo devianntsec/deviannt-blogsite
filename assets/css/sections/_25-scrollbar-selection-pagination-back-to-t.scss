@@ -9,25 +9,13 @@ html {
   scrollbar-color: var(--dv-scrollbar-thumb) var(--dv-scrollbar-track);
 }
 ::-webkit-scrollbar { width: 5px; height: 5px; }
-::-webkit-scrollbar-track { background: #000; }
+::-webkit-scrollbar-track { background: var(--dv-scrollbar-track); }
 ::-webkit-scrollbar-thumb {
   background: var(--dv-scrollbar-thumb);
   border-radius: 2px;
   &:hover { background: var(--dv-primary); }
 }
-html[data-mode='light'] {
-  ::-webkit-scrollbar-track { background: #EAECF2 !important; }
-  ::-webkit-scrollbar-thumb {
-    background: var(--dv-scrollbar-thumb) !important;
-    &:hover { background: var(--dv-primary) !important; }
-  }
-}
-
-::selection { background: rgba(59,130,246,0.28); color: #fff; }
-html[data-mode='light'] ::selection {
-  background: rgba(37, 99, 235, 0.15) !important;
-  color: var(--text-color) !important;
-}
+::selection { background: var(--dv-selection-bg); color: var(--dv-selection-fg); }
 
 .pagination .page-item .page-link {
   background: var(--card-bg);

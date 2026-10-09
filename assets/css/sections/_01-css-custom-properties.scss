@@ -102,6 +102,8 @@ html:not([data-mode]) {
   --dv-cat-header-bg:       rgba(59, 130, 246, 0.12);
   --dv-cat-header-border:   rgba(59, 130, 246, 0.25);
   --dv-toc-edge:            var(--dv-primary);
+  --dv-selection-bg:        rgba(59, 130, 246, 0.28);
+  --dv-selection-fg:        #fff;
 }
 
 html[data-mode='light'] {
@@ -174,4 +176,6 @@ html[data-mode='light'] {
   --dv-cat-header-bg:       rgba(37, 99, 235, 0.06);
   --dv-cat-header-border:   var(--border-color);
   --dv-toc-edge:            var(--dv-accent);
+  --dv-selection-bg:        rgba(37, 99, 235, 0.15);
+  --dv-selection-fg:        var(--text-color);
 }

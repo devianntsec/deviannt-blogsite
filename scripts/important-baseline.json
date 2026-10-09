@@ -1,5 +1,5 @@
 {
-  "total": 468,
+  "total": 463,
   "files": {
     "assets/css/overrides.css": 25,
     "assets/css/sections/_04-topbar.scss": 11,
@@ -17,7 +17,6 @@
     "assets/css/sections/_22-categories-card.scss": 5,
     "assets/css/sections/_23-archives-timeline.scss": 20,
     "assets/css/sections/_24-footer.scss": 14,
-    "assets/css/sections/_25-scrollbar-selection-pagination-back-to-t.scss": 5,
     "assets/css/sections/_27-mobile-sidebar.scss": 21,
     "assets/css/sections/_28-misc-hover-fixes-trending-category-page.scss": 51,
     "assets/css/sections/_29-sidebar-back-to-portfolio-link.scss": 12,
