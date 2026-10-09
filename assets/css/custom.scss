@@ -1507,118 +1507,118 @@ html[data-mode='light'] {
 
 .post-content ul.task-list,
 .content ul.task-list {
-  list-style: none !important;
-  padding-left: 0 !important;
-  margin: 0.5rem 0 !important;
+  list-style: none;
+  padding-left: 0;
+  margin: 0.5rem 0;
 }
 .post-content .task-list-item,
 .content .task-list-item {
-  display: grid !important;
-  grid-template-columns: 16px 1fr !important;
-  align-items: center !important;
-  column-gap: 10px !important;
+  display: grid;
+  grid-template-columns: 16px 1fr;
+  align-items: center;
+  column-gap: 10px;
   padding: 8px 14px 8px 31px !important;
-  list-style: none !important;
-  border-left: none !important;
-  background: transparent !important;
-  transition: background 0.15s !important;
+  list-style: none;
+  border-left: none;
+  background: transparent;
+  transition: background 0.15s;
   margin: 0 !important;
-  font-family: $font-heading !important;
-  font-size: 0.82rem !important;
-  font-weight: 300 !important;
-  color: var(--text-color) !important;
-  line-height: 1.5 !important;
-  position: relative !important;
+  font-family: $font-heading;
+  font-size: 0.82rem;
+  font-weight: 300;
+  color: var(--text-color);
+  line-height: 1.5;
+  position: relative;
 
   &::before {
-    content: '' !important;
-    position: absolute !important;
-    left: 0 !important; top: 0 !important; bottom: 0 !important;
-    width: 2px !important;
-    background: transparent !important;
-    transition: background 0.15s !important;
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 2px;
+    background: transparent;
+    transition: background 0.15s;
   }
-  &:hover::before { background: rgba(59, 130, 246, 0.35) !important; }
-  &:hover { background: rgba(59, 130, 246, 0.03) !important; }
+  &:hover::before { background: rgba(59, 130, 246, 0.35); }
+  &:hover { background: rgba(59, 130, 246, 0.03); }
 
   > i.far.fa-circle,
   > i.fas.fa-check-circle {
-    grid-column: 1 !important;
-    grid-row: 1 !important;
-    align-self: center !important;
-    font-size: 0 !important;
-    color: transparent !important;
-    display: block !important;
-    width: 16px !important;
-    height: 16px !important;
-    position: relative !important;
+    grid-column: 1;
+    grid-row: 1;
+    align-self: center;
+    font-size: 0;
+    color: transparent;
+    display: block;
+    width: 16px;
+    height: 16px;
+    position: relative;
   }
   > i.far.fa-circle::before {
-    content: '' !important;
-    display: block !important;
-    width: 16px !important;
-    height: 16px !important;
-    border: 1.5px solid var(--dv-task-border) !important;
-    background: #0B1220 !important;
-    border-radius: 0 !important;
-    box-sizing: border-box !important;
+    content: '';
+    display: block;
+    width: 16px;
+    height: 16px;
+    border: 1.5px solid var(--dv-task-border);
+    background: #0B1220;
+    border-radius: 0;
+    box-sizing: border-box;
   }
   > i.fas.fa-check-circle::before {
-    content: '' !important;
-    display: block !important;
-    width: 16px !important;
-    height: 16px !important;
-    border: 1.5px solid var(--dv-primary) !important;
-    background: rgba(59, 130, 246, 0.15) !important;
-    border-radius: 0 !important;
-    box-sizing: border-box !important;
-    box-shadow: 0 0 0 2px rgba(59,130,246,0.15), 0 0 10px rgba(59,130,246,0.2) !important;
+    content: '';
+    display: block;
+    width: 16px;
+    height: 16px;
+    border: 1.5px solid var(--dv-primary);
+    background: rgba(59, 130, 246, 0.15);
+    border-radius: 0;
+    box-sizing: border-box;
+    box-shadow: 0 0 0 2px rgba(59,130,246,0.15), 0 0 10px rgba(59,130,246,0.2);
   }
   > i.fas.fa-check-circle::after {
-    content: '' !important;
-    position: absolute !important;
-    top: 2px !important; left: 5px !important;
-    width: 5px !important; height: 9px !important;
-    border: 1.5px solid var(--dv-accent) !important;
-    border-top: none !important;
-    border-left: none !important;
-    transform: rotate(45deg) !important;
+    content: '';
+    position: absolute;
+    top: 2px; left: 5px;
+    width: 5px; height: 9px;
+    border: 1.5px solid var(--dv-accent);
+    border-top: none;
+    border-left: none;
+    transform: rotate(45deg);
   }
   &:has(> i.fas.fa-check-circle) {
-    color: var(--dv-task-checked-text) !important;
-    text-decoration: none !important;
+    color: var(--dv-task-checked-text);
+    text-decoration: none;
   }
   > ul.task-list {
-    grid-column: 2 !important;
-    grid-row: 2 !important;
-    margin-top: 4px !important;
-    margin-bottom: 2px !important;
-    padding-left: 0 !important;
-    border-left: 1px solid rgba(59, 130, 246, 0.1) !important;
-    width: 100% !important;
+    grid-column: 2;
+    grid-row: 2;
+    margin-top: 4px;
+    margin-bottom: 2px;
+    padding-left: 0;
+    border-left: 1px solid rgba(59, 130, 246, 0.1);
+    width: 100%;
   }
 }
 .post-content .task-list-item ul.task-list .task-list-item,
 .content .task-list-item ul.task-list .task-list-item {
-  grid-template-columns: 13px 1fr !important;
+  grid-template-columns: 13px 1fr;
   padding: 6px 14px 6px 31px !important;
-  font-size: 0.75rem !important;
-  color: #475569 !important;
+  font-size: 0.75rem;
+  color: #475569;
 }
 html[data-mode='light'] {
   .post-content .task-list-item, .content .task-list-item {
-    color: #334155 !important;
+    color: #334155;
     > i.far.fa-circle::before {
-      background: #FFFFFF !important;
-      border-color: var(--dv-task-border) !important;
+      background: #FFFFFF;
+      border-color: var(--dv-task-border);
     }
     > i.fas.fa-check-circle::before {
-      border-color: var(--dv-accent) !important;
-      background: rgba(37, 99, 235, 0.08) !important;
-      box-shadow: 0 0 0 2px rgba(37,99,235,0.10) !important;
+      border-color: var(--dv-accent);
+      background: rgba(37, 99, 235, 0.08);
+      box-shadow: 0 0 0 2px rgba(37,99,235,0.10);
     }
-    > i.fas.fa-check-circle::after { border-color: var(--dv-primary) !important; }
-    &:has(> i.fas.fa-check-circle) { color: var(--dv-task-checked-text) !important; }
+    > i.fas.fa-check-circle::after { border-color: var(--dv-primary); }
+    &:has(> i.fas.fa-check-circle) { color: var(--dv-task-checked-text); }
   }
 }
 
