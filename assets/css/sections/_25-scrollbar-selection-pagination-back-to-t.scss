@@ -54,5 +54,8 @@ html[data-mode='light'] #back-to-top {
   color: var(--dv-accent);
 }
 
-#main-wrapper { transition: opacity 0.15s ease; }
-#main-wrapper.dv-transitioning { opacity: 0; }
+/* Transición entre páginas (navegación nativa, sin JS). Firefox navega sin animación. */
+@view-transition { navigation: auto; }
+@media (prefers-reduced-motion: no-preference) {
+  ::view-transition-old(root), ::view-transition-new(root) { animation-duration: 0.15s; }
+}

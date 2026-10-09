@@ -8,8 +8,6 @@
   .dv-bar-r, .dv-dot-br { visibility: hidden; }
   .dv-base    { opacity: 0; }
   .dv-highlight { width: 0 !important; }
-  #main-wrapper { transition: opacity 0.15s ease; }
-  #main-wrapper.dv-transitioning { opacity: 0; }
 
 /* Topbar title: una sola línea, font-size pequeño, sin recorte */
   @media (max-width: 849px) {
