@@ -47,7 +47,7 @@ html[data-mode='light'] a.tag {
 }
 
 // Usamos nombres semánticos directamente: info, danger, warning, ok, purple
-@each $name in (info, danger, warning, ok, purple) {
+@each $name in (info, danger, warning, ok, 'purple') {
   $alpha-dark: 0.12;
   $alpha-light: 0.08;
   @if $name == info {

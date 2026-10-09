@@ -42,7 +42,7 @@ $semantic: (
   ok:      (dark: #10B981, light: #059669),
   warning: (dark: #F59E0B, light: #B45309),
   danger:  (dark: #EF4444, light: #DC2626),
-  purple:  (dark: #8B5CF6, light: #7C3AED),
+  'purple':  (dark: #8B5CF6, light: #7C3AED),
 );
 @function sem($name, $mode: dark) {
   @return map.get(map.get($semantic, $name), $mode);

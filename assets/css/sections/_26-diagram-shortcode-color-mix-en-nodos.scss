@@ -67,7 +67,7 @@
 
 @each $cls, $key, $fill-a-dark, $fill-a-light in
   (default null 0 0) (active info 0.12 0.07) (warn warning 0.10 0.07)
-  (danger danger 0.10 0.07) (ok ok 0.10 0.07) (purple purple 0.10 0.07) {
+  (danger danger 0.10 0.07) (ok ok 0.10 0.07) ('purple' 'purple' 0.10 0.07) {
 
   @if $key == null {
     .dv-diagram-svg .node-default {
@@ -114,7 +114,7 @@
 .dv-diagram-svg .label-primary { fill: var(--heading-color); font-size: 10px; font-weight: 500; }
 .dv-diagram-svg .label-muted   { fill: var(--dv-gray-100); font-size: 9px;  font-weight: 200; }
 .dv-diagram-svg .label-accent  { fill: var(--dv-accent); font-size: 9px;  font-weight: 400; }
-@each $cls, $key in (warn warning) (danger danger) (ok ok) (purple purple) {
+@each $cls, $key in (warn warning) (danger danger) (ok ok) ('purple' 'purple') {
   .dv-diagram-svg .label-#{$cls} { fill: sem($key, dark); font-size: 9px; }
   html[data-mode='light'] .dv-diagram-svg .label-#{$cls} { fill: sem($key, light); }
 }

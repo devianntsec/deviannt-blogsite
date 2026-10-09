@@ -3,7 +3,7 @@
 {{ $lang := .Site.Language.Lang }}
 
 {{/* ── Trending Posts ── */}}
-{{ with .Site.Data.trending }}
+{{ with hugo.Data.trending }}
   {{ $slugs := .posts }}
   {{ if $slugs }}
     {{ $pageMap := dict }}
