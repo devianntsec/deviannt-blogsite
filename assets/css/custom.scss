@@ -2255,53 +2255,53 @@ footer a:hover,
 }
 
 #toc-bar {
-  position: sticky !important;
-  z-index: z(topbar-sticky) !important;
+  position: sticky;
+  z-index: z(topbar-sticky);
 }
 
 #access-trending-posts,
 #access-trending-tags { margin-top: 20px; }
 
 #access-trending-posts ul.content li {
-  overflow: visible !important;
-  white-space: normal !important;
-  text-overflow: unset !important;
-  display: flex !important;
-  align-items: flex-start !important;
-  gap: 8px !important;
-  padding: 4px 0 !important;
-  line-height: 1.5 !important;
-  position: static !important;
+  overflow: visible;
+  white-space: normal;
+  text-overflow: unset;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 4px 0;
+  line-height: 1.5;
+  position: static;
 
   &::before {
-    content: '›' !important;
-    display: block !important;
-    flex-shrink: 0 !important;
-    margin-top: 1px !important;
-    font-size: 1rem !important;
-    line-height: 1.4 !important;
-    color: var(--dv-primary) !important;
-    opacity: 0.8 !important;
-    font-family: $font-heading !important;
-    font-weight: 700 !important;
+    content: '›';
+    display: block;
+    flex-shrink: 0;
+    margin-top: 1px;
+    font-size: 1rem;
+    line-height: 1.4;
+    color: var(--dv-primary);
+    opacity: 0.8;
+    font-family: $font-heading;
+    font-weight: 700;
   }
-  &:hover::before { color: var(--dv-accent) !important; opacity: 1 !important; }
+  &:hover::before { color: var(--dv-accent); opacity: 1; }
 
   a {
-    color: var(--label-color) !important;
+    color: var(--label-color);
     text-decoration: none !important;
-    white-space: normal !important;
-    line-height: 1.5 !important;
+    white-space: normal;
+    line-height: 1.5;
     &:hover {
-      color: var(--dv-hover-text) !important;
-      border-bottom: 1px solid var(--dv-accent) !important;
+      color: var(--dv-hover-text);
+      border-bottom: 1px solid var(--dv-accent);
       text-decoration: none !important;
     }
   }
 }
 html[data-mode='light'] #access-trending-posts ul.content li {
-  a { color: var(--text-color) !important; &:hover { color: var(--text-color) !important; } }
-  &::before { color: var(--dv-accent) !important; }
+  a { color: var(--text-color); &:hover { color: var(--text-color); } }
+  &::before { color: var(--dv-accent); }
 }
 
 #page-category ul.content {
