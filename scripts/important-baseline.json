@@ -1,5 +1,5 @@
 {
-  "total": 458,
+  "total": 430,
   "files": {
     "assets/css/overrides.css": 25,
     "assets/css/sections/_04-topbar.scss": 11,
@@ -21,6 +21,6 @@
     "assets/css/sections/_28-misc-hover-fixes-trending-category-page.scss": 51,
     "assets/css/sections/_29-sidebar-back-to-portfolio-link.scss": 12,
     "assets/css/sections/_30-prefers-reduced-motion-focus-visible.scss": 9,
-    "assets/css/syntax.css": 61
+    "assets/css/syntax.css": 33
   }
 }
