@@ -5,11 +5,11 @@
    ────────────────────────────────────────────────────────────── */
 
 div.code-block {
-  background: #010e1a !important;
+  background: var(--dv-code-block-bg) !important;
   border: 1px solid var(--dv-code-block-border) !important;
 }
 div.highlight .code-header {
-  border-bottom: 1px solid var(--dv-code-block-border) !important;
+  border-bottom: 1px solid var(--dv-code-header-border) !important;
 
   &::before {
     background: var(--dv-code-circle-color) !important;
@@ -22,7 +22,7 @@ div.highlight .code-header {
   i, i.fas, i.far, i.fa-code, i.fa-fw, i.fa-file-code,
   button, button i, button > i, button i.far, button i.fa-clipboard {
     background: transparent !important;
-    color: var(--dv-primary) !important;
+    color: var(--dv-code-header-fg) !important;
   }
   button i,
   button > i,
@@ -34,18 +34,11 @@ div.highlight .code-header {
 
 html[data-mode='light'] {
   div.code-block {
-    background: #FFFFFF !important;
-    border: 1px solid rgba(37, 99, 235, 0.35) !important;
     border-radius: 4px !important;
   }
   div.highlight .code-header {
     background: #FFFFFF !important;
-    border-bottom: 1px solid rgba(37, 99, 235, 0.20) !important;
 
-    span, span[data-label-text], span i, span > i,
-    i, i.fas, i.far, i.fa-code, i.fa-fw, i.fa-file-code {
-      color: var(--dv-accent) !important;
-    }
     button, button i, button > i, button i.far, button i.fa-clipboard {
       color: var(--dv-gray-100) !important;
     }

@@ -104,6 +104,9 @@ html:not([data-mode]) {
   --dv-toc-edge:            var(--dv-primary);
   --dv-selection-bg:        rgba(59, 130, 246, 0.28);
   --dv-selection-fg:        #fff;
+  --dv-code-block-bg:       #010e1a;
+  --dv-code-header-border:  var(--dv-code-block-border);
+  --dv-code-header-fg:      var(--dv-primary);
 }
 
 html[data-mode='light'] {
@@ -178,4 +181,7 @@ html[data-mode='light'] {
   --dv-toc-edge:            var(--dv-accent);
   --dv-selection-bg:        rgba(37, 99, 235, 0.15);
   --dv-selection-fg:        var(--text-color);
+  --dv-code-block-bg:       #FFFFFF;
+  --dv-code-header-border:  rgba(37, 99, 235, 0.20);
+  --dv-code-header-fg:      var(--dv-accent);
 }

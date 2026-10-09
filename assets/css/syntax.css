@@ -199,7 +199,6 @@ html[data-mode='light'] div.highlight .err { color: #ff5874 !important; }
 
 /* Borde azul en light mode */
 html[data-mode='light'] .code-block {
-  border: 1px solid #3B82F6 !important;
   border-radius: 4px !important;
   overflow: hidden !important;
 }
