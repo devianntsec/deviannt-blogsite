@@ -1,5 +1,5 @@
 {
-  "total": 471,
+  "total": 468,
   "files": {
     "assets/css/overrides.css": 25,
     "assets/css/sections/_04-topbar.scss": 11,
@@ -8,7 +8,7 @@
     "assets/css/sections/_08-sidebar-social-icon-boxes.scss": 25,
     "assets/css/sections/_11-post-cards.scss": 21,
     "assets/css/sections/_12-tags-nombres-semanticos-color-mix.scss": 15,
-    "assets/css/sections/_13-right-panel-toc.scss": 59,
+    "assets/css/sections/_13-right-panel-toc.scss": 56,
     "assets/css/sections/_14-search-bar.scss": 1,
     "assets/css/sections/_16-night-owl-code-theme.scss": 46,
     "assets/css/sections/_17-code-header.scss": 15,

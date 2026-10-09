@@ -59,7 +59,7 @@
   background: var(--card-bg) !important;
   border: 1px solid var(--border-color) !important;
   border-radius: 6px !important;
-  box-shadow: inset 3px 0 0 0 var(--dv-primary) !important;
+  box-shadow: inset 3px 0 0 0 var(--dv-toc-edge) !important;
   margin: 0 !important;
   padding: 0 !important;
 
@@ -84,18 +84,13 @@
 }
 
 html[data-mode='light'] {
-  #toc-wrapper {
-    box-shadow: inset 3px 0 0 0 var(--dv-accent) !important;
-    background: #FFFFFF !important;
-    border-color: var(--border-color) !important;
-  }
-  #toc li a { color: #64748B !important; }
+  #toc li a { color: var(--text-muted) !important; }
   #toc li a:hover,
   #toc li a.active { color: var(--dv-primary) !important; }
   #panel-wrapper .panel-heading,
   #panel-wrapper h3,
   #panel-wrapper h4 { color: var(--dv-accent) !important; }
-  #panel-wrapper .post-list li a { color: #64748B !important; }
+  #panel-wrapper .post-list li a { color: var(--text-muted) !important; }
   #panel-wrapper .post-list li a:hover {
     color: #334155 !important;
     border-left-color: var(--dv-accent) !important;

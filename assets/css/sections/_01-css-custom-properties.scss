@@ -101,6 +101,7 @@ html:not([data-mode]) {
   --dv-footer-text:         #1E3A5F;
   --dv-cat-header-bg:       rgba(59, 130, 246, 0.12);
   --dv-cat-header-border:   rgba(59, 130, 246, 0.25);
+  --dv-toc-edge:            var(--dv-primary);
 }
 
 html[data-mode='light'] {
@@ -172,4 +173,5 @@ html[data-mode='light'] {
   --dv-footer-text:         #64748B;
   --dv-cat-header-bg:       rgba(37, 99, 235, 0.06);
   --dv-cat-header-border:   var(--border-color);
+  --dv-toc-edge:            var(--dv-accent);
 }
