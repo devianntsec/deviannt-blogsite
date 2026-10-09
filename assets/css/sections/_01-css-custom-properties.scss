@@ -99,6 +99,8 @@ html:not([data-mode]) {
   --dv-footer-surface:      #000000;
   --dv-footer-border-top:   none;
   --dv-footer-text:         #1E3A5F;
+  --dv-cat-header-bg:       rgba(59, 130, 246, 0.12);
+  --dv-cat-header-border:   rgba(59, 130, 246, 0.25);
 }
 
 html[data-mode='light'] {
@@ -168,4 +170,6 @@ html[data-mode='light'] {
   --dv-footer-surface:      #F5F7FA;
   --dv-footer-border-top:   1px solid var(--border-color);
   --dv-footer-text:         #64748B;
+  --dv-cat-header-bg:       rgba(37, 99, 235, 0.06);
+  --dv-cat-header-border:   var(--border-color);
 }

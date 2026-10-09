@@ -16,17 +16,11 @@
     text-decoration: none !important;
   }
   .card-header {
-    background: rgba(59, 130, 246, 0.12);
-    border-bottom: 1px solid rgba(59, 130, 246, 0.25) !important;
+    background: var(--dv-cat-header-bg);
+    border-bottom: 1px solid var(--dv-cat-header-border) !important;
   }
 }
 html[data-mode='light'] .card.categories.mb-3 {
-  background: #FFFFFF;
   border-color: var(--border-color) !important;
-  .card-header {
-    background: rgba(37, 99, 235, 0.06);
-    border-bottom: 1px solid var(--border-color) !important;
-  }
-  .card-title, h3, a { color: var(--text-color) !important; }
-  small, span { color: #64748B !important; }
+  small, span { color: var(--text-muted) !important; }
 }
