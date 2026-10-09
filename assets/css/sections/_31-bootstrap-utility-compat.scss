@@ -1,0 +1,14 @@
+/* ──────────────────────────────────────────────────────────────
+   31. COMPAT DE UTILIDADES BOOTSTRAP (sin !important)
+   Desde que $enable-important-utilities es false, estas utilidades
+   pierden contra reglas del tema. Se restauran por especificidad.
+   Candidatas a borrarse al adoptar sidebar / cards / panel (Paso 6).
+   ────────────────────────────────────────────────────────────── */
+
+/* Sidebar: el tema fija margin-top: 0.25rem con #sidebar */
+#sidebar ul li.nav-item.mt-4 { margin-top: 1.5rem; }
+#sidebar ul li.nav-item.mt-2 { margin-top: 0.5rem; }
+
+/* El tema fija .content { margin-top: 2rem } */
+.content.mt-0 { margin-top: 0; }
+.content.mt-2 { margin-top: 0.5rem; }

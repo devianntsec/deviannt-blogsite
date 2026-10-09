@@ -8,6 +8,9 @@
 //   - utilidad   → añade su clave a $keep-utilities (nombres en bootstrap/_utilities.scss)
 // Bootstrap sigue usando @import (no @use): sus parciales comparten variables globales.
 
+// Sin !important en las utilidades de Bootstrap: las reglas propias ganan por orden/capas, no por fuerza bruta.
+$enable-important-utilities: false;
+
 @import 'bootstrap/functions';
 @import 'bootstrap/variables';
 @import 'bootstrap/variables-dark';
