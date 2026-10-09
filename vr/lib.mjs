@@ -96,3 +96,42 @@ export function arg(name, fallback = null) {
   const i = process.argv.indexOf(`--${name}`);
   return i > -1 ? process.argv[i + 1] : fallback;
 }
+
+// Fecha fija para que las capturas sean reproducibles.
+export const FIXED_DATE = new Date('2026-10-07T12:00:00Z');
+
+// Contexto de navegador común a todas las herramientas de vr/.
+// Un solo sitio para: modo de color, fecha fija, zona horaria, bloqueo de peticiones externas
+// y sustitución de imágenes. Si cambias algo aquí, cambia para todas las herramientas a la vez.
+export async function makeContext(browser, vp, mode, { blockAborts = true, aborted = null } = {}) {
+  const ctx = await browser.newContext({
+    viewport: { width: vp.width, height: vp.height },
+    deviceScaleFactor: 1,
+    isMobile: vp.isMobile,
+    hasTouch: vp.isMobile,
+    colorScheme: mode,
+    locale: 'en-US',
+    timezoneId: 'UTC',
+    reducedMotion: 'no-preference',
+  });
+  // El sitio guarda el modo en localStorage('dv-mode'); el tema usa sessionStorage('mode').
+  await ctx.addInitScript((m) => {
+    try { localStorage.setItem('dv-mode', m); sessionStorage.setItem('mode', m); } catch (e) {}
+  }, mode);
+  await ctx.route('**/*', (route) => {
+    const req = route.request();
+    if (new URL(req.url()).origin === ORIGIN) return route.continue();
+    if (req.resourceType() === 'image') {
+      return route.fulfill({ status: 200, contentType: 'image/png', body: placeholderPng() });
+    }
+    if (blockAborts) {
+      if (aborted) {
+        const k = req.resourceType() + ' ' + req.url().slice(0, 150);
+        aborted.set(k, (aborted.get(k) || 0) + 1);
+      }
+      return route.abort();
+    }
+    return route.continue();
+  });
+  return ctx;
+}

@@ -6,7 +6,9 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { chromium } from 'playwright';
-import { SITE, SHOTS, ORIGIN, MODES, serve, allPages, shotName, placeholderPng, arg } from './lib.mjs';
+import {
+  SITE, SHOTS, ORIGIN, MODES, serve, allPages, shotName, arg, makeContext, FIXED_DATE,
+} from './lib.mjs';
 
 const outName = process.argv[2];
 if (!['baseline', 'current'].includes(outName)) {
@@ -22,7 +24,6 @@ const outDir = path.join(SHOTS, outName, '_hover');
 fs.rmSync(outDir, { recursive: true, force: true });
 fs.mkdirSync(outDir, { recursive: true });
 
-const PLACEHOLDER = placeholderPng();
 const FREEZE = `*,*::before,*::after{animation-duration:0s!important;animation-delay:0s!important;
 transition-duration:0s!important;transition-delay:0s!important;caret-color:transparent!important}
 html,body{scroll-behavior:auto!important}`;
@@ -50,20 +51,10 @@ const browser = await chromium.launch(process.env.CHROME_PATH ? { executablePath
 const errors = [];
 
 async function probe({ url, mode }) {
-  const ctx = await browser.newContext({
-    viewport: { width: VP.width, height: VP.height }, deviceScaleFactor: 1, colorScheme: mode,
-    locale: 'en-US', timezoneId: 'UTC', reducedMotion: 'no-preference',
-  });
-  await ctx.addInitScript((m) => { try { localStorage.setItem('dv-mode', m); sessionStorage.setItem('mode', m); } catch (e) {} }, mode);
-  await ctx.route('**/*', (route) => {
-    const req = route.request();
-    if (new URL(req.url()).origin === ORIGIN) return route.continue();
-    if (req.resourceType() === 'image') return route.fulfill({ status: 200, contentType: 'image/png', body: PLACEHOLDER });
-    return route.abort();
-  });
+  const ctx = await makeContext(browser, VP, mode);
   const page = await ctx.newPage();
   page.on('pageerror', (e) => errors.push(`${url} [${mode}] ${e.message}`));
-  await page.clock.setFixedTime(new Date('2026-10-07T12:00:00Z'));
+  await page.clock.setFixedTime(FIXED_DATE);
   await page.goto(ORIGIN + url, { waitUntil: 'networkidle' });
   await page.addStyleTag({ content: FREEZE });
   await page.evaluate(() => document.fonts.ready);

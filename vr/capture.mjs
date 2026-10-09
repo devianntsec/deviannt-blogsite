@@ -5,7 +5,7 @@ import path from 'node:path';
 import { chromium } from 'playwright';
 import {
   SITE, SHOTS, ORIGIN, VIEWPORTS, MODES, TILE,
-  serve, allPages, shotName, placeholderPng, arg,
+  serve, allPages, shotName, arg, makeContext, FIXED_DATE,
 } from './lib.mjs';
 
 const outName = process.argv[2];
@@ -24,7 +24,6 @@ const outDir = path.join(SHOTS, outName);
 fs.rmSync(outDir, { recursive: true, force: true });
 fs.mkdirSync(outDir, { recursive: true });
 
-const PLACEHOLDER = placeholderPng();
 const FREEZE = `*,*::before,*::after{animation-duration:0s!important;animation-delay:0s!important;
 transition-duration:0s!important;transition-delay:0s!important;caret-color:transparent!important}
 html,body{scroll-behavior:auto!important}`;
@@ -84,26 +83,10 @@ async function settle(page, quietMs = 500, maxMs = 8000) {
 }
 
 async function shoot({ url, vp, mode }) {
-  const ctx = await browser.newContext({
-    viewport: { width: vp.width, height: vp.height },
-    deviceScaleFactor: 1, isMobile: vp.isMobile, hasTouch: vp.isMobile,
-    colorScheme: mode, locale: 'en-US', timezoneId: 'UTC', reducedMotion: 'no-preference',
-  });
-  // El sitio guarda el modo en localStorage('dv-mode'); el tema usa sessionStorage('mode').
-  await ctx.addInitScript((m) => {
-    try { localStorage.setItem('dv-mode', m); sessionStorage.setItem('mode', m); } catch (e) {}
-  }, mode);
-  await ctx.route('**/*', (route) => {
-    const req = route.request();
-    if (new URL(req.url()).origin === ORIGIN) return route.continue();
-    if (req.resourceType() === 'image') return route.fulfill({ status: 200, contentType: 'image/png', body: PLACEHOLDER });
-    const k = req.resourceType() + ' ' + req.url().slice(0, 150);
-    aborted.set(k, (aborted.get(k) || 0) + 1);
-    return route.abort(); // analítica, CDNs: fuera
-  });
+  const ctx = await makeContext(browser, vp, mode, { aborted });
   const page = await ctx.newPage();
   page.on('pageerror', (e) => errors.push(`${url} [${vp.name}/${mode}] ${e.message}`));
-  await page.clock.setFixedTime(new Date('2026-10-07T12:00:00Z')); // fechas relativas estables
+  await page.clock.setFixedTime(FIXED_DATE); // fechas relativas estables
   await page.goto(ORIGIN + url, { waitUntil: 'networkidle' });
   await page.addStyleTag({ content: FREEZE });
   await autoScroll(page);                   // dispara imágenes lazy y las fuentes de lo que está abajo
