@@ -112,26 +112,6 @@ html[data-mode='light'] div.code-block div.highlight tbody td {
   border: none !important;
   color-scheme: dark !important;
 }
-html[data-mode='light'] div.code-block div.highlight span,
-html[data-mode='light'] div.code-block div.highlight .line,
-html[data-mode='light'] div.code-block div.highlight .cl,
-html[data-mode='light'] div.code-block div.highlight :is(
-  .err, .x,
-  .k, .kc, .kd, .kn, .kp, .kr, .kt,
-  .n, .na, .nb, .nc, .nd, .ne, .nf, .nl, .nn, .no, .nt, .nv, .nx, .ni,
-  .l, .ld, .li, .ll, .lm, .lo, .lp, .ls, .lf,
-  .m, .mb, .mf, .mh, .mi, .mo,
-  .o, .ow,
-  .p,
-  .s, .sa, .sb, .sc, .sd, .se, .sh, .si, .sl, .sr, .ss, .sx, .s1, .s2,
-  .c, .c1, .cm, .cs, .cp, .cpf, .ch,
-  .g, .gd, .ge, .gh, .gi, .gk, .gl, .gn, .gp, .gr, .gs, .gt, .gu, .gw,
-  .w, .z,
-  .lnt, .ln
-) {
-  background: transparent !important;
-  background-color: transparent !important;
-}
 html[data-mode='light'] div.code-block div.highlight ::selection,
 html[data-mode='light'] div.code-block div.highlight span::selection,
 html[data-mode='light'] div.code-block div.highlight .line::selection,
