@@ -1,0 +1,70 @@
+@use 'tokens' as *;
+
+/* ──────────────────────────────────────────────────────────────
+   25. SCROLLBAR / SELECTION / PAGINATION / BACK-TO-TOP
+   ────────────────────────────────────────────────────────────── */
+
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--dv-scrollbar-thumb) var(--dv-scrollbar-track);
+}
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: #000; }
+::-webkit-scrollbar-thumb {
+  background: var(--dv-scrollbar-thumb);
+  border-radius: 2px;
+  &:hover { background: var(--dv-primary); }
+}
+html[data-mode='light'] {
+  ::-webkit-scrollbar-track { background: #EAECF2 !important; }
+  ::-webkit-scrollbar-thumb {
+    background: var(--dv-scrollbar-thumb) !important;
+    &:hover { background: var(--dv-primary) !important; }
+  }
+}
+
+::selection { background: rgba(59,130,246,0.28); color: #fff; }
+html[data-mode='light'] ::selection {
+  background: rgba(37, 99, 235, 0.15) !important;
+  color: var(--text-color) !important;
+}
+
+.pagination .page-item .page-link {
+  background: var(--card-bg);
+  border-color: var(--border-color);
+  color: #475569;
+  font-family: $font-heading;
+  font-size: 0.72rem;
+}
+.pagination .page-item.active .page-link {
+  background: rgba(59,130,246,0.15);
+  border-color: rgba(59,130,246,0.35);
+  color: var(--dv-accent);
+}
+html[data-mode='light'] {
+  .pagination .page-item .page-link {
+    background: #FFFFFF;
+    border-color: var(--border-color);
+    color: #64748B;
+  }
+  .pagination .page-item.active .page-link {
+    background: rgba(37,99,235,0.10);
+    border-color: rgba(37,99,235,0.30);
+    color: var(--dv-primary);
+  }
+}
+
+#back-to-top {
+  background: rgba(59,130,246,0.12);
+  border: 1px solid rgba(59,130,246,0.25);
+  color: var(--dv-primary);
+  border-radius: 4px;
+}
+html[data-mode='light'] #back-to-top {
+  background: rgba(37,99,235,0.08);
+  border-color: rgba(37,99,235,0.25);
+  color: var(--dv-accent);
+}
+
+#main-wrapper { transition: opacity 0.15s ease; }
+#main-wrapper.dv-transitioning { opacity: 0; }

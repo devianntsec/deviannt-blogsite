@@ -14,7 +14,7 @@
 
 {{ partial "seo-meta.html" . }}
 
-{{- $style   := resources.Get "css/custom.scss"    | toCSS | minify -}}
+{{- $style   := resources.Get "css/custom.scss"    | toCSS (dict "transpiler" "dartsass") | minify -}}
 {{- $syntax  := resources.Get "css/syntax.css"     | minify -}}
 {{- $overr   := resources.Get "css/overrides.css"  | minify -}}
 {{- $runtime := resources.Get "js/site-runtime.js" | minify -}}

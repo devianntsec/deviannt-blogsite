@@ -1,0 +1,12 @@
+{
+  "customSyntax": "postcss-scss",
+  "ignoreFiles": ["assets/css/**/*.orig", "tools/**"],
+  "rules": {
+    "declaration-no-important": [true, { "severity": "warning" }],
+    "selector-max-id": [2, { "severity": "warning" }],
+    "no-duplicate-selectors": [true, { "severity": "warning" }],
+    "declaration-block-no-duplicate-properties": [true, { "severity": "warning", "ignore": ["consecutive-duplicates-with-different-values"] }],
+    "color-no-invalid-hex": true,
+    "block-no-empty": true
+  }
+}

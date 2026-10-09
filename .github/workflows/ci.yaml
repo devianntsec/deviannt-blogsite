@@ -1,0 +1,44 @@
+name: CI (build + guardas CSS, sin deploy)
+
+# No publica nada: solo valida. El deploy sigue siendo deploy.yaml (push a master).
+on:
+  pull_request:
+  push:
+    branches-ignore: [master]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  css-guards:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: "20", cache: "npm" }
+      - run: npm ci
+      - name: Trinquete de !important (falla si sube)
+        run: node scripts/count-important.mjs
+      - name: Stylelint (avisos, no bloquea)
+        run: npx stylelint "assets/css/**/*.{scss,css}" || true
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0, submodules: false }
+      - uses: actions/setup-go@v5
+        with: { go-version: "^1.24.2" }
+      - uses: peaceiris/actions-hugo@v3
+        with: { hugo-version: "0.159.1", extended: true }
+      - run: sudo snap install dart-sass
+      - uses: actions/setup-node@v4
+        with: { node-version: "20", cache: "npm" }
+      - run: npm ci
+      - run: npm run vendor-assets
+      - name: Build (valida que compila; no se sube)
+        run: hugo --gc --baseURL "http://localhost/"

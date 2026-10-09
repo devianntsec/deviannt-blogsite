@@ -1,0 +1,171 @@
+@use 'sass:math';
+@use 'tokens' as *;
+
+/* ──────────────────────────────────────────────────────────────
+   23. ARCHIVES TIMELINE
+   ────────────────────────────────────────────────────────────── */
+
+#archives,
+.page-archives {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: calc(50% - #{math.div($archives-width, 2)} + 0.5rem);
+    width: 1px;
+    background: var(--dv-archives-line);
+    box-shadow: 0 0 8px rgba(59, 130, 246, 0.08);
+    pointer-events: none;
+    z-index: 0;
+  }
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    height: 1.5rem;
+    bottom: -0.1rem;
+    left: calc(50% - #{math.div($archives-width, 2)} + 0.5rem);
+    width: 2px;
+    background: var(--dv-page-bg-solid);
+    z-index: z(archives-line-end);
+    pointer-events: none;
+  }
+
+  time.year.lead.d-block {
+    font-family: $font-heading;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    color: var(--dv-primary);
+    line-height: 1;
+    padding: 0.3rem 1rem 0.3rem 1.5rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0;
+    display: block;
+    width: 100%;
+    max-width: $archives-width;
+    box-sizing: border-box;
+    background: var(--dv-page-bg-solid);
+    border: 1px solid rgba(59, 130, 246, 0.25);
+    position: relative;
+    z-index: z(archives-line-end);
+
+    &::before, &::after { display: none; content: none; }
+    &:first-of-type { box-shadow: 0 -40px 0 0 var(--dv-page-bg-solid); }
+  }
+
+  ul.list-unstyled {
+    width: 100%;
+    max-width: $archives-width;
+    margin: 0;
+    padding-left: 0;
+    border-left: none;
+    box-shadow: none;
+    list-style: none;
+    position: relative;
+    z-index: z(archives-content);
+
+    &:last-of-type { padding-bottom: 0; margin-bottom: 0; }
+  }
+
+  li {
+    display: flex !important;
+    align-items: center !important;
+    padding: 0.45rem 0 !important;
+    margin: 0 !important;
+    position: relative !important;
+    list-style: none !important;
+    background: transparent !important;
+    z-index: z(archives-content) !important;
+
+    &::before {
+      content: '' !important;
+      display: block !important;
+      width: 1.5rem !important;
+      height: 1px !important;
+      background: var(--dv-archives-line) !important;
+      flex-shrink: 0 !important;
+      margin-left: 0.5rem !important;
+      position: static !important;
+      transform: none !important;
+      border: none !important;
+      border-radius: 0 !important;
+    }
+    &::after {
+      content: '';
+      display: block;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--dv-page-bg-solid);
+      border: 1.5px solid var(--dv-primary);
+      position: absolute;
+      left: calc(0.5rem - 4px);
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: z(archives-dot);
+      box-sizing: border-box;
+    }
+    &:hover::after {
+      background: var(--dv-primary);
+      box-shadow: 0 0 8px rgba(59, 130, 246, 0.55);
+    }
+    &:nth-child(odd), &:nth-child(even) { background: transparent !important; }
+
+    > * {
+      display: flex;
+      align-items: baseline;
+      gap: 0.75rem;
+      padding-left: 0.5rem;
+    }
+  }
+
+  a {
+    font-family: $font-heading;
+    color: var(--dv-accent);
+    font-size: 0.82rem;
+    text-decoration: none;
+    &:hover {
+      color: #93C5FD;
+      text-shadow: 0 0 12px rgba(96, 165, 250, 0.35);
+    }
+    &::before, &::after { display: none; content: none; }
+  }
+  time {
+    color: var(--dv-accent-blue);
+    font-size: 0.65rem;
+    white-space: nowrap;
+  }
+}
+
+html[data-mode='light'] {
+  #archives, .page-archives {
+    time.year.lead.d-block {
+      background: var(--dv-page-bg-solid);
+      color: var(--dv-accent);
+      border-color: var(--border-color);
+      &:first-of-type { box-shadow: 0 -40px 0 0 var(--dv-page-bg-solid); }
+    }
+    li::after {
+      background: var(--dv-page-bg-solid);
+      border-color: var(--dv-accent);
+    }
+    li:hover::after {
+      background: var(--dv-accent);
+      box-shadow: 0 0 8px rgba(37, 99, 235, 0.45);
+    }
+    &::after { background: var(--dv-page-bg-solid); }
+    a {
+      color: var(--dv-primary);
+      &:hover { color: var(--dv-accent); text-shadow: none; }
+    }
+    time { color: #64748B; }
+  }
+}

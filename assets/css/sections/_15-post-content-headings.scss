@@ -1,0 +1,28 @@
+@use 'tokens' as *;
+
+/* ──────────────────────────────────────────────────────────────
+   15. POST CONTENT — Headings
+   ────────────────────────────────────────────────────────────── */
+
+.post-content h2 {
+  border-bottom: 1px solid rgba(59,130,246,0.15);
+  padding-bottom: 0.3em;
+  color: var(--heading-color);
+  &::before {
+    content: '## ';
+    color: var(--dv-primary);
+    opacity: 0.6;
+    font-weight: 300;
+  }
+}
+.post-content h3::before {
+  content: '### ';
+  color: var(--dv-primary);
+  opacity: 0.5;
+  font-weight: 300;
+}
+html[data-mode='light'] .post-content h2 {
+  border-bottom-color: rgba(29, 95, 212, 0.20);
+  &::before { color: var(--dv-accent); }
+}
+html[data-mode='light'] .post-content h3::before { color: var(--dv-accent); }

@@ -1,0 +1,49 @@
+/* =============================================================
+   devianntsec · Chirpy Hugo Theme — Custom Stylesheet
+   File: assets/css/custom.scss
+
+   REFACTOR v2 – unificación de colores, color-mix, nomenclatura semántica
+   ============================================================= */
+
+@use 'sass:map';
+
+/* ──────────────────────────────────────────────────────────────
+   0. TOKENS (Sass) — única fuente de verdad
+   ────────────────────────────────────────────────────────────── */
+
+$font-mono:    'JetBrains Mono', 'Azeret Mono', ui-monospace, monospace;
+$font-display: 'Azeret Mono', monospace;
+$font-heading: 'JetBrains Mono', 'Azeret Mono', monospace;
+$font-ui:      'Inter', sans-serif;
+
+$panel-width:     260px;
+$panel-width-lg:  300px;
+$archives-width:  600px;
+
+$z-map: (
+  topbar:            250,
+  sidebar:           201,
+  topbar-sticky:     200,
+  panel:             10,
+  diagram-controls:  5,
+  diagram-hint:      4,
+  diagram-front:     3,
+  archives-dot:      3,
+  archives-line-end: 2,
+  archives-content:  1,
+);
+@function z($name) {
+  @return map.get($z-map, $name);
+}
+
+$semantic: (
+  info:    (dark: #3B82F6, light: #1D5FD4),
+  accent:  (dark: #60A5FA, light: #2563EB),
+  ok:      (dark: #10B981, light: #059669),
+  warning: (dark: #F59E0B, light: #B45309),
+  danger:  (dark: #EF4444, light: #DC2626),
+  purple:  (dark: #8B5CF6, light: #7C3AED),
+);
+@function sem($name, $mode: dark) {
+  @return map.get(map.get($semantic, $name), $mode);
+}

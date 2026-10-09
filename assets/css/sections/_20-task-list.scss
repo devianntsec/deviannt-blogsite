@@ -1,0 +1,122 @@
+@use 'tokens' as *;
+
+/* ──────────────────────────────────────────────────────────────
+   20. TASK LIST
+   ────────────────────────────────────────────────────────────── */
+
+.post-content ul.task-list,
+.content ul.task-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 0.5rem 0;
+}
+.post-content .task-list-item,
+.content .task-list-item {
+  display: grid;
+  grid-template-columns: 16px 1fr;
+  align-items: center;
+  column-gap: 10px;
+  padding: 8px 14px 8px 31px !important;
+  list-style: none;
+  border-left: none;
+  background: transparent;
+  transition: background 0.15s;
+  margin: 0 !important;
+  font-family: $font-heading;
+  font-size: 0.82rem;
+  font-weight: 300;
+  color: var(--text-color);
+  line-height: 1.5;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 2px;
+    background: transparent;
+    transition: background 0.15s;
+  }
+  &:hover::before { background: rgba(59, 130, 246, 0.35); }
+  &:hover { background: rgba(59, 130, 246, 0.03); }
+
+  > i.far.fa-circle,
+  > i.fas.fa-check-circle {
+    grid-column: 1;
+    grid-row: 1;
+    align-self: center;
+    font-size: 0;
+    color: transparent;
+    display: block;
+    width: 16px;
+    height: 16px;
+    position: relative;
+  }
+  > i.far.fa-circle::before {
+    content: '';
+    display: block;
+    width: 16px;
+    height: 16px;
+    border: 1.5px solid var(--dv-task-border);
+    background: #0B1220;
+    border-radius: 0;
+    box-sizing: border-box;
+  }
+  > i.fas.fa-check-circle::before {
+    content: '';
+    display: block;
+    width: 16px;
+    height: 16px;
+    border: 1.5px solid var(--dv-primary);
+    background: rgba(59, 130, 246, 0.15);
+    border-radius: 0;
+    box-sizing: border-box;
+    box-shadow: 0 0 0 2px rgba(59,130,246,0.15), 0 0 10px rgba(59,130,246,0.2);
+  }
+  > i.fas.fa-check-circle::after {
+    content: '';
+    position: absolute;
+    top: 2px; left: 5px;
+    width: 5px; height: 9px;
+    border: 1.5px solid var(--dv-accent);
+    border-top: none;
+    border-left: none;
+    transform: rotate(45deg);
+  }
+  &:has(> i.fas.fa-check-circle) {
+    color: var(--dv-task-checked-text);
+    text-decoration: none;
+  }
+  > ul.task-list {
+    grid-column: 2;
+    grid-row: 2;
+    margin-top: 4px;
+    margin-bottom: 2px;
+    padding-left: 0;
+    border-left: 1px solid rgba(59, 130, 246, 0.1);
+    width: 100%;
+  }
+}
+.post-content .task-list-item ul.task-list .task-list-item,
+.content .task-list-item ul.task-list .task-list-item {
+  grid-template-columns: 13px 1fr;
+  padding: 6px 14px 6px 31px !important;
+  font-size: 0.75rem;
+  color: #475569;
+}
+html[data-mode='light'] {
+  .post-content .task-list-item, .content .task-list-item {
+    color: #334155;
+    > i.far.fa-circle::before {
+      background: #FFFFFF;
+      border-color: var(--dv-task-border);
+    }
+    > i.fas.fa-check-circle::before {
+      border-color: var(--dv-accent);
+      background: rgba(37, 99, 235, 0.08);
+      box-shadow: 0 0 0 2px rgba(37,99,235,0.10);
+    }
+    > i.fas.fa-check-circle::after { border-color: var(--dv-primary); }
+    &:has(> i.fas.fa-check-circle) { color: var(--dv-task-checked-text); }
+  }
+}

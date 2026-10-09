@@ -1,0 +1,23 @@
+@use 'tokens' as *;
+
+/* ──────────────────────────────────────────────────────────────
+   2. TYPOGRAPHY
+   ────────────────────────────────────────────────────────────── */
+
+body,
+.post-content,
+.sidebar,
+#topbar-title,
+.categories,
+.tag-cloud {
+  font-family: $font-mono;
+}
+
+h1, h2, h3, h4, h5, h6,
+.post-title,
+#topbar-title,
+.site-title {
+  font-family: $font-heading;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}

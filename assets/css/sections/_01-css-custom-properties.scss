@@ -1,0 +1,165 @@
+@use 'tokens' as *;
+
+/* ──────────────────────────────────────────────────────────────
+   1. CSS CUSTOM PROPERTIES (Dark / Light)
+   ────────────────────────────────────────────────────────────── */
+
+:root {
+  --dv-accent-blue: #4a9eff;
+  --dv-gray-100: #94A3B8;
+  --dv-gray-200: #A0ADBF;
+}
+
+html[data-mode='dark'],
+html:not([data-mode]) {
+  --main-bg:                 #000000;
+  --sidebar-bg:              #080f1c;
+  --topbar-bg:               #000000;
+  --topbar-wrapper-bg:       #000000;
+  --card-bg:                 #0B1220;
+  --card-hovor-bg:           #0f1a2e;
+  --footer-bg:               #060d18;
+  --border-color:            rgba(59, 130, 246, 0.13);
+  --dash-color:              rgba(59, 130, 246, 0.13);
+  --sidebar-border-color:    rgba(59, 130, 246, 0.15);
+  --dv-scrollbar-thumb:      #1E3A5F;
+  --dv-scrollbar-track:      #000000;
+  --text-color:              #CBD5E1;
+  --text-muted-color:        #475569;
+  --heading-color:           #E2E8F0;
+  --label-color:             var(--dv-gray-100);
+  --sidebar-muted-color:     #334155;
+  --link-color:              #60A5FA;
+  --link-underline-color:    rgba(96, 165, 250, 0.35);
+  --btn-patinated-text:      #60A5FA;
+  --nav-cursor-color:        #3B82F6;
+  --blockquote-border-color: #3B82F6;
+  --blockquote-text-color:   #64748B;
+  --tag-border:              rgba(59, 130, 246, 0.2);
+  --tag-shadow:              rgba(59, 130, 246, 0.06);
+  --tag-hover:               rgba(59, 130, 246, 0.15);
+  --categories-hover-bg:     #0F1B2E;
+  --code-bg:                 #011627;
+  --code-header-bg:          #010e1a;
+  --code-header-text:        #5f7e97;
+  --highlight-bg-color:      rgba(59, 130, 246, 0.07);
+  --timeline-node-bg:        #3B82F6;
+  --btn-box-shadow:          0 0 0 1px rgba(59,130,246,0.25);
+  --mask-bg:                 rgba(0, 0, 0, 0.85);
+  --search-wrapper-bg:       #0B1220;
+  --input-focus-border-color: #3B82F6;
+  --dv-table-bg:             #0F1B2E;
+  --dv-table-thead-bg:       #16243A;
+  --dv-table-border:         rgba(59, 130, 246, 0.13);
+  --dv-table-divider:        rgba(22, 36, 58, 0.85);
+  --dv-table-row-hover:      rgba(59, 130, 246, 0.045);
+  --dv-table-th-color:       #94A3B8;
+  --dv-table-th-border:      #1E3A5F;
+  --dv-table-td-color:       #CBD5E1;
+  --dv-primary:              #{sem(info, dark)};
+  --dv-accent:               #{sem(accent, dark)};
+  --dv-page-bg-solid:        #000000;
+
+  --dv-nav-text:             #334155;
+  --dv-nav-hover-bg:         rgba(59, 130, 246, 0.10);
+  --dv-nav-active-bg:        rgba(59, 130, 246, 0.15);
+  --dv-nav-shadow:           inset 0 0 12px rgba(59, 130, 246, 0.06);
+  --dv-social-bg:            #080f1c;
+  --dv-social-border:        rgba(22, 36, 58, 0.9);
+  --dv-social-hover-bg:      rgba(59, 130, 246, 0.08);
+  --dv-social-hover-shadow:  0 0 16px rgba(59, 130, 246, 0.20);
+  --dv-social-icon-hover:    #93C5FD;
+  --dv-status-bg:            #0B1220;
+  --dv-status-border:        #16243A;
+  --dv-status-text:          var(--dv-gray-100);
+  --dv-status-hover-border:  rgba(59, 130, 246, 0.30);
+  --dv-status-hover-bg:      #0F1B2E;
+  --dv-search-bg:            rgba(59, 130, 246, 0.06);
+  --dv-search-border:        rgba(59, 130, 246, 0.2);
+  --dv-search-focus-border:  rgba(59, 130, 246, 0.45);
+  --dv-search-focus-bg:      rgba(59, 130, 246, 0.09);
+  --dv-search-text:          rgba(200, 216, 240, 0.7);
+  --dv-search-placeholder:   rgba(200, 216, 240, 0.3);
+  --dv-code-block-border:    rgba(59, 130, 246, 0.12);
+  --dv-code-circle-color:    #4b6479;
+  --dv-callout-border-extra: none;
+  --dv-hover-text:           #E2E8F0;
+  --dv-hover-underline:      rgba(59, 130, 246, 0.5);
+  --dv-task-border:          #1E3A5F;
+  --dv-task-checked-text:    #334155;
+  --dv-step-num-bg:          #0F1B2E;
+  --dv-step-line-end:        #16243A;
+  --dv-diagram-viewport-bg:  #0F1B2E;
+  --dv-diagram-viewport-border: #16243A;
+  --dv-diagram-label-color: #475569;
+  --dv-diagram-hint-color:  #1E3A5F;
+  --dv-diagram-btn-border:  #16243A;
+  --dv-diagram-btn-color:   #334155;
+  --dv-archives-line:       rgba(59, 130, 246, 0.30);
+}
+
+html[data-mode='light'] {
+  --main-bg:                 #F5F7FA;
+  --sidebar-bg:              #EAECF2;
+  --card-bg:                 #FFFFFF;
+  --topbar-bg:               #FFFFFF;
+  --footer-bg:               #F5F7FA;
+  --text-color:              #0F172A;
+  --heading-color:           #0F172A;
+  --text-muted:              #64748B;
+  --label-color:             var(--dv-gray-100);
+  --link-color:              #1D5FD4;
+  --border-color:            #D1D9E6;
+  --sidebar-border-color:    #C8D0E0;
+  --dv-scrollbar-thumb:      var(--dv-gray-200);
+  --dv-scrollbar-track:      #EAECF2;
+  --code-bg:                 #F0F2F7;
+  --highlight-bg-color:      rgba(59, 130, 246, 0.07);
+  --dv-table-bg:             #FFFFFF;
+  --dv-table-thead-bg:       #F0F2F7;
+  --dv-table-border:         var(--border-color);
+  --dv-table-divider:        #E2E6EF;
+  --dv-table-row-hover:      rgba(37, 99, 235, 0.04);
+  --dv-table-th-color:       var(--text-muted);
+  --dv-table-th-border:      var(--dv-gray-200);
+  --dv-table-td-color:       #334155;
+  --dv-primary:              #{sem(info, light)};
+  --dv-accent:               #{sem(accent, light)};
+  --dv-page-bg-solid:        #F5F7FA;
+
+  --dv-nav-text:             #334155;
+  --dv-nav-hover-bg:         rgba(37, 99, 235, 0.08);
+  --dv-nav-active-bg:        rgba(37, 99, 235, 0.10);
+  --dv-nav-shadow:           inset 0 0 12px rgba(37, 99, 235, 0.06);
+  --dv-social-bg:            #FFFFFF;
+  --dv-social-border:        var(--border-color);
+  --dv-social-hover-bg:      rgba(37, 99, 235, 0.07);
+  --dv-social-hover-shadow:  0 0 14px rgba(37, 99, 235, 0.15);
+  --dv-social-icon-hover:    #{sem(info, light)};
+  --dv-status-bg:            #FFFFFF;
+  --dv-status-border:        var(--border-color);
+  --dv-status-text:          #64748B;
+  --dv-status-hover-border:  var(--dv-gray-200);
+  --dv-status-hover-bg:      #F5F7FA;
+  --dv-search-bg:            rgba(37, 99, 235, 0.04);
+  --dv-search-border:        var(--border-color);
+  --dv-search-focus-border:  rgba(37, 99, 235, 0.40);
+  --dv-search-focus-bg:      rgba(37, 99, 235, 0.06);
+  --dv-search-text:          #334155;
+  --dv-search-placeholder:   var(--dv-gray-100);
+  --dv-code-block-border:    rgba(37, 99, 235, 0.35);
+  --dv-code-circle-color:    #CBD5E1;
+  --dv-hover-text:           #0F172A;
+  --dv-hover-underline:      rgba(37, 99, 235, 0.45);
+  --dv-task-border:          var(--dv-gray-200);
+  --dv-task-checked-text:    var(--dv-gray-100);
+  --dv-step-num-bg:          #FFFFFF;
+  --dv-step-line-end:        var(--border-color);
+  --dv-diagram-viewport-bg:  #F0F2F7;
+  --dv-diagram-viewport-border: var(--border-color);
+  --dv-diagram-label-color: #64748B;
+  --dv-diagram-hint-color:  var(--dv-gray-200);
+  --dv-diagram-btn-border:  var(--border-color);
+  --dv-diagram-btn-color:   #64748B;
+  --dv-archives-line:       var(--border-color);
+}

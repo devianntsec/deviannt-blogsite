@@ -1,0 +1,86 @@
+@use 'tokens' as *;
+
+/* ──────────────────────────────────────────────────────────────
+   11. POST CARDS (%dv-card)
+   ────────────────────────────────────────────────────────────── */
+
+%dv-card {
+  background: var(--card-bg) !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 6px !important;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.2s ease;
+
+  &:hover { border-color: rgba(59,130,246,0.32) !important; }
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 2px;
+    background: transparent;
+    transition: background 0.2s;
+  }
+  &:hover::before {
+    background: linear-gradient(180deg, transparent, var(--dv-primary), transparent) !important;
+  }
+}
+
+.post-preview,
+article.card {
+  @extend %dv-card;
+}
+
+.post-preview .card-title,
+h2.post-title a,
+.card-title {
+  font-family: $font-heading !important;
+  font-size: 0.92rem !important;
+  font-weight: 500;
+  color: var(--text-color) !important;
+}
+html[data-mode='light'] .post-preview .card-title,
+html[data-mode='light'] h2.post-title a,
+html[data-mode='light'] .card-title { color: var(--text-color) !important; }
+
+.post-preview .card-text,
+.post-preview p {
+  font-size: 0.72rem !important;
+  color: var(--text-muted-color) !important;
+  line-height: 1.65;
+}
+html[data-mode='light'] .post-preview .card-text,
+html[data-mode='light'] .post-preview p { color: var(--text-muted) !important; }
+
+.post-meta,
+time {
+  font-family: $font-heading !important;
+  font-size: 0.65rem !important;
+  letter-spacing: 0.06em;
+  color: #1E3A5F !important;
+}
+.post-meta time,
+time.post-date,
+.post-meta .post-date,
+span.post-date,
+li.post-preview time,
+.post-preview .post-meta time { color: var(--dv-accent-blue) !important; }
+.post-meta i[class*="calendar"],
+.post-meta i[class*="folder"],
+.post-meta i[class*="tag"] { color: var(--dv-accent-blue) !important; }
+.post-meta a[href*="/categories/"],
+.post-meta .categories,
+.post-meta span.categories { color: var(--dv-accent-blue) !important; }
+html[data-mode='light'] .post-meta time,
+html[data-mode='light'] time.post-date,
+html[data-mode='light'] .post-meta .post-date,
+html[data-mode='light'] span.post-date { color: var(--dv-accent) !important; }
+html[data-mode='light'] .post-meta i[class*="calendar"],
+html[data-mode='light'] .post-meta i[class*="tag"] { color: var(--dv-accent) !important; }
+html[data-mode='light'] .post-meta i[class*="folder"],
+html[data-mode='light'] .post-meta .categories i,
+html[data-mode='light'] #panel-wrapper i[class*="folder"],
+html[data-mode='light'] .card.categories i,
+html[data-mode='light'] #categories i,
+html[data-mode='light'] nav[id*="categor"] i { color: var(--dv-nav-text) !important; }

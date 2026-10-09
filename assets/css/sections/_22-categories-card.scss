@@ -1,0 +1,32 @@
+@use 'tokens' as *;
+@use '11-post-cards' as cards;
+
+/* ──────────────────────────────────────────────────────────────
+   22. CATEGORIES CARD (extiende %dv-card)
+   ────────────────────────────────────────────────────────────── */
+
+.card.categories.mb-3 {
+  @extend %dv-card;
+
+  .card-title, h3, a {
+    font-family: $font-heading;
+    font-size: 0.92rem;
+    font-weight: 500;
+    color: var(--text-color) !important;
+    text-decoration: none !important;
+  }
+  .card-header {
+    background: rgba(59, 130, 246, 0.12);
+    border-bottom: 1px solid rgba(59, 130, 246, 0.25) !important;
+  }
+}
+html[data-mode='light'] .card.categories.mb-3 {
+  background: #FFFFFF;
+  border-color: var(--border-color) !important;
+  .card-header {
+    background: rgba(37, 99, 235, 0.06);
+    border-bottom: 1px solid var(--border-color) !important;
+  }
+  .card-title, h3, a { color: var(--text-color) !important; }
+  small, span { color: #64748B !important; }
+}

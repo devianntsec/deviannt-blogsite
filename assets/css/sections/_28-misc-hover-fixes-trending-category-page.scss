@@ -1,0 +1,137 @@
+@use 'tokens' as *;
+
+/* ──────────────────────────────────────────────────────────────
+   28. MISC HOVER FIXES / TRENDING / CATEGORY PAGE
+   ────────────────────────────────────────────────────────────── */
+
+#panel-wrapper a:hover,
+footer a:hover,
+.post-content a:hover,
+.post-content p a:hover,
+.post-meta a:hover,
+.post-tail-wrapper a:hover,
+a[href*="github.com/devianntsec"]:hover {
+  color: var(--dv-hover-text) !important;
+  text-decoration: underline !important;
+  text-decoration-color: var(--dv-hover-underline) !important;
+  text-underline-offset: 3px !important;
+  transition: color 0.15s ease !important;
+}
+#page-category a:hover,
+#page-tag a:hover,
+#access-lastmod a:hover,
+.post-tail-wrapper .license-wrapper > a:hover,
+.post-tags .post-tag:hover,
+#search-results a:hover,
+footer a:hover,
+#topbar #breadcrumb a:hover,
+.post-meta a:not([class]):hover,
+.content a:not(.img-link):hover {
+  color: var(--dv-hover-text) !important;
+  border-bottom: 1px solid var(--dv-accent) !important;
+}
+
+#toc-bar {
+  position: sticky;
+  z-index: z(topbar-sticky);
+}
+
+#access-trending-posts,
+#access-trending-tags { margin-top: 20px; }
+
+#access-trending-posts ul.content li {
+  overflow: visible;
+  white-space: normal;
+  text-overflow: unset;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 4px 0;
+  line-height: 1.5;
+  position: static;
+
+  &::before {
+    content: '›';
+    display: block;
+    flex-shrink: 0;
+    margin-top: 1px;
+    font-size: 1rem;
+    line-height: 1.4;
+    color: var(--dv-primary);
+    opacity: 0.8;
+    font-family: $font-heading;
+    font-weight: 700;
+  }
+  &:hover::before { color: var(--dv-accent); opacity: 1; }
+
+  a {
+    color: var(--label-color);
+    text-decoration: none !important;
+    white-space: normal;
+    line-height: 1.5;
+    &:hover {
+      color: var(--dv-hover-text);
+      border-bottom: 1px solid var(--dv-accent);
+      text-decoration: none !important;
+    }
+  }
+}
+html[data-mode='light'] #access-trending-posts ul.content li {
+  a { color: var(--text-color); &:hover { color: var(--text-color); } }
+  &::before { color: var(--dv-accent); }
+}
+
+#page-category ul.content {
+  list-style: none !important;
+  padding-left: 0 !important;
+}
+#page-category ul.content li {
+  list-style: none !important;
+  display: flex !important;
+  justify-content: flex-start !important;
+  align-items: flex-start !important;
+  gap: 8px !important;
+  padding: 4px 0 !important;
+  line-height: 1.5 !important;
+  position: static !important;
+
+  &::before {
+    content: '›' !important;
+    display: block !important;
+    flex-shrink: 0 !important;
+    margin-top: 1px !important;
+    font-size: 1.2rem !important;
+    line-height: 1.4 !important;
+    color: var(--dv-primary) !important;
+    opacity: 0.8 !important;
+    font-family: $font-heading !important;
+    font-weight: 700 !important;
+    background: transparent !important;
+    border-radius: 0 !important;
+    width: auto !important;
+    height: auto !important;
+    top: 0 !important;
+    margin-right: 0 !important;
+  }
+  &::marker { content: none !important; }
+  &:hover::before { color: var(--dv-accent) !important; opacity: 1 !important; }
+
+  a {
+    color: var(--dv-gray-100) !important;
+    font-size: 1.0em !important;
+    text-decoration: none !important;
+    white-space: normal !important;
+    line-height: 1.5 !important;
+    flex-grow: 0 !important;
+    &:hover {
+      color: var(--dv-hover-text) !important;
+      border-bottom: 1px solid var(--dv-accent) !important;
+      text-decoration: none !important;
+    }
+  }
+  .dash { display: none !important; }
+}
+html[data-mode='light'] #page-category ul.content li {
+  a { color: var(--text-color) !important; &:hover { color: var(--text-color) !important; } }
+  &::before { color: var(--dv-accent) !important; }
+}

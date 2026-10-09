@@ -1,0 +1,46 @@
+@use 'tokens' as *;
+
+/* ──────────────────────────────────────────────────────────────
+   30. PREFERS-REDUCED-MOTION + FOCUS-VISIBLE
+   ────────────────────────────────────────────────────────────── */
+
+:focus-visible {
+  outline: 2px solid var(--dv-primary) !important;
+  outline-offset: 2px !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .dv-title-name .dv-highlight,
+  .dv-title-name .dv-base,
+  .dv-title-name .dv-bar-l,
+  .dv-title-name .dv-bar-r,
+  .dv-title-name .dv-dot-tl,
+  .dv-title-name .dv-dot-br {
+    transition: none !important;
+  }
+  .dv-social-icon-box,
+  .dv-social-icon-box i,
+  .dv-avatar-bracket #avatar,
+  .dv-avatar-bracket a#avatar,
+  .dv-status-badge,
+  #search-wrapper,
+  .search-wrapper,
+  .post-preview,
+  article.card,
+  .card.categories.mb-3,
+  .dv-diagram-btn,
+  .dv-diagram-hint {
+    transition: none !important;
+  }
+  #main-wrapper {
+    transition: none !important;
+  }
+}
