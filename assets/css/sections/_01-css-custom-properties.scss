@@ -96,6 +96,9 @@ html:not([data-mode]) {
   --dv-diagram-btn-border:  #16243A;
   --dv-diagram-btn-color:   #334155;
   --dv-archives-line:       rgba(59, 130, 246, 0.30);
+  --dv-footer-surface:      #000000;
+  --dv-footer-border-top:   none;
+  --dv-footer-text:         #1E3A5F;
 }
 
 html[data-mode='light'] {
@@ -162,4 +165,7 @@ html[data-mode='light'] {
   --dv-diagram-btn-border:  var(--border-color);
   --dv-diagram-btn-color:   #64748B;
   --dv-archives-line:       var(--border-color);
+  --dv-footer-surface:      #F5F7FA;
+  --dv-footer-border-top:   1px solid var(--border-color);
+  --dv-footer-text:         #64748B;
 }

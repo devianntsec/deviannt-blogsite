@@ -5,11 +5,11 @@
    ────────────────────────────────────────────────────────────── */
 
 footer {
-  background: #000000 !important;
-  border-top: none !important;
+  background: var(--dv-footer-surface) !important;
+  border-top: var(--dv-footer-border-top) !important;
   font-size: 0.65rem !important;
   letter-spacing: 0.06em;
-  color: #1E3A5F !important;
+  color: var(--dv-footer-text) !important;
   position: relative !important;
 
   &::before {
@@ -25,8 +25,5 @@ footer {
   }
 }
 html[data-mode='light'] footer {
-  background: #F5F7FA !important;
-  border-top: 1px solid var(--border-color) !important;
-  color: #64748B !important;
   a { color: var(--dv-primary) !important; }
 }
