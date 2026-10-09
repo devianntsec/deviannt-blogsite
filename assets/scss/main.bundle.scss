@@ -1,0 +1,4 @@
+// assets/scss/main.bundle.scss — sobrescribe el del tema (Hugo prioriza el del proyecto).
+// Original del tema:  @use 'bootstrap/bootstrap';  @use 'main';
+@use 'bootstrap-slim';
+@use 'main';
