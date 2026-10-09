@@ -39,7 +39,7 @@ Requiere `boto3` y `python-dotenv`, y un `.env` (no versionado) con `R2_ACCESS_K
 
 ## CSS
 
-Todo el CSS propio está en `assets/css/custom.scss`, dividido en secciones con cabecera `/* ─ … */`. Los tokens van al inicio. Tras la fase de limpieza de deuda, los `!important` que quedan reemplazan componentes del tema o resuelven conflictos entre reglas que ya tienen `!important`: no se quitan sin pasar el kit de regresión visual.
+El CSS propio vive en `assets/css/sections/` (30 parciales; el orden de la cascada está en `assets/css/custom.scss`) más `overrides.css` y `syntax.css`. Tras la fase de limpieza de deuda, los `!important` que quedan reemplazan componentes del tema o resuelven conflictos entre reglas que ya tienen `!important`: no se quitan sin pasar el kit de regresión visual.
 
 ## Kit de regresión visual (`vr/`)
 
