@@ -26,14 +26,6 @@
     padding: 0.6rem 1rem 0.5rem !important;
     margin: 0.4rem -0.5rem 0.376rem 0.75rem !important;
   }
-  #sidebar nav li.nav-item a.dv-portfolio-link {
-    border-top: 1px solid rgba(59, 130, 246, 0.1) !important;
-    margin-top: 0.25rem !important;
-    padding-top: 0.7125rem !important;
-  }
-  #sidebar nav li.nav-item:has(a.dv-portfolio-link) {
-    margin-bottom: -0.2375rem !important;
-  }
 }
 
 @media (min-width: 768px) {

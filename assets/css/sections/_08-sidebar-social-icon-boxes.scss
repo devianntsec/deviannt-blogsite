@@ -6,7 +6,8 @@
 
 .dv-social-only {
   border-top: 1px solid rgba(59, 130, 246, 0.1) !important;
-  padding-top: 0.5rem !important;
+  padding-top: 0.5rem;
+  width: 100%;
 }
 html[data-mode='light'] .dv-social-only { border-top: 1px solid var(--border-color) !important; }
 
