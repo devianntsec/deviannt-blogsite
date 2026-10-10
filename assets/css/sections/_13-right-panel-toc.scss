@@ -53,9 +53,8 @@
 #toc-wrapper {
   position: relative !important;
   top: auto !important;
-  max-height: calc(100vh - 3rem) !important;
-  overflow-y: auto !important;
-  overflow-x: visible !important;
+  max-height: none !important;
+  overflow: visible !important;
   background: var(--card-bg) !important;
   border: 1px solid var(--border-color) !important;
   border-radius: 6px !important;
