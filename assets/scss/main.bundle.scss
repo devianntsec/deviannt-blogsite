@@ -1,4 +1,12 @@
 // assets/scss/main.bundle.scss — sobrescribe el del tema (Hugo prioriza el del proyecto).
 // Original del tema:  @use 'bootstrap/bootstrap';  @use 'main';
-@use 'bootstrap-slim';
-@use 'main';
+//
+// Tema + Bootstrap viven en la capa `vendor`: todo CSS fuera de capa (custom, overrides, syntax,
+// tocbot, glightbox, FA) les gana sin importar la especificidad. Ojo: los !important DENTRO de la
+// capa ganan a los !important de fuera (el orden se invierte para declaraciones importantes).
+@use 'sass:meta';
+
+@layer vendor {
+  @include meta.load-css('bootstrap-slim');
+  @include meta.load-css('main');
+}
