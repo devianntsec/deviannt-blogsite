@@ -10,14 +10,20 @@
                    toggle, soft-navigation, guard de TOC)
     - CSS       -> assets/css/overrides.css    (parches con !important
                    acumulados, antes en un <style> inline)
+
+  Todos los recursos llevan fingerprint: la URL cambia con el contenido,
+  así que ni Cloudflare ni el navegador pueden servir una copia vieja
+  tras un despliegue. No se añade atributo integrity a propósito: si
+  Cloudflare reescribe o minifica el archivo, el hash SRI dejaría de
+  coincidir y el recurso se bloquearía.
 */}}
 
 {{ partial "seo-meta.html" . }}
 
-{{- $style   := resources.Get "css/custom.scss"    | toCSS (dict "transpiler" "dartsass") | minify -}}
-{{- $syntax  := resources.Get "css/syntax.css"     | minify -}}
-{{- $overr   := resources.Get "css/overrides.css"  | minify -}}
-{{- $runtime := resources.Get "js/site-runtime.js" | minify -}}
+{{- $style   := resources.Get "css/custom.scss"    | toCSS (dict "transpiler" "dartsass") | minify | fingerprint -}}
+{{- $syntax  := resources.Get "css/syntax.css"     | minify | fingerprint -}}
+{{- $overr   := resources.Get "css/overrides.css"  | minify | fingerprint -}}
+{{- $runtime := resources.Get "js/site-runtime.js" | minify | fingerprint -}}
 
 <link rel="stylesheet" href="{{ $syntax.Permalink }}" id="dv-syntax-css">
 
