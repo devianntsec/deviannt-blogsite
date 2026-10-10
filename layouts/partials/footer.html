@@ -13,25 +13,10 @@
   </span>
 </footer>
 
-{{/* ── Región aria-live: anuncia el título de la página tras soft-nav ── */}}
-<div id="dv-route-announcer" class="dv-visually-hidden" aria-live="polite" aria-atomic="true"></div>
-
 {{/* ── Toast para clipboard copy del email ── */}}
 <div id="dv-copy-toast"></div>
 
 <style>
-  .dv-visually-hidden {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
-  }
-
   .dv-footer {
     display: flex;
     justify-content: space-between;
@@ -43,7 +28,6 @@
     font-size: 0.72rem;
     color: #475569;
     border-top: 1px solid rgba(59, 130, 246, 0.1);
-    margin-top: 2rem;
   }
 
   .dv-footer a {
