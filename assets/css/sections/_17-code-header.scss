@@ -5,15 +5,15 @@
    ────────────────────────────────────────────────────────────── */
 
 div.code-block {
-  background: var(--dv-code-block-bg) !important;
-  border: 1px solid var(--dv-code-block-border) !important;
+  background: var(--dv-code-block-bg);
+  border: 1px solid var(--dv-code-block-border);
 }
 div.highlight .code-header {
-  border-bottom: 1px solid var(--dv-code-header-border) !important;
+  border-bottom: 1px solid var(--dv-code-header-border);
 
   &::before {
-    background: var(--dv-code-circle-color) !important;
-    box-shadow: -14px 0 0 var(--dv-code-circle-color), 14px 0 0 var(--dv-code-circle-color) !important;
+    background: var(--dv-code-circle-color);
+    box-shadow: -14px 0 0 var(--dv-code-circle-color), 14px 0 0 var(--dv-code-circle-color);
   }
   span,
   span[data-label-text],
@@ -21,26 +21,26 @@ div.highlight .code-header {
   span > i,
   i, i.fas, i.far, i.fa-code, i.fa-fw, i.fa-file-code,
   button, button i, button > i, button i.far, button i.fa-clipboard {
-    background: transparent !important;
-    color: var(--dv-code-header-fg) !important;
+    background: transparent;
+    color: var(--dv-code-header-fg);
   }
   button i,
   button > i,
   button i.far,
   button i.fa-clipboard {
-    color: #4b6479 !important;
+    color: #4b6479;
   }
 }
 
 html[data-mode='light'] {
   div.code-block {
-    border-radius: 4px !important;
+    border-radius: 4px;
   }
   div.highlight .code-header {
-    background: #FFFFFF !important;
+    background: #FFFFFF;
 
     button, button i, button > i, button i.far, button i.fa-clipboard {
-      color: var(--dv-gray-100) !important;
+      color: var(--dv-gray-100);
     }
   }
 }

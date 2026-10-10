@@ -1,26 +1,16 @@
 {
-  "total": 427,
+  "total": 292,
   "files": {
     "assets/css/overrides.css": 25,
-    "assets/css/sections/_04-topbar.scss": 11,
-    "assets/css/sections/_06-sidebar-animated-title.scss": 1,
-    "assets/css/sections/_07-sidebar-avatar-with-bracket-corners.scss": 48,
     "assets/css/sections/_08-sidebar-social-icon-boxes.scss": 25,
-    "assets/css/sections/_11-post-cards.scss": 21,
-    "assets/css/sections/_12-tags-nombres-semanticos-color-mix.scss": 15,
     "assets/css/sections/_13-right-panel-toc.scss": 55,
-    "assets/css/sections/_14-search-bar.scss": 1,
     "assets/css/sections/_16-night-owl-code-theme.scss": 44,
-    "assets/css/sections/_17-code-header.scss": 11,
-    "assets/css/sections/_19-data-tables.scss": 2,
-    "assets/css/sections/_20-task-list.scss": 3,
     "assets/css/sections/_22-categories-card.scss": 5,
-    "assets/css/sections/_23-archives-timeline.scss": 20,
     "assets/css/sections/_24-footer.scss": 14,
     "assets/css/sections/_27-mobile-sidebar.scss": 21,
     "assets/css/sections/_28-misc-hover-fixes-trending-category-page.scss": 51,
     "assets/css/sections/_29-sidebar-back-to-portfolio-link.scss": 12,
-    "assets/css/sections/_30-prefers-reduced-motion-focus-visible.scss": 9,
+    "assets/css/sections/_30-prefers-reduced-motion-focus-visible.scss": 7,
     "assets/css/syntax.css": 33
   }
 }

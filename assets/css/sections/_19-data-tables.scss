@@ -75,9 +75,9 @@
     }
   }
   tbody tr {
-    background: transparent !important;
+    background: transparent;
     transition: background 0.15s ease;
-    &:hover { background: var(--dv-table-row-hover) !important; }
+    &:hover { background: var(--dv-table-row-hover); }
     &:last-child td { border-bottom: none; }
   }
   tbody td {

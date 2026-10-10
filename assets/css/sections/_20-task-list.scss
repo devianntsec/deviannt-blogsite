@@ -16,12 +16,12 @@
   grid-template-columns: 16px 1fr;
   align-items: center;
   column-gap: 10px;
-  padding: 8px 14px 8px 31px !important;
+  padding: 8px 14px 8px 31px;
   list-style: none;
   border-left: none;
   background: transparent;
   transition: background 0.15s;
-  margin: 0 !important;
+  margin: 0;
   font-family: $font-heading;
   font-size: 0.82rem;
   font-weight: 300;
@@ -100,7 +100,7 @@
 .post-content .task-list-item ul.task-list .task-list-item,
 .content .task-list-item ul.task-list .task-list-item {
   grid-template-columns: 13px 1fr;
-  padding: 6px 14px 6px 31px !important;
+  padding: 6px 14px 6px 31px;
   font-size: 0.75rem;
   color: #475569;
 }
