@@ -48,7 +48,6 @@
   letter-spacing: 0.13em;
   text-transform: uppercase;
   color: var(--dv-nav-text);
-  font-weight: 500;
 
   &:hover {
     color: var(--dv-accent);
@@ -60,8 +59,7 @@
 #sidebar nav li.nav-item a.active,
 #sidebar nav li.nav-item.active > a,
 #sidebar li.nav-item a[aria-current="page"] {
-  color: var(--dv-accent);
-  background: var(--dv-nav-active-bg);
+  color: var(--sidebar-active-color);
   border-left: 1.5px solid var(--dv-primary);
   padding-left: 0.6rem;
   text-shadow: 0 0 14px rgba(96, 165, 250, 0.4);

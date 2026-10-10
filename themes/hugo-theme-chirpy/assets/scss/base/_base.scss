@@ -331,7 +331,7 @@ main {
 
 /* overwrite bootstrap muted */
 .text-muted {
-  color: var(--text-muted-color) !important;
+  color: var(--text-muted-color);
 }
 
 /* Overwrite bootstrap tooltip */
@@ -355,7 +355,7 @@ main {
 }
 
 .hide-border-bottom {
-  border-bottom: none !important;
+  border-bottom: none;
 }
 
 .input-focus {

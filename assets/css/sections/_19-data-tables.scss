@@ -55,10 +55,8 @@
     background: var(--dv-table-thead-bg);
     color: var(--dv-table-th-color);
     font-weight: 500;
-    font-size: 0.6rem;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    padding: 0.6rem 1rem;
     text-align: left;
     border-bottom: 1px solid var(--dv-table-th-border);
     border-right: none;
@@ -83,7 +81,6 @@
     &:last-child td { border-bottom: none; }
   }
   tbody td {
-    padding: 0.6rem 1rem;
     border-bottom: 1px solid var(--dv-table-divider);
     border-right: none;
     border-left: none;
@@ -93,13 +90,7 @@
     color: var(--dv-table-td-color);
     &[align="right"]  { text-align: right; }
     &[align="center"] { text-align: center; }
-    code {
-      background: rgba(59, 130, 246, 0.1);
-      color: var(--dv-accent);
-      padding: 0.1em 0.4em;
-      border-radius: 2px;
-      font-size: 0.95em;
-    }
+    code[class] { border-radius: 2px; }
   }
 }
 

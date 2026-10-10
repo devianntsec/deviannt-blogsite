@@ -6,13 +6,19 @@ const VPS = [
   { n: 'desktop', width: 1459, height: 1000 },
   { n: 'mobile', width: 390, height: 844 },
 ];
+const ALL = !!process.env.ALL;
 const PROPS = [
   'display', 'flex-direction', 'flex-wrap', 'flex-shrink', 'flex-grow',
   'justify-content', 'align-items', 'position', 'text-decoration-line',
   'border-top-left-radius',
   'margin-top', 'margin-right', 'margin-bottom', 'margin-left',
   'padding-top', 'padding-right', 'padding-bottom', 'padding-left',
-];
+].concat(ALL ? [
+  'color', 'background-color', 'font-size', 'font-weight', 'line-height',
+  'border-top-width', 'border-top-color', 'width', 'height', 'top', 'left',
+  'opacity', 'box-shadow', 'transform', 'z-index', 'gap', 'letter-spacing',
+  'text-transform', 'visibility', 'overflow-x',
+] : []);
 const UTIL_SRC =
   '^(d-|flex-|justify-|align-|m[trblxy]?-|p[trblxy]?-|me-|ms-|w-|h-|position-|text-decoration|rounded)';
 
@@ -31,7 +37,7 @@ async function snap(browser, base, path, vp) {
   const page = await ctx.newPage();
   await page.goto(base + path, { waitUntil: 'networkidle' });
   await page.waitForTimeout(1500);
-  const data = await page.evaluate(({ PROPS, src }) => {
+  const data = await page.evaluate(({ PROPS, src, all }) => {
     const UTIL = new RegExp(src);
     const out = {};
     const walk = (el, p) => {
@@ -39,7 +45,7 @@ async function snap(browser, base, path, vp) {
         const key = p + '/' + c.tagName.toLowerCase() + i;
         const cls = typeof c.className === 'string'
           ? c.className.split(/\s+/).filter(Boolean) : [];
-        if (cls.some((x) => UTIL.test(x))) {
+        if (all || cls.some((x) => UTIL.test(x))) {
           const cs = getComputedStyle(c);
           const o = {
             _h: Math.round(c.getBoundingClientRect().height),
@@ -54,7 +60,7 @@ async function snap(browser, base, path, vp) {
     };
     walk(document.body, '');
     return out;
-  }, { PROPS, src: UTIL_SRC });
+  }, { PROPS, src: UTIL_SRC, all: ALL });
   await ctx.close();
   return data;
 }
