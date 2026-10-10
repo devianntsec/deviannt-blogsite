@@ -38,3 +38,9 @@
 
 /* Font Awesome (.fa-fw { width: 1.25em }) pasaría por encima del ícono del trigger de categorías */
 .category-trigger i { width: 1rem; }
+
+/* tocbot.css (sin capa) dibuja un ::before #EEE de 2px en cada link; el tema lo oculta salvo en el activo */
+#toc-wrapper ul .toc-link::before, #toc-popup ul .toc-link::before { display: none; }
+#toc-wrapper ul .is-active-link::before, #toc-popup ul .is-active-link::before {
+  display: inline-block; width: 1px; height: 1.25rem;
+}
