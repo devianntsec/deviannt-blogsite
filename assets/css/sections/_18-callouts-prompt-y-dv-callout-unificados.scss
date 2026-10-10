@@ -1,0 +1,95 @@
+@use 'tokens' as *;
+
+/* ──────────────────────────────────────────────────────────────
+   18. CALLOUTS — prompt-* y .dv-callout unificados
+   ────────────────────────────────────────────────────────────── */
+
+%dv-callout-shell {
+  padding: 14px 16px 14px 18px;
+  border-top: none;
+  border-right: none;
+  border-bottom: none;
+  border-radius: 0;
+  font-family: $font-heading;
+  font-size: 0.78rem;
+  margin: 1.2rem 0;
+  position: relative;
+}
+%dv-callout-label-shell {
+  display: block;
+  font-size: 0.58rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  font-weight: 500;
+  font-family: $font-heading;
+}
+
+html[data-mode='dark'] .post-content,
+html:not([data-mode]) .post-content {
+  .prompt-tip, .prompt-info, .prompt-warning, .prompt-danger {
+    @extend %dv-callout-shell;
+    background: #0B1220;
+    font-weight: 400;
+    p {
+      color: var(--text-color);
+      font-size: 0.78rem;
+      line-height: 1.65;
+      margin: 0;
+    }
+  }
+  .prompt-info    { border-left: 3px solid var(--dv-primary); &::before { content: '// info'; color: var(--dv-accent); } }
+  .prompt-tip     { border-left: 3px solid #{sem(ok, dark)};  &::before { content: '// tip'; color: #{sem(ok, dark)}; } }
+  .prompt-warning { border-left: 3px solid #{sem(warning, dark)}; &::before { content: '// warning'; color: #{sem(warning, dark)}; } }
+  .prompt-danger  { border-left: 3px solid #{sem(danger, dark)};  &::before { content: '// danger'; color: #{sem(danger, dark)}; } }
+  .prompt-tip::before, .prompt-info::before, .prompt-warning::before, .prompt-danger::before {
+    @extend %dv-callout-label-shell;
+  }
+}
+
+.dv-callout {
+  @extend %dv-callout-shell;
+  border-left: 3px solid;
+  background: var(--card-bg);
+  font-weight: 400;
+}
+.dv-callout-label { @extend %dv-callout-label-shell; }
+.dv-callout-text {
+  display: block;
+  color: var(--text-color);
+  font-size: 0.78rem;
+  line-height: 1.65;
+}
+.dv-callout--info    { border-color: var(--dv-primary); .dv-callout-label { color: var(--dv-accent); } }
+.dv-callout--ok      { border-color: #{sem(ok, dark)};      .dv-callout-label { color: #{sem(ok, dark)}; } }
+.dv-callout--warning { border-color: #{sem(warning, dark)}; .dv-callout-label { color: #{sem(warning, dark)}; } }
+.dv-callout--danger  { border-color: #{sem(danger, dark)};  .dv-callout-label { color: #{sem(danger, dark)}; } }
+
+html[data-mode='light'] {
+  .post-content .prompt-tip,
+  .post-content .prompt-info,
+  .post-content .prompt-warning,
+  .post-content .prompt-danger {
+    border-top: 1px solid var(--border-color);
+    border-right: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    border-radius: 0;
+    p { color: #334155; }
+  }
+  .post-content .prompt-tip     { background: rgba(5, 150, 105, 0.05);  border-left: 3px solid #{sem(ok, light)};      &::before { color: #{sem(ok, light)}; } }
+  .post-content .prompt-info    { background: rgba(37, 99, 235, 0.05);  border-left: 3px solid var(--dv-accent);        &::before { color: var(--dv-accent); } }
+  .post-content .prompt-warning { background: rgba(180, 83, 9, 0.05);   border-left: 3px solid #{sem(warning, light)};  &::before { color: #{sem(warning, light)}; } }
+  .post-content .prompt-danger  { background: rgba(220, 38, 38, 0.05);  border-left: 3px solid #{sem(danger, light)};   &::before { color: #{sem(danger, light)}; } }
+
+  .dv-callout {
+    background: #FFFFFF;
+    border-top: 1px solid var(--border-color);
+    border-right: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+  }
+  .dv-callout--info    { border-left-color: var(--dv-accent);        .dv-callout-label { color: var(--dv-accent); } }
+  .dv-callout--ok      { border-left-color: #{sem(ok, light)};      .dv-callout-label { color: #{sem(ok, light)}; } }
+  .dv-callout--warning { border-left-color: #{sem(warning, light)}; .dv-callout-label { color: #{sem(warning, light)}; } }
+  .dv-callout--danger  { border-left-color: #{sem(danger, light)};  .dv-callout-label { color: #{sem(danger, light)}; } }
+  .dv-callout-text { color: #334155; }
+}

@@ -1,0 +1,20 @@
+{
+  "name": "vr-css-regression",
+  "private": true,
+  "type": "module",
+  "description": "Regresión visual del blog (capturas Playwright + comparación de píxeles). Aislado del package.json raíz: el CI no lo instala.",
+  "scripts": {
+    "build": "cd .. && hugo --gc --buildDrafts --baseURL http://localhost:4000/ --destination vr/site",
+    "capture:baseline": "node capture.mjs baseline",
+    "capture:current": "node capture.mjs current",
+    "baseline": "npm run build && npm run capture:baseline",
+    "check": "npm run build && npm run capture:current && node compare.mjs",
+    "compare": "node compare.mjs"
+  },
+  "dependencies": {
+    "pixelmatch": "^6.0.0",
+    "playwright": "^1.49.0",
+    "pngjs": "^7.0.0",
+    "postcss": "^8.5.29"
+  }
+}

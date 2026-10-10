@@ -1,0 +1,121 @@
+@use 'tokens' as *;
+
+/* ──────────────────────────────────────────────────────────────
+   16. NIGHT OWL CODE THEME (Chroma override)
+   ────────────────────────────────────────────────────────────── */
+
+div.highlight,
+div.highlight pre,
+div.highlight code {
+  font-family: $font-heading !important;
+  font-size: 0.82rem !important;
+}
+div.highlight,
+div.highlight .chroma,
+div.highlight pre,
+div.highlight code,
+div.highlight table,
+div.highlight table tr,
+div.highlight table td,
+div.highlight .lntable,
+div.highlight .lntable tr,
+div.highlight .lntable td,
+div.highlight .lntd,
+div.highlight .lntd pre,
+div.highlight tbody,
+div.highlight tbody tr,
+div.highlight tbody td {
+  background: #011627 !important;
+  color: #d6deeb !important;
+  border: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+div.highlight table tr:nth-child(odd),
+div.highlight table tr:nth-child(even),
+div.highlight .lntable tr:nth-child(odd),
+div.highlight .lntable tr:nth-child(even) {
+  background: #011627 !important;
+  background-color: #011627 !important;
+}
+div.highlight span { background: transparent !important; background-color: transparent !important; }
+div.highlight :is(.l, .ld, .ls, .lf, .lnl, .w, .nl, .nv, .vi, .vc, .vg, .vm) {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+div.highlight .lntable {
+  border-collapse: collapse !important;
+  border-spacing: 0 !important;
+  width: 100% !important;
+}
+div.highlight .lntd:first-child {
+  width: 1% !important;
+  white-space: nowrap !important;
+  padding: 0 !important;
+  vertical-align: top !important;
+  pre {
+    padding: 1em 1.5em 1em 1em !important;
+    border-right: 1px solid rgba(95, 126, 151, 0.25) !important;
+    border-left: none !important;
+    border-top: none !important;
+    border-bottom: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+  }
+}
+div.highlight .lnt,
+div.highlight .ln {
+  color: #4b6479 !important;
+  user-select: none !important;
+  padding: 0 !important;
+}
+div.highlight .lntd:last-child {
+  width: 100% !important;
+  padding: 0 !important;
+  vertical-align: top !important;
+  pre {
+    padding: 1em !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+}
+div.highlight :is(.nt, .nn, .na, .nf, .nc, .nb, .ni, .n, .no, .nd, .ne, .nx,
+  .kc, .kn, .kr, .kt, .k, .o, .ow, .p, .m, .mi, .mf, .mh, .mb, .mo,
+  .s, .s1, .s2, .sd, .se, .si, .sx, .sr, .ss, .sb, .sc, .sh,
+  .l, .ld, .ge, .gs, .gu, .gt, .gl, .gd, .gi, .gr, .gh, .go, .gp,
+  .c, .c1, .cm, .cs, .cp, .cpf, .ch, .line, .cl) {
+  color: #d6deeb !important;
+}
+
+html[data-mode='light'] div.code-block div.highlight,
+html[data-mode='light'] div.code-block div.highlight .chroma,
+html[data-mode='light'] div.code-block div.highlight pre,
+html[data-mode='light'] div.code-block div.highlight pre code,
+html[data-mode='light'] div.code-block div.highlight .lntable,
+html[data-mode='light'] div.code-block div.highlight .lntable tr,
+html[data-mode='light'] div.code-block div.highlight .lntable td,
+html[data-mode='light'] div.code-block div.highlight .lntd,
+html[data-mode='light'] div.code-block div.highlight .lntd pre,
+html[data-mode='light'] div.code-block div.highlight table,
+html[data-mode='light'] div.code-block div.highlight table tr,
+html[data-mode='light'] div.code-block div.highlight table tr:nth-child(odd),
+html[data-mode='light'] div.code-block div.highlight table tr:nth-child(even),
+html[data-mode='light'] div.code-block div.highlight table td,
+html[data-mode='light'] div.code-block div.highlight tbody,
+html[data-mode='light'] div.code-block div.highlight tbody tr,
+html[data-mode='light'] div.code-block div.highlight tbody tr:nth-child(odd),
+html[data-mode='light'] div.code-block div.highlight tbody tr:nth-child(even),
+html[data-mode='light'] div.code-block div.highlight tbody td {
+  background: #011627 !important;
+  background-color: #011627 !important;
+  color: #d6deeb !important;
+  border: none !important;
+  color-scheme: dark !important;
+}
+html[data-mode='light'] div.code-block div.highlight ::selection,
+html[data-mode='light'] div.code-block div.highlight span::selection,
+html[data-mode='light'] div.code-block div.highlight .line::selection,
+html[data-mode='light'] div.code-block div.highlight .cl::selection {
+  background: rgba(59, 130, 246, 0.28) !important;
+  color: #ffffff !important;
+}

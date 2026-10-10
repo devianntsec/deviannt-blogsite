@@ -1,0 +1,117 @@
+@use 'tokens' as *;
+
+/* ──────────────────────────────────────────────────────────────
+   6. SIDEBAR — Animated Title (.dv-title-name)
+   ────────────────────────────────────────────────────────────── */
+
+#sidebar .site-title,
+#sidebar .sidebar-title { display: none; }
+
+.site-title-deviannt {
+  display: flex;
+  justify-content: center;
+  padding: 0.5rem 0 0.4rem;
+  margin: 0;
+  overflow: visible;
+  min-height: 56px;
+  height: 56px;
+
+  a {
+    text-decoration: none;
+    color: inherit !important;
+    overflow: visible;
+  }
+}
+
+.dv-title-name {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 18px;
+  font-family: $font-display;
+  font-size: 1.45rem;
+  font-weight: 700;
+  letter-spacing: -0.08em;
+  color: var(--heading-color);
+  text-transform: uppercase;
+  line-height: 1;
+  overflow: visible;
+  min-height: 36px;
+  height: 36px;
+
+  .dv-text {
+    position: relative;
+    z-index: 1;
+    line-height: 1.2;
+    display: inline-block;
+  }
+
+  .dv-bar-l,
+  .dv-bar-r {
+    display: block;
+    position: absolute;
+    width: 3px;
+    background: var(--dv-primary);
+    z-index: 2;
+  }
+  .dv-bar-l {
+    left: 0;
+    top: -4px;
+    bottom: -4px;
+  }
+  .dv-bar-r {
+    left: 0;
+    top: 2px;
+    bottom: -7px;
+    visibility: hidden;
+  }
+
+  .dv-dot-tl,
+  .dv-dot-br {
+    display: block;
+    position: absolute;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: var(--dv-primary);
+    z-index: 2;
+  }
+  .dv-dot-tl {
+    top: -7px;
+    left: 2px;
+    transform: translateX(-50%);
+  }
+  .dv-dot-br {
+    bottom: -7px;
+    left: 0;
+    visibility: hidden;
+  }
+}
+
+.dv-base {
+  position: absolute;
+  top: 2px;
+  bottom: 2px;
+  left: 0;
+  right: 0;
+  background: rgba(59,130,246,0.35);
+  z-index: 0;
+  opacity: 0;
+  pointer-events: none;
+  height: auto;
+}
+.dv-highlight {
+  background: rgba(59,130,246,0.32);
+  pointer-events: none;
+  top: 2px;
+  bottom: 2px;
+  height: auto;
+}
+
+html[data-mode='light'] .dv-title-name {
+  color: var(--text-color);
+  .dv-text { color: var(--text-color); }
+  .dv-bar-l, .dv-bar-r,
+  .dv-dot-tl, .dv-dot-br { background: var(--dv-accent); }
+}

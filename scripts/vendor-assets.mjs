@@ -87,6 +87,11 @@ copyFile(join(NM, "clipboard/dist/clipboard.min.js"), join(OUT, "clipboard/clipb
 
 console.log("→ mathjax");
 copyFile(join(NM, "mathjax-full/es5/tex-chtml.js"), join(OUT, "mathjax/tex-chtml.js"));
+// tex-chtml.js resuelve sus fuentes relativo a su propia ruta:
+//   /lib/mathjax/output/chtml/fonts/woff-v2/MathJax_*.woff
+// Sin esta carpeta esas URLs dan 404 y las fórmulas se pintan con fuentes de
+// reserva (anchos/alturas dependientes del sistema y de la carrera de carga).
+copyDir(join(NM, "mathjax-full/es5/output/chtml/fonts/woff-v2"), join(OUT, "mathjax/output/chtml/fonts/woff-v2"));
 
 console.log("→ webfonts (JetBrains Mono + Azeret Mono + Inter, self-hosted)");
 // Reemplaza la carga en vivo desde fonts.googleapis.com que hacía

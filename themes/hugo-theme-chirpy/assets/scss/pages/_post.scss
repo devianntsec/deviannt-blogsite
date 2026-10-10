@@ -295,7 +295,7 @@ header {
     }
 
     .is-active-link {
-      color: var(--toc-highlight) !important;
+      color: var(--toc-highlight);
       font-weight: 600;
 
       &::before {

@@ -6,12 +6,11 @@
  *   - restaura dark/light mode desde localStorage antes del primer paint
  *   - redirect a /es/404/ si el 404 corresponde a sesión en español
  *   - cachea el avatar en localStorage (evita refetch en cada carga)
- *   - reload si sessionStorage marcó dv-needs-reload
  *
  * IIFE #2 (interacciones, se activa en load/DOMContentLoaded):
  *   - animación del título (dv-title-name)
  *   - toggle de tema (#mode-toggle)
- *   - soft-navigation tipo SPA (fetch + swap de #main-wrapper) + popstate
+ *   - click handler mínimo (anclas con offset de TOC, cambio de idioma, corrección /es)
  *   - guard de TOC visible + guard del <link> de syntax highlighting
  *
  * Nota: esto es más que "avatar/dark-mode/404" — el archivo original
@@ -43,14 +42,6 @@
   try {
     var currentLang = /^\/es(\/|$)/.test(location.pathname) ? 'es' : 'en';
     sessionStorage.setItem('dv-lang', currentLang);
-  } catch(e) {}
-
-  try {
-    var needsReload = sessionStorage.getItem('dv-needs-reload');
-    if (needsReload) {
-      sessionStorage.removeItem('dv-needs-reload');
-      location.reload();
-    }
   } catch(e) {}
 
   try {
@@ -390,115 +381,6 @@
       .catch(function() { callback(langFallback); });
   }
 
-  var parser     = new DOMParser();
-  var navigating = false;
-
-  function isSameOrigin(url) {
-    try { return new URL(url, location.href).origin === location.origin; }
-    catch(e) { return false; }
-  }
-
-  function shouldAnimate(targetPath) {
-    var homePatterns = [/^\/$/, /^\/en\/$/, /^\/es\/$/];
-    if (homePatterns.some(function(re) { return re.test(targetPath); })) {
-      return true;
-    }
-    return isPostPath(targetPath);
-  }
-
-  function softNavigate(url, isPopState, forceAnimate) {
-    if (navigating) return;
-    navigating = true;
-    var targetPath = new URL(url, location.href).pathname;
-    try {
-      var lang = /^\/es(\/|$)/.test(targetPath) ? 'es' : 'en';
-      sessionStorage.setItem('dv-lang', lang);
-    } catch(e) {}
-    var targetIsPost = isPostPath(targetPath);
-    if (targetIsPost) {
-      try { sessionStorage.setItem('dv-needs-reload', '1'); } catch(e) {}
-    }
-    var main = document.getElementById('main-wrapper');
-    if (main) main.classList.add('dv-transitioning');
-    fetch(url)
-      .then(function(res) { return res.text(); })
-      .then(function(html) {
-        var doc     = parser.parseFromString(html, 'text/html');
-        var newMain = doc.getElementById('main-wrapper');
-        var curMain = document.getElementById('main-wrapper');
-        document.title = doc.title;
-        if (newMain && curMain) curMain.innerHTML = newMain.innerHTML;
-        if (!isPopState) history.pushState({dvSoft: true}, doc.title, url);
-        document.querySelectorAll('#sidebar .nav-item').forEach(function(li) {
-          li.classList.remove('active');
-          var a = li.querySelector('a.nav-link');
-          if (a) a.classList.remove('active');
-        });
-        document.querySelectorAll('#sidebar .nav-item a.nav-link').forEach(function(a) {
-          var href = a.getAttribute('href');
-          if (href && location.pathname === href) {
-            a.classList.add('active');
-            if (a.closest('.nav-item')) a.closest('.nav-item').classList.add('active');
-          }
-        });
-        var curMain2 = document.getElementById('main-wrapper');
-        if (curMain2) {
-          curMain2.classList.remove('dv-transitioning');
-          // A11y: mueve el foco al contenido nuevo (el link clickeado ya no
-          // representa lo que hay en pantalla) y anuncia el título nuevo
-          // para lectores de pantalla, ya que esto no es un load real.
-          curMain2.setAttribute('tabindex', '-1');
-          curMain2.focus({ preventScroll: true });
-        }
-        var announcer = document.getElementById('dv-route-announcer');
-        if (announcer) announcer.textContent = doc.title;
-        document.querySelectorAll('script[data-dv-injected]').forEach(function(s) {
-          s.parentNode && s.parentNode.removeChild(s);
-        });
-        if (targetIsPost) {
-          location.reload();
-          return;
-        }
-        if (newMain) {
-          var scripts = Array.from(newMain.querySelectorAll('script'));
-          var externalScripts = scripts.filter(function(s) { return !!s.src; });
-          var inlineScripts   = scripts.filter(function(s) { return !s.src && s.textContent.trim(); });
-          externalScripts.forEach(function(oldScript) {
-            var already = document.querySelector('script[src="' + oldScript.src + '"]');
-            if (already) return;
-            var s = document.createElement('script');
-            s.src = oldScript.src;
-            s.setAttribute('data-dv-injected', '1');
-            document.body.appendChild(s);
-          });
-          requestAnimationFrame(function() {
-            inlineScripts.forEach(function(oldScript) {
-              try {
-                (new Function(oldScript.textContent))();
-              } catch(e) {
-                if (e instanceof SyntaxError && /redeclaration|already been declared/i.test(e.message)) return;
-                console.warn('[dv soft-nav] script error:', e.message);
-              }
-            });
-          });
-        }
-        reformatDatesDelayed();
-        var animate = (forceAnimate === true) ? true : shouldAnimate(targetPath);
-        requestAnimationFrame(function() {
-          requestAnimationFrame(function() {
-            initTitle(animate);
-            setTimeout(ensureTocVisible, 500);
-          });
-        });
-        window.scrollTo(0, 0);
-        navigating = false;
-      })
-      .catch(function() {
-        navigating = false;
-        location.href = url;
-      });
-  }
-
   function scrollToAnchor(hash) {
     var id = decodeURIComponent(hash.replace(/^#/, ''));
     var target = document.getElementById(id);
@@ -523,83 +405,46 @@
   }
 
   document.addEventListener('click', function(e) {
-    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
-    if (e.button !== 0) return;
+    if (e.defaultPrevented) return;
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
     var a = e.target.closest('a');
     if (!a) return;
+    var href = a.getAttribute('href');
+
     if (a.getAttribute('data-hard-nav') === 'true') {
       e.preventDefault();
       if (a.getAttribute('data-lang-url')) {
         resolveLanguageUrl(a, function(url) { location.href = url; });
-      } else {
-        location.href = a.getAttribute('href');
+      } else if (href) {
+        location.href = href;
       }
       return;
     }
-    var href = a.getAttribute('href');
     if (!href) return;
 
-    if (href.startsWith('#')) {
+    if (href.charAt(0) === '#') {
       e.preventDefault();
       scrollToAnchor(href);
       return;
     }
 
-    if (href.startsWith('mailto:') ||
-        href.startsWith('tel:')    ||
-        a.target === '_blank'      ||
-        a.hasAttribute('download')) return;
-
     var fullUrl;
-    try {
-      if (href.startsWith('http://') || href.startsWith('https://')) {
-        fullUrl = new URL(href);
-      } else {
-        fullUrl = new URL(href, location.origin);
-      }
-    } catch(e) { return; }
+    try { fullUrl = new URL(href, location.href); } catch(err) { return; }
+    if (fullUrl.origin !== location.origin || a.target === '_blank' || a.hasAttribute('download')) return;
 
-    if (fullUrl.origin !== location.origin) return;
-
-    var normalizeP = function(p) {
-      return decodeURIComponent(p).replace(/\/$/, '').toLowerCase();
-    };
-    if (fullUrl.hash && normalizeP(fullUrl.pathname) === normalizeP(location.pathname)) {
+    var norm = function(p) { return decodeURIComponent(p).replace(/\/$/, '').toLowerCase(); };
+    if (fullUrl.hash && norm(fullUrl.pathname) === norm(location.pathname)) {
       e.preventDefault();
       scrollToAnchor(fullUrl.hash);
       return;
     }
 
-    if (fullUrl.pathname + fullUrl.search === location.pathname + location.search) return;
-    if (!isSameOrigin(fullUrl.href)) return;
-
-    var targetPath = fullUrl.pathname;
-    var isLangSwitch = !!a.getAttribute('data-lang-url');
-    if (isLangSwitch) return;
-
-    var curLang = /^\/es(\/|$)/.test(location.pathname) ? 'es' : 'en';
-    var tgtLang = /^\/es(\/|$)/.test(targetPath) ? 'es' : 'en';
-    if (curLang === 'es' && tgtLang === 'en' && a.closest('#sidebar')) {
-      var correctedPath = '/es' + (targetPath.startsWith('/') ? targetPath : '/' + targetPath);
-      try {
-        var correctedUrl = new URL(correctedPath, location.origin);
-        fullUrl = correctedUrl;
-        targetPath = correctedPath;
-      } catch(e) {}
+    var curEs = /^\/es(\/|$)/.test(location.pathname);
+    var tgtEs = /^\/es(\/|$)/.test(fullUrl.pathname);
+    if (curEs && !tgtEs && a.closest('#sidebar')) {
+      e.preventDefault();
+      location.href = '/es' + (fullUrl.pathname.charAt(0) === '/' ? '' : '/') + fullUrl.pathname + fullUrl.search + fullUrl.hash;
     }
-
-    var isSidebarHome = !!a.closest('.site-title-deviannt') ||
-                        !!a.closest('#sidebar .site-title') ||
-                        (a.closest('#sidebar') && (targetPath === '/' || /^\/(en|es)\/$/.test(targetPath)));
-    var isNavItem = !!a.closest('#sidebar .nav-item') && !isSidebarHome;
-    var forceAnimate = isSidebarHome ? true : undefined;
-    if (isNavItem && !isSidebarHome) forceAnimate = false;
-    e.preventDefault();
-    softNavigate(fullUrl.href, false, forceAnimate);
-  });
-
-  window.addEventListener('popstate', function() {
-    softNavigate(location.href, true);
   });
 
   window.addEventListener('load', function() {
@@ -633,6 +478,28 @@
   if (window.__dvDiagramInit) return;
 
   function dvClamp(v, lo, hi) { return Math.min(hi, Math.max(lo, v)); }
+
+  /* Espera a que estén cargadas las fuentes reales de los <text> del diagrama antes de medir
+     con getBBox(). Con font-display: swap, medir antes da proporciones distintas según qué
+     cargue primero, y el viewBox se fija una sola vez. Tope de 3 s: si una fuente falla o
+     tarda, el diagrama se mide igualmente. */
+  function dvFontsReady(svg) {
+    var fonts = document.fonts;
+    if (!fonts || !fonts.load) return Promise.resolve();
+    var bySpec = {};
+    Array.prototype.forEach.call(svg.querySelectorAll('text'), function(t) {
+      var cs = getComputedStyle(t);
+      var spec = cs.fontStyle + ' ' + cs.fontWeight + ' ' + cs.fontSize + ' ' + cs.fontFamily;
+      bySpec[spec] = (bySpec[spec] || '') + (t.textContent || '');
+    });
+    var loads = Object.keys(bySpec).map(function(spec) {
+      var chars = Array.from(new Set(bySpec[spec])).join('').slice(0, 400) || 'a';
+      return fonts.load(spec, chars).catch(function() {});
+    });
+    var done = Promise.all(loads).then(function() { return fonts.ready; }).catch(function() {});
+    var timeout = new Promise(function(resolve) { setTimeout(resolve, 3000); });
+    return Promise.race([done, timeout]);
+  }
 
   window.__dvDiagramInit = function(id) {
     var wrap = document.getElementById(id);
@@ -748,6 +615,7 @@
     var svg = wrap.querySelector('.dv-diagram-svg');
     if (!svg) { viewport.style.cursor = 'default'; return; }
 
+    dvFontsReady(svg).then(function() {
     requestAnimationFrame(function() {
       requestAnimationFrame(function() {
 
@@ -820,6 +688,7 @@
         } catch(e) {}
 
       });
+    });
     });
 
     viewport.style.cursor = 'default';

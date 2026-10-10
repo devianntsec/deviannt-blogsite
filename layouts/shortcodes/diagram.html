@@ -1,7 +1,7 @@
 {{- $title   := .Get "title"  | default "" -}}
 {{- $label   := .Get "label"  | default "" -}}
 {{- $height  := .Get "height" | default "240" -}}
-{{- $id      := printf "dv-diag-%d" now.UnixNano -}}
+{{- $id      := printf "dv-diag-%d" .Ordinal -}}
 {{- $hpx     := printf "min-height:%spx" $height | safeCSS -}}
 {{- $hpxsvg  := printf "min-height:%spx;display:block" $height | safeCSS -}}
 

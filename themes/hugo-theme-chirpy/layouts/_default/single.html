@@ -51,7 +51,7 @@
             <em>
               {{ if $authors }}
                 {{ range $i, $author := $authors }}
-                  {{ with $.Site.Data.authors }}
+                  {{ with hugo.Data.authors }}
                     {{ with (index . $author) }}
                       {{ if .url }}
                         <a href="{{ .url }}">{{ .name }}</a>

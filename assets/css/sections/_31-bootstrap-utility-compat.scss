@@ -1,0 +1,40 @@
+/* ──────────────────────────────────────────────────────────────
+   31. COMPAT DE UTILIDADES BOOTSTRAP (sin !important)
+   Desde que $enable-important-utilities es false, estas utilidades
+   pierden contra reglas del tema. Se restauran por especificidad.
+   Candidatas a borrarse al adoptar sidebar / cards / panel (Paso 6).
+   ────────────────────────────────────────────────────────────── */
+
+/* Sidebar: el tema fija margin-top: 0.25rem con #sidebar */
+#sidebar ul li.nav-item.mt-4 { margin-top: 1.5rem; }
+#sidebar ul li.nav-item.mt-2 { margin-top: 0.5rem; }
+
+/* El tema fija .content { margin-top: 2rem } */
+.content.mt-0 { margin-top: 0; }
+.content.mt-2 { margin-top: 0.5rem; }
+
+/* Font Awesome (.fas { line-height: 1 }) queda fuera de la capa y le ganaría al tema */
+#back-to-top i { line-height: 2.75rem; }
+
+/* h1-h6 propios (selector de tipo) ya no pierden contra el panel derecho del tema */
+#panel-wrapper .panel-heading { font-weight: 600; font-family: inherit; }
+
+/* #archives li > * { display: flex } es nuestro; la fecha mantiene la del tema */
+#archives .date { display: inline-block; }
+
+/* Font Awesome (.fa-fw { width: 1.25em }) quedaría por encima del tema */
+.code-header span i { width: 1.75rem; }
+
+/* tocbot.css (sin capa) pasaría por encima del TOC del tema */
+#toc-wrapper ul, #toc-popup ul { padding-left: 0; }
+#toc-wrapper ul ul { padding-left: 0.75rem; }
+#toc-wrapper ul .is-active-link, #toc-popup .is-active-link { color: var(--toc-highlight); font-weight: 600; }
+
+/* Posts relacionados: el h3 del tema pesa 600; nuestro h1-h6 genérico pesa 500 */
+#related-posts > h3 { font-weight: 600; }
+
+/* .post-preview p { line-height: 1.65 } es nuestro; el listado de cards conserva el 1.5 del tema */
+#post-list .card .card-body .card-text.content p { line-height: 1.5; }
+
+/* Font Awesome (.fa-fw { width: 1.25em }) pasaría por encima del ícono del trigger de categorías */
+.category-trigger i { width: 1rem; }

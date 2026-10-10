@@ -1,0 +1,18 @@
+# Hugo
+.hugo_build.lock
+public/
+resources/_gen/
+assets/jsconfig.json
+
+# Assets vendorizados por scripts/vendor-assets.mjs (se regeneran con npm run vendor-assets)
+static/lib/
+
+# Dependencias
+node_modules/
+
+# Secretos locales (obsidian_to_hugo.py lee R2_* desde .env)
+.env
+.env.*
+
+# Artefactos locales
+repomix-output.xml

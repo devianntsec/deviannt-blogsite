@@ -1,0 +1,38 @@
+@use 'tokens' as *;
+
+/* ──────────────────────────────────────────────────────────────
+   9. SIDEBAR — Theme Toggle
+   ────────────────────────────────────────────────────────────── */
+
+.dv-theme-select__arrow { display: none; }
+
+.dv-theme-row {
+  display: flex;
+  align-items: center;
+  cursor: default;
+  pointer-events: none;
+}
+
+.dv-theme-select {
+  background: transparent;
+  border: none;
+  padding: 0;
+  font: inherit;
+  color: var(--dv-nav-text);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-weight: 500;
+  letter-spacing: inherit;
+  text-transform: uppercase;
+  pointer-events: auto;
+  transition: color 0.15s;
+  outline: none;
+  line-height: 1;
+  box-sizing: border-box;
+
+  &:hover { color: var(--dv-accent); }
+}
+.dv-theme-select__val { line-height: 1; }
+html[data-mode='light'] #sidebar select { color: var(--dv-nav-text); }
