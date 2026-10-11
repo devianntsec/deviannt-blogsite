@@ -69,7 +69,7 @@
 
       {{/* ── Language Toggle ──
            Enlace nativo: .Translations de Hugo (si no hay traducción, home del otro idioma).
-           data-hard-nav evita el soft-nav; data-set-lang guarda la cookie blog_lang.
+           data-set-lang guarda la cookie blog_lang.
       ── */}}
       {{ if hugo.IsMultilingual }}
         {{ $currentLang  := .Site.Language.Lang }}
@@ -97,7 +97,7 @@
           {{ $otherUrl = printf "%s/?lang=%s" $siteBase $otherLangCode }}
         {{ end }}
 
-<li class="nav-item mt-4"><a class="nav-link" href="{{ $otherUrl }}" hreflang="{{ $otherLangCode }}" lang="{{ $otherLangCode }}" data-hard-nav="true" data-set-lang="{{ $otherLangCode }}"><i class="fa-fw fas fa-language"></i><span>{{ $otherLangName | upper }}</span></a></li>
+<li class="nav-item mt-4"><a class="nav-link" href="{{ $otherUrl }}" hreflang="{{ $otherLangCode }}" lang="{{ $otherLangCode }}" data-set-lang="{{ $otherLangCode }}"><i class="fa-fw fas fa-language"></i><span>{{ $otherLangName | upper }}</span></a></li>
       {{ end }}
 
 
@@ -129,8 +129,7 @@
         <a href="https://deviannt.com"
            class="nav-link dv-portfolio-link"
            target="_blank"
-           rel="noopener noreferrer"
-           data-hard-nav="true">
+           rel="noopener noreferrer">
           <i class="fa-fw fas fa-arrow-left"></i>
           <span>portfolio</span>
         </a>
