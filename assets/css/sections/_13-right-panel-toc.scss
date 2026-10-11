@@ -96,3 +96,10 @@ html[data-mode='light'] {
   }
   #access-lastmod ul.content li::before { color: var(--dv-accent); }
 }
+
+/* Hover del TOC por especificidad (antes: !important en _28). Sin esto
+   una regla sin capa (tocbot o _31) pinta de azul el hover de los H3. */
+#toc-wrapper ul .toc-link:hover,
+#toc-popup ul .toc-link:hover {
+  color: var(--dv-hover-text);
+}
