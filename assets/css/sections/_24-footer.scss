@@ -5,27 +5,27 @@
    ────────────────────────────────────────────────────────────── */
 
 footer {
-  background: var(--dv-footer-surface) !important;
-  border-top: var(--dv-footer-border-top) !important;
-  font-size: 0.65rem !important;
+  background: var(--dv-footer-surface);
+  border-top: var(--dv-footer-border-top);
+  font-size: 0.65rem;
   letter-spacing: 0.06em;
-  color: var(--dv-footer-text) !important;
-  position: relative !important;
+  color: var(--dv-footer-text);
+  position: relative;
 
   &::before {
-    content: '' !important;
-    display: block !important;
-    position: absolute !important;
-    top: 0 !important; left: 0 !important; right: 0 !important;
-    height: 3px !important;
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
     background: linear-gradient(
       90deg,
       transparent 0%, var(--dv-primary) 15%, var(--dv-primary) 50%, var(--dv-accent) 75%, transparent 100%
-    ) !important;
+    );
   }
 }
 html[data-mode='light'] footer {
-  a { color: var(--dv-primary) !important; }
+  a { color: var(--dv-primary); }
 }
 
 /* Footer propio y toast: antes <style> inline en footer.html; la CSP de producción bloquea style inline */
@@ -37,9 +37,6 @@ html[data-mode='light'] footer {
   gap: 0.4rem;
   padding: 1.2rem 1.5rem;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.72rem;
-  color: #475569;
-  border-top: 1px solid rgba(59, 130, 246, 0.1);
 }
 
 .dv-footer a {
@@ -56,11 +53,6 @@ html[data-mode='light'] footer {
   opacity: 0.55;
   font-size: 0.65rem;
   letter-spacing: 0.05em;
-}
-
-html[data-mode='light'] .dv-footer {
-  color: #64748B;
-  border-top-color: rgba(37, 99, 235, 0.12);
 }
 
 html[data-mode='light'] .dv-footer a {

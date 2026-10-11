@@ -48,7 +48,7 @@ input#search {
   color: var(--dv-search-text);
   background: transparent;
   border: none;
-  outline: none !important;
+  outline: none;
 
   &::placeholder {
     color: var(--dv-search-placeholder);

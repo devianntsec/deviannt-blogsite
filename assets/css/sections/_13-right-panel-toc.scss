@@ -6,93 +6,100 @@
 
 #main-wrapper,
 #main-wrapper > .row {
-  overflow: visible !important;
-  align-items: flex-start !important;
+  overflow: visible;
+  align-items: flex-start;
 }
 
 @media (min-width: 1200px) {
   #panel-wrapper {
-    position: fixed !important;
-    top: 3rem !important;
-    right: 0 !important;
-    left: auto !important;
-    height: calc(100vh - 3rem) !important;
-    max-height: calc(100vh - 3rem) !important;
-    overflow-y: auto !important;
-    flex: none !important;
-    width: $panel-width !important;
-    max-width: $panel-width !important;
-    margin: 0 !important;
-    padding-top: 0.75rem !important;
-    z-index: z(panel) !important;
+    position: fixed;
+    top: 3rem;
+    right: 0;
+    left: auto;
+    height: calc(100vh - 3rem);
+    max-height: calc(100vh - 3rem);
+    overflow-y: auto;
+    flex: none;
+    width: $panel-width;
+    max-width: $panel-width;
+    margin: 0;
+    padding-top: 0.75rem;
+    z-index: z(panel);
     -ms-overflow-style: none;
     scrollbar-width: none;
     &::-webkit-scrollbar { display: none; }
   }
-  #main-wrapper { margin-right: $panel-width !important; }
+  #main-wrapper { margin-right: $panel-width; }
   main[aria-label="Main Content"],
   #tail-wrapper {
-    flex: 0 0 100% !important;
-    width: 100% !important;
-    max-width: 100% !important;
+    flex: 0 0 100%;
+    width: 100%;
+    max-width: 100%;
   }
 }
 @media (min-width: 1650px) {
   #panel-wrapper {
-    width: $panel-width-lg !important;
-    max-width: $panel-width-lg !important;
-    top: 3rem !important;
-    height: calc(100vh - 3rem) !important;
-    padding-top: 0.75rem !important;
+    width: $panel-width-lg;
+    max-width: $panel-width-lg;
+    top: 3rem;
+    height: calc(100vh - 3rem);
+    padding-top: 0.75rem;
   }
-  #main-wrapper { margin-right: $panel-width-lg !important; }
+  #main-wrapper { margin-right: $panel-width-lg; }
 }
 
-#panel-wrapper .col-xl-3.ps-2.text-muted { padding-left: 0 !important; }
+#panel-wrapper .col-xl-3.ps-2.text-muted { padding-left: 0; }
 
 #toc-wrapper {
-  position: relative !important;
-  top: auto !important;
-  max-height: none !important;
-  overflow: visible !important;
-  background: var(--card-bg) !important;
-  border: 1px solid var(--border-color) !important;
-  border-radius: 6px !important;
-  box-shadow: inset 3px 0 0 0 var(--dv-toc-edge) !important;
-  margin: 0 !important;
-  padding: 0 !important;
+  position: relative;
+  top: auto;
+  max-height: none;
+  overflow: visible;
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  box-shadow: inset 3px 0 0 0 var(--dv-toc-edge);
+  margin: 0;
+  padding: 0;
 
   h2.panel-heading {
-    margin-top: 0 !important;
-    padding-top: 0.3rem !important;
+    margin-top: 0;
+    padding-top: 0.3rem;
   }
   &::before {
-    position: absolute !important;
-    top: 0 !important;
-    height: 0px !important;
-    margin: 0px !important;
+    position: absolute;
+    top: 0;
+    height: 0px;
+    margin: 0px;
   }
 }
-#panel-wrapper .access { display: none !important; }
-.toc-border-cover { display: none !important; }
-#toc-wrapper { margin-top: 0 !important; padding-top: 0 !important; }
+#panel-wrapper .access { display: none; }
+.toc-border-cover { display: none; }
+#toc-wrapper { margin-top: 0; padding-top: 0; }
 
 #main-wrapper > .container {
-  width: 100% !important;
-  max-width: 100% !important;
+  width: 100%;
+  max-width: 100%;
 }
 
 html[data-mode='light'] {
-  #toc li a { color: var(--text-muted) !important; }
+  #toc li a { color: var(--text-muted); }
   #toc li a:hover,
-  #toc li a.active { color: var(--dv-primary) !important; }
+  #toc li a.active { color: var(--dv-primary); }
   #panel-wrapper .panel-heading,
   #panel-wrapper h3,
-  #panel-wrapper h4 { color: var(--dv-accent) !important; }
-  #panel-wrapper .post-list li a { color: var(--text-muted) !important; }
+  #panel-wrapper h4 { color: var(--dv-accent); }
+  #panel-wrapper .post-list li a { color: var(--text-muted); }
   #panel-wrapper .post-list li a:hover {
-    color: #334155 !important;
-    border-left-color: var(--dv-accent) !important;
+    color: #334155;
+    border-left-color: var(--dv-accent);
   }
-  #access-lastmod ul.content li::before { color: var(--dv-accent) !important; }
+  #access-lastmod ul.content li::before { color: var(--dv-accent); }
+}
+
+/* Hover del TOC por especificidad (antes: !important en _28). Sin esto
+   una regla sin capa (tocbot o _31) pinta de azul el hover de los H3. */
+#toc-wrapper ul .toc-link:hover,
+#toc-popup ul .toc-link:hover {
+  color: var(--dv-hover-text);
 }

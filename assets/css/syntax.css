@@ -12,14 +12,14 @@ html[data-mode='light'] div.highlight,
 html[data-mode='light'] div.highlight pre,
 html[data-mode='light'] div.highlight code,
 html[data-mode='light'] div.highlight .chroma {
-  background: #011627 !important;
-  color: #d6deeb !important;
+  background: #011627;
+  color: #d6deeb;
 }
 
 :root:not([data-mode='light']) div.highlight span,
 html[data-mode='light'] div.highlight span {
-  background: transparent !important;
-  background-color: transparent !important;
+  background: transparent;
+  background-color: transparent;
 }
 
 /* LINE NUMBERS */
@@ -27,7 +27,7 @@ html[data-mode='light'] div.highlight span {
 :root:not([data-mode='light']) div.highlight .ln,
 html[data-mode='light'] div.highlight .lnt,
 html[data-mode='light'] div.highlight .ln {
-  color: #4b6479 !important;
+  color: #4b6479;
 }
 
 /* COMMENTS */
@@ -45,8 +45,8 @@ html[data-mode='light'] div.highlight .c1,
 html[data-mode='light'] div.highlight .cs,
 html[data-mode='light'] div.highlight .cp,
 html[data-mode='light'] div.highlight .cpf {
-  color: #637777 !important;
-  font-style: italic !important;
+  color: #637777;
+  font-style: italic;
 }
 
 /* KEYWORDS */
@@ -62,7 +62,7 @@ html[data-mode='light'] div.highlight .kn,
 html[data-mode='light'] div.highlight .kp,
 html[data-mode='light'] div.highlight .kr,
 html[data-mode='light'] div.highlight .kt {
-  color: #c792ea !important;
+  color: #c792ea;
 }
 
 /* STRINGS */
@@ -94,7 +94,7 @@ html[data-mode='light'] div.highlight .sx,
 html[data-mode='light'] div.highlight .sr,
 html[data-mode='light'] div.highlight .s1,
 html[data-mode='light'] div.highlight .ss {
-  color: #ecc48d !important;
+  color: #ecc48d;
 }
 
 /* NUMBERS */
@@ -112,38 +112,38 @@ html[data-mode='light'] div.highlight .mh,
 html[data-mode='light'] div.highlight .mi,
 html[data-mode='light'] div.highlight .il,
 html[data-mode='light'] div.highlight .mo {
-  color: #f78c6c !important;
+  color: #f78c6c;
 }
 
 /* NAMES */
 :root:not([data-mode='light']) div.highlight .n,
-html[data-mode='light'] div.highlight .n { color: #d6deeb !important; }
+html[data-mode='light'] div.highlight .n { color: #d6deeb; }
 :root:not([data-mode='light']) div.highlight .na,
-html[data-mode='light'] div.highlight .na { color: #addb67 !important; }
+html[data-mode='light'] div.highlight .na { color: #addb67; }
 :root:not([data-mode='light']) div.highlight .nb,
-html[data-mode='light'] div.highlight .nb { color: #addb67 !important; }
+html[data-mode='light'] div.highlight .nb { color: #addb67; }
 :root:not([data-mode='light']) div.highlight .nc,
-html[data-mode='light'] div.highlight .nc { color: #ffcb8b !important; }
+html[data-mode='light'] div.highlight .nc { color: #ffcb8b; }
 :root:not([data-mode='light']) div.highlight .nd,
-html[data-mode='light'] div.highlight .nd { color: #82aaff !important; }
+html[data-mode='light'] div.highlight .nd { color: #82aaff; }
 :root:not([data-mode='light']) div.highlight .nf,
-html[data-mode='light'] div.highlight .nf { color: #82aaff !important; }
+html[data-mode='light'] div.highlight .nf { color: #82aaff; }
 :root:not([data-mode='light']) div.highlight .nn,
-html[data-mode='light'] div.highlight .nn { color: #ffcb8b !important; }
+html[data-mode='light'] div.highlight .nn { color: #ffcb8b; }
 :root:not([data-mode='light']) div.highlight .nx,
-html[data-mode='light'] div.highlight .nx { color: #82aaff !important; }
+html[data-mode='light'] div.highlight .nx { color: #82aaff; }
 
 /* OPERATORS & PUNCTUATION */
 :root:not([data-mode='light']) div.highlight .o,
 :root:not([data-mode='light']) div.highlight .ow,
 html[data-mode='light'] div.highlight .o,
-html[data-mode='light'] div.highlight .ow { color: #c792ea !important; }
+html[data-mode='light'] div.highlight .ow { color: #c792ea; }
 :root:not([data-mode='light']) div.highlight .p,
-html[data-mode='light'] div.highlight .p { color: #d6deeb !important; }
+html[data-mode='light'] div.highlight .p { color: #d6deeb; }
 
 /* BOOLEANS */
 :root:not([data-mode='light']) div.highlight .kc,
-html[data-mode='light'] div.highlight .kc { color: #ff5874 !important; }
+html[data-mode='light'] div.highlight .kc { color: #ff5874; }
 
 /* VARIABLES */
 :root:not([data-mode='light']) div.highlight .nv,
@@ -155,21 +155,21 @@ html[data-mode='light'] div.highlight .nv,
 html[data-mode='light'] div.highlight .vc,
 html[data-mode='light'] div.highlight .vg,
 html[data-mode='light'] div.highlight .vi,
-html[data-mode='light'] div.highlight .vm { color: #addb67 !important; }
+html[data-mode='light'] div.highlight .vm { color: #addb67; }
 
 /* HTML TAGS */
 :root:not([data-mode='light']) div.highlight .nt,
-html[data-mode='light'] div.highlight .nt { color: #ff5874 !important; }
+html[data-mode='light'] div.highlight .nt { color: #ff5874; }
 
 /* ATTRIBUTES */
 :root:not([data-mode='light']) div.highlight .attr,
 :root:not([data-mode='light']) div.highlight .py,
 html[data-mode='light'] div.highlight .attr,
-html[data-mode='light'] div.highlight .py { color: #addb67 !important; }
+html[data-mode='light'] div.highlight .py { color: #addb67; }
 
 /* ERRORS */
 :root:not([data-mode='light']) div.highlight .err,
-html[data-mode='light'] div.highlight .err { color: #ff5874 !important; }
+html[data-mode='light'] div.highlight .err { color: #ff5874; }
 
 
 /* ══════════════════════════════════════════════════════════════
@@ -179,17 +179,17 @@ html[data-mode='light'] div.highlight .err { color: #ff5874 !important; }
 
 /* Borde azul en light mode */
 html[data-mode='light'] .code-block {
-  border-radius: 4px !important;
-  overflow: hidden !important;
+  border-radius: 4px;
+  overflow: hidden;
 }
 
 html[data-mode='light'] .code-header button[aria-label="copy"]:hover {
-  color: #000000 !important;
-  background: rgba(0, 0, 0, 0.10) !important;
+  color: #000000;
+  background: rgba(0, 0, 0, 0.10);
 }
 
 html[data-mode='light'] .code-header button[aria-label="copy"]:hover i {
-  color: #000000 !important;
+  color: #000000;
 }
 
 /* ══════════════════════════════════════════════════════════════
@@ -200,9 +200,9 @@ html[data-mode='light'] .code-header button[aria-label="copy"]:hover i {
 /* Dark mode: Night Owl sobre cualquier inline style */
 :root:not([data-mode='light']) div.highlight span[style],
 html[data-mode='light'] div.highlight span[style] {
-  color: inherit !important;
-  background: transparent !important;
-  background-color: transparent !important;
+  color: inherit;
+  background: transparent;
+  background-color: transparent;
 }
 
 /* Light mode: lo mismo, tus reglas de label toman el control */
