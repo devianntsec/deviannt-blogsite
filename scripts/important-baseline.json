@@ -1,10 +1,8 @@
 {
-  "total": 215,
+  "total": 85,
   "files": {
-    "assets/css/overrides.css": 25,
-    "assets/css/sections/_13-right-panel-toc.scss": 55,
+    "assets/css/overrides.css": 1,
     "assets/css/sections/_16-night-owl-code-theme.scss": 44,
-    "assets/css/sections/_28-misc-hover-fixes-trending-category-page.scss": 51,
     "assets/css/sections/_30-prefers-reduced-motion-focus-visible.scss": 7,
     "assets/css/syntax.css": 33
   }
