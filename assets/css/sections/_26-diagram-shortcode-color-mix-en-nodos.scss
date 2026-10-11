@@ -181,3 +181,8 @@ html[data-mode='light'] .dv-diagram-btn {
     background: rgba(37,99,235,0.06);
   }
 }
+
+/* Altura mínima por defecto (240px, la de antes del style inline). Si el shortcode pide otra
+   (height="..."), site-runtime.js la ajusta con data-dv-height. */
+.dv-diagram-canvas { min-height: 240px; }
+.dv-diagram-svg { min-height: 240px; }

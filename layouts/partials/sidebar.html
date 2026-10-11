@@ -174,24 +174,6 @@
               class="dv-social-icon-box"
               aria-label="email"
               data-email="{{ .id }}"
-              onclick="(function(btn){
-                var email = btn.getAttribute('data-email');
-                var lang = document.documentElement.getAttribute('lang') || 'en';
-                var msg = lang === 'es'
-                  ? '¡' + email + ' copiado al portapapeles!'
-                  : email + ' copied to clipboard!';
-                navigator.clipboard.writeText(email).then(function(){
-                  var t = document.getElementById('dv-copy-toast');
-                  if (!t) {
-                    t = document.createElement('div');
-                    t.id = 'dv-copy-toast';
-                    document.body.appendChild(t);
-                  }
-                  t.textContent = msg;
-                  t.classList.add('visible');
-                  setTimeout(function(){ t.classList.remove('visible'); }, 2500);
-                });
-              })(this)"
             >
               <i class="{{ .icon }}"></i>
             </button>

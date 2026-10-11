@@ -103,3 +103,9 @@ html[data-mode='light'] {
 #toc-popup ul .toc-link:hover {
   color: var(--dv-hover-text);
 }
+
+/* Lista de "Trending Posts" (antes style="font-size: 0.8em" inline, bloqueado por la CSP) */
+#panel-wrapper ul.content.dv-trending-list,
+ul.content.dv-trending-list {
+  font-size: 0.8em;
+}
