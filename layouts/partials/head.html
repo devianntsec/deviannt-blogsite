@@ -54,9 +54,6 @@
   {{ if .Params.toc | default site.Params.toc }}
     <link rel="stylesheet" href="{{ $data.toc.css | relURL }}">
   {{ end }}
-  {{ if or (eq .Type "post") (eq .Type "page") (eq .Kind "home") }}
-    <link rel="stylesheet" href="{{ $data.lazy_polyfill.css | relURL }}">
-  {{ end }}
   {{ if or (eq .Type "page") (eq .Type "post") }}
     <!-- Image Popup -->
     <link rel="stylesheet" href="{{ $data.glightbox.css | relURL }}">
