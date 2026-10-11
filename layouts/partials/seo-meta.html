@@ -6,13 +6,27 @@
 {{ partial "hreflang.html" . }}
 <link rel="canonical" href="{{ .Permalink }}">
 
-{{/* OG image para posts individuales */}}
+{{/* Description para páginas internas (la home la define más abajo) */}}
+{{- $desc := .Description | default .Summary | plainify | truncate 160 -}}
+{{- if and (not .IsHome) $desc }}
+<meta name="description" content="{{ $desc }}">
+{{- end }}
+
+{{/* Posts con portada: OG/Twitter completos (head.html salta los _internal en este caso) */}}
 {{ if and .IsPage .Params.image }}
   {{ $ogImage := .Params.image.path | default .Params.image }}
+  <meta property="og:title" content="{{ .Title }}">
+  <meta property="og:description" content="{{ $desc }}">
+  <meta property="og:url" content="{{ .Permalink }}">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="{{ site.Title }}">
   <meta property="og:image" content="{{ $ogImage }}">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
+  <meta property="article:published_time" content="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ .Title }}">
+  <meta name="twitter:description" content="{{ $desc }}">
   <meta name="twitter:image" content="{{ $ogImage }}">
 {{ end }}
 

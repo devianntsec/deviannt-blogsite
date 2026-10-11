@@ -16,7 +16,7 @@
     name="viewport"
     content="width=device-width, initial-scale=1, viewport-fit=cover"
   >
-  {{- if not .IsHome -}}
+  {{- if and (not .IsHome) (not (and .IsPage .Params.image)) -}}
   {{ template "_internal/opengraph.html" . }}
   {{ template "_internal/twitter_cards.html" . }}
   {{- end -}}

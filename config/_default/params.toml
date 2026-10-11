@@ -4,14 +4,14 @@ toc = true
 avatar = "img/commons/avatar.jpg"
 author = "devianntsec"
 
+# imagen OG por defecto
+images = ["https://blog.deviannt.com/og-image.png"]
+
 # Default theme — always dark for this brand
 defaultTheme = "dark"
 
 description = "Annais Molina Fuentes (devianntsec) — offensive security researcher. CVE teardowns, exploit chains, reverse engineering write-ups."
 
-[params]
-  images = ["https://blog.deviannt.com/og-image.png"]
-  
 [assets]
   # Self-hosted static assets, default to false.
   self_host = true
