@@ -1,0 +1,23 @@
+{{/*
+  Override del partial de fecha del tema Chirpy.
+  El tema usa formato strftime (%b %e, %Y), que time.Format no entiende.
+  Aquí se usa el formato de Go y, para español, los meses se traducen.
+*/}}
+{{ $lang := .lang | default site.Language.Lang }}
+{{ $d := .date }}
+{{ $dayjsFormat := default "DD/MM/YYYY" (i18n "df.post.dayjs") }}
+
+{{ $text := $d.Format "Jan 2, 2006" }}
+{{ if eq $lang "es" }}
+  {{ $meses := dict "Jan" "ene" "Feb" "feb" "Mar" "mar" "Apr" "abr" "May" "may" "Jun" "jun" "Jul" "jul" "Aug" "ago" "Sep" "sep" "Oct" "oct" "Nov" "nov" "Dec" "dic" }}
+  {{ $text = printf "%d %s %d" $d.Day (index $meses ($d.Format "Jan")) $d.Year }}
+{{ end }}
+
+<time
+  {{ if .class }}class="{{ .class }}"{{ end }}
+  data-ts="{{ $d.Unix }}"
+  data-df="{{ $dayjsFormat }}"
+  {{ if .tooltip }}data-bs-toggle="tooltip" data-bs-placement="bottom"{{ end }}
+>
+  {{ $text }}
+</time>
