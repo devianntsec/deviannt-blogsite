@@ -1,7 +1,7 @@
 /*
  * assets/css/overrides.css
  * Parches CSS acumulados por sucesivos ajustes (antes <style> inline
- * en metadata-hook.html). Casi todo lleva !important porque pisa reglas
+ * en metadata-hook.html). Casi todo lleva porque pisa reglas
  * del tema Chirpy con selectores de igual o mayor especificidad — se
  * respetó tal cual para no cambiar comportamiento visual al migrar.
  */
@@ -12,14 +12,14 @@
 /* Topbar title: una sola línea, font-size pequeño, sin recorte */
   @media (max-width: 849px) {
     #topbar-title {
-      font-size: 0.72rem !important;
-      white-space: nowrap !important;
-      overflow: hidden !important;
-      text-overflow: ellipsis !important;
-      max-width: calc(100vw - 100px) !important;
-      flex: 1 1 0 !important;
-      min-width: 0 !important;
-      text-align: center !important;
+      font-size: 0.72rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: calc(100vw - 100px);
+      flex: 1 1 0;
+      min-width: 0;
+      text-align: center;
     }
   }
 
@@ -29,34 +29,34 @@
      ============================================================ */
   html.light #search,
   html.light search#search {
-    width: 100% !important;
-    border-radius: 1rem !important;
-    border: 1px solid #DEE2E6 !important;
-    background: #FFFFFF !important;
-    padding: 0 0.5rem !important;
-    box-shadow: none !important;
+    width: 100%;
+    border-radius: 1rem;
+    border: 1px solid #DEE2E6;
+    background: #FFFFFF;
+    padding: 0 0.5rem;
+    box-shadow: none;
   }
   @media (min-width: 850px) {
     html.light #search,
     html.light search#search {
-      display: flex !important;
+      display: flex;
     }
   }
   html.light #search i,
   html.light search#search i {
-    color: #1E3A5F !important;
-    opacity: 1 !important;
+    color: #1E3A5F;
+    opacity: 1;
   }
   html.light #search-input {
-    background: transparent !important;
-    border: none !important;
-    color: #1E3A5F !important;
-    font-family: 'JetBrains Mono', monospace !important;
+    background: transparent;
+    border: none;
+    color: #1E3A5F;
+    font-family: 'JetBrains Mono', monospace;
   }
   html.light #search-input::placeholder {
-    color: #94A3B8 !important;
+    color: #94A3B8;
   }
   html.light #search-input:focus {
-    outline: none !important;
-    box-shadow: none !important;
+    outline: none;
+    box-shadow: none;
   }
