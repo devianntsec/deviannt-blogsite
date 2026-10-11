@@ -84,7 +84,7 @@ div.highlight :is(.nt, .nn, .na, .nf, .nc, .nb, .ni, .n, .no, .nd, .ne, .nx,
   .s, .s1, .s2, .sd, .se, .si, .sx, .sr, .ss, .sb, .sc, .sh,
   .l, .ld, .ge, .gs, .gu, .gt, .gl, .gd, .gi, .gr, .gh, .go, .gp,
   .c, .c1, .cm, .cs, .cp, .cpf, .ch, .line, .cl) {
-  color: #d6deeb !important;
+  color: #d6deeb;
 }
 
 html[data-mode='light'] div.code-block div.highlight,
