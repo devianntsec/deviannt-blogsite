@@ -1,0 +1,1 @@
+(function(){try{var m=localStorage.getItem('dv-mode');m=(m==='light')?'light':'dark';var d=document.documentElement;d.classList.remove('dark','light');d.classList.add(m);d.setAttribute('data-mode',m);sessionStorage.setItem('mode',m);}catch(e){document.documentElement.setAttribute('data-mode','dark');}})();
