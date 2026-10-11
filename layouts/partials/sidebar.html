@@ -91,6 +91,12 @@
           {{ $otherUrl = .Permalink }}
         {{ end }}
 
+        {{/* La home inglesa pasa por /?lang=en: el Worker guarda la elección y evita
+             que la regla de idioma te devuelva a /es/. */}}
+        {{ if or (eq $otherUrl $siteBase) (eq $otherUrl (printf "%s/" $siteBase)) }}
+          {{ $otherUrl = printf "%s/?lang=%s" $siteBase $otherLangCode }}
+        {{ end }}
+
 <li class="nav-item mt-4"><a class="nav-link" href="{{ $otherUrl }}" hreflang="{{ $otherLangCode }}" lang="{{ $otherLangCode }}" data-hard-nav="true" data-set-lang="{{ $otherLangCode }}"><i class="fa-fw fas fa-language"></i><span>{{ $otherLangName | upper }}</span></a></li>
       {{ end }}
 
