@@ -33,7 +33,7 @@
           <img src="{{ .Site.Params.avatar | absURL }}"
                width="112" height="112"
                alt="avatar"
-               onerror="this.style.display='none'">
+               decoding="async">
         {{- end -}}
       </a>
     </div>
@@ -67,10 +67,9 @@
       {{ end }}
 
 
-      {{/* ── Language Toggle ──────────────────────────────
-           Uses data-hard-nav="true" so the soft-nav engine skips it
-           and JS's resolveLanguageUrl does a HEAD check first to
-           find whether the translated post exists before redirecting.
+      {{/* ── Language Toggle ──
+           Enlace nativo: .Translations de Hugo (si no hay traducción, home del otro idioma).
+           data-hard-nav evita el soft-nav; data-set-lang guarda la cookie blog_lang.
       ── */}}
       {{ if hugo.IsMultilingual }}
         {{ $currentLang  := .Site.Language.Lang }}
@@ -92,7 +91,7 @@
           {{ $otherUrl = .Permalink }}
         {{ end }}
 
-<li class="nav-item mt-4"><a class="nav-link" href="{{ $otherUrl }}" data-hard-nav="true" data-lang-url="{{ $otherUrl }}" data-lang-fallback="{{ if eq $currentLang "es" }}{{ $siteBase }}{{ else }}{{ printf "%s/es/" $siteBase }}{{ end }}" onclick="document.cookie='blog_lang={{ $otherLangCode }};path=/;max-age=31536000'"><i class="fa-fw fas fa-language"></i><span>{{ $otherLangName | upper }}</span></a></li>
+<li class="nav-item mt-4"><a class="nav-link" href="{{ $otherUrl }}" hreflang="{{ $otherLangCode }}" lang="{{ $otherLangCode }}" data-hard-nav="true" data-set-lang="{{ $otherLangCode }}"><i class="fa-fw fas fa-language"></i><span>{{ $otherLangName | upper }}</span></a></li>
       {{ end }}
 
 

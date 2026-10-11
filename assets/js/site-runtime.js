@@ -44,39 +44,15 @@
     sessionStorage.setItem('dv-lang', currentLang);
   } catch(e) {}
 
-  try {
-    var cachedAvatar = localStorage.getItem('dv-avatar');
-    if (cachedAvatar) {
-      document.addEventListener('DOMContentLoaded', function() {
-        var img = document.querySelector('#avatar img[data-avatar-src]');
-        if (img) img.src = cachedAvatar;
-      });
-    }
-  } catch(e) {}
+  /* Limpia la caché de avatar de versiones anteriores (ya no se usa). */
+  try { localStorage.removeItem('dv-avatar'); } catch(e) {}
 
-  document.addEventListener('DOMContentLoaded', function() {
-    var siteTitle = document.querySelector('#sidebar .site-title');
-    if (siteTitle) siteTitle.style.display = 'none';
-
-    var img = document.querySelector('#avatar img[data-avatar-src]');
-    if (!img) return;
-    try { if (localStorage.getItem('dv-avatar')) return; } catch(e) {}
-
-    var realSrc = img.getAttribute('data-avatar-src');
-    img.src = realSrc;
-    fetch(realSrc)
-      .then(function(res) { return res.blob(); })
-      .then(function(blob) {
-        var reader = new FileReader();
-        reader.onloadend = function() {
-          var dataUrl = reader.result;
-          try { localStorage.setItem('dv-avatar', dataUrl); } catch(e) {}
-          img.src = dataUrl;
-        };
-        reader.readAsDataURL(blob);
-      })
-      .catch(function() {});
-  });
+  /* Idioma: guarda la preferencia sin bloquear la navegación nativa del enlace. */
+  document.addEventListener('click', function(e) {
+    var a = e.target.closest && e.target.closest('a[data-set-lang]');
+    if (!a) return;
+    try { document.cookie = 'blog_lang=' + a.getAttribute('data-set-lang') + ';path=/;max-age=31536000;SameSite=Lax'; } catch(err) {}
+  }, true);
 })();
 
 (function () {
@@ -320,49 +296,6 @@
   /* ------------------------------------------------------------
      SOFT NAVIGATION
   ------------------------------------------------------------ */
-  function resolveLanguageUrl(langLink, callback) {
-    var langUrl      = langLink.getAttribute('data-lang-url')      || '';
-    var langFallback = langLink.getAttribute('data-lang-fallback') || '';
-    var currentPath  = location.pathname;
-
-    if (langUrl) {
-      try {
-        var langUrlPath = new URL(langUrl, location.origin).pathname;
-        var isHomePath = /^\/(es|en)?\/?$/.test(langUrlPath);
-        if (!isHomePath) {
-          fetch(langUrl, { method: 'HEAD', redirect: 'follow' })
-            .then(function(res) {
-              callback(res.ok ? langUrl : langFallback);
-            })
-            .catch(function() { callback(langFallback); });
-          return;
-        }
-      } catch(e) {}
-    }
-
-    var currentLang = /^\/es(\/|$)/.test(currentPath) ? 'es' : 'en';
-    var otherLang   = currentLang === 'es' ? 'en' : 'es';
-
-    var slugPath = currentPath;
-    slugPath = slugPath.replace(/^\/(es|en)\//, '/');
-    slugPath = slugPath.replace(/\/$/, '');
-    slugPath = slugPath.replace(/^\//, '');
-
-    if (!slugPath) { callback(langFallback); return; }
-
-    var candidatePath = otherLang === 'es'
-      ? '/es/' + slugPath + '/'
-      : '/'    + slugPath + '/';
-
-    var candidateUrl = location.origin + candidatePath;
-
-    fetch(candidateUrl, { method: 'HEAD', redirect: 'follow' })
-      .then(function(res) {
-        callback(res.ok ? candidateUrl : langFallback);
-      })
-      .catch(function() { callback(langFallback); });
-  }
-
   function scrollToAnchor(hash) {
     var id = decodeURIComponent(hash.replace(/^#/, ''));
     var target = document.getElementById(id);
@@ -395,11 +328,7 @@
 
     if (a.getAttribute('data-hard-nav') === 'true') {
       e.preventDefault();
-      if (a.getAttribute('data-lang-url')) {
-        resolveLanguageUrl(a, function(url) { location.href = url; });
-      } else if (href) {
-        location.href = href;
-      }
+      if (href) location.href = href;
       return;
     }
     if (!href) return;
