@@ -8,10 +8,8 @@
  *   - limpia la caché de avatar antigua y guarda la preferencia blog_lang al cambiar de idioma
  *
  * IIFE #2 (interacciones, se activa en load/DOMContentLoaded):
- *   - animación del título (dv-title-name)
  *   - toggle de tema (#mode-toggle)
  *   - anclas con offset de TOC
- *   - guard de TOC visible
  *
  * Nota: el router soft-nav ya no existe; la navegación es nativa del navegador.
  */
@@ -52,147 +50,6 @@
 
 (function () {
 
-  var __tocObserver = null;
-
-  function ensureTocVisible() {
-    var toc = document.getElementById('toc-wrapper');
-    if (!toc) return;
-    toc.classList.remove('invisible');
-    toc.style.setProperty('visibility', 'visible', 'important');
-    toc.style.setProperty('opacity',    '1',        'important');
-    if (__tocObserver) { __tocObserver.disconnect(); __tocObserver = null; }
-    __tocObserver = new MutationObserver(function() {
-      toc.classList.remove('invisible');
-      toc.style.setProperty('visibility', 'visible', 'important');
-      toc.style.setProperty('opacity',    '1',       'important');
-    });
-    __tocObserver.observe(toc, {
-      attributes:      true,
-      attributeFilter: ['style', 'class']
-    });
-  }
-
-  window.addEventListener('load', function() {
-    ensureTocVisible();
-    setTimeout(ensureTocVisible, 600);
-  });
-
-  /* ------------------------------------------------------------
-     TITLE ANIMATION
-  ------------------------------------------------------------ */
-  var NAV_PATTERNS = [
-    /^\/$/, /^\/en\/$/, /^\/es\/$/,
-    /^\/about/, /^\/archives/, /^\/categories/,
-    /^\/tags/, /^\/404/
-  ];
-
-  function isPostPath(path) {
-    return !NAV_PATTERNS.some(function(re) { return re.test(path); });
-  }
-
-  function getMetrics() {
-    var wrap = document.querySelector('.dv-title-name');
-    if (!wrap) return null;
-    var wRect = wrap.getBoundingClientRect();
-    var WP = wRect.width + 10;
-    var H  = wRect.height;
-    return {
-      WP:     WP,
-      barEnd: (WP - 4)  + 'px',
-      dotEnd: (WP - 14) + 'px',
-      hlH:    (H - 10)  + 'px',
-      barR:   wrap.querySelector('.dv-bar-r'),
-      dotBr:  wrap.querySelector('.dv-dot-br'),
-      hl:     wrap.querySelector('.dv-highlight'),
-      base:   wrap.querySelector('.dv-base'),
-    };
-  }
-
-  function getTitleColors() {
-    var isLight = document.documentElement.classList.contains('light') ||
-                  document.documentElement.getAttribute('data-mode') === 'light';
-    return isLight
-      ? { base: 'rgba(37,99,235,0.18)', hl: 'rgba(37,99,235,0.38)' }
-      : { base: 'rgba(59,130,246,0.35)', hl: 'rgba(59,130,246,0.55)' };
-  }
-
-  function applyFinalState() {
-    var m = getMetrics();
-    if (!m || !m.barR) return;
-    var colors = getTitleColors();
-
-    m.base.removeAttribute('style');
-    m.hl.removeAttribute('style');
-    m.barR.removeAttribute('style');
-    m.dotBr.removeAttribute('style');
-
-    m.base.style.setProperty('background',      colors.base, 'important');
-    m.base.style.setProperty('position',        'absolute',  'important');
-    m.base.style.setProperty('left',            '0',         'important');
-    m.base.style.setProperty('top',             '2px',       'important');
-    m.base.style.setProperty('bottom',          '2px',       'important');
-    m.base.style.setProperty('z-index',         '0',         'important');
-    m.base.style.setProperty('opacity',         '1',         'important');
-    m.base.style.setProperty('pointer-events',  'none',      'important');
-    m.base.style.setProperty('width',           m.WP + 'px', 'important');
-
-    m.barR.style.setProperty('left',       m.barEnd,          'important');
-    m.dotBr.style.setProperty('left',      m.dotEnd,          'important');
-    m.dotBr.style.setProperty('transform', 'translateX(50%)', 'important');
-    m.barR.style.setProperty('visibility',  'visible',        'important');
-    m.dotBr.style.setProperty('visibility', 'visible',        'important');
-  }
-
-  function runAnimate() {
-    var m = getMetrics();
-    if (!m || !m.barR) return;
-    var colors = getTitleColors();
-
-    m.base.removeAttribute('style');
-    m.hl.removeAttribute('style');
-    m.barR.removeAttribute('style');
-    m.dotBr.removeAttribute('style');
-
-    m.barR.style.left = '0px';
-    m.dotBr.style.left = '0px';
-    m.dotBr.style.transform = 'translateX(50%)';
-    m.barR.style.visibility = 'visible';
-    m.dotBr.style.visibility = 'visible';
-
-    m.barR.style.transition = 'left 0.7s cubic-bezier(0.4, 0, 0.2, 1) 0.1s';
-    m.dotBr.style.transition = 'left 0.7s cubic-bezier(0.4, 0, 0.2, 1) 0.1s';
-
-    m.base.style.cssText = 'position:absolute!important;left:0!important;top:2px!important;' +
-      'width:0!important;height:' + m.hlH + 'px!important;' +
-      'background:' + colors.base + '!important;z-index:0!important;' +
-      'opacity:1;pointer-events:none!important;' +
-      'transition:width 0.7s cubic-bezier(0.4,0,0.2,1) 0.1s!important';
-
-    m.hl.style.cssText = 'position:absolute!important;left:0!important;top:2px!important;' +
-      'width:0!important;height:' + m.hlH + 'px!important;' +
-      'background:' + colors.hl + '!important;z-index:1!important;' +
-      'pointer-events:none!important;' +
-      'transition:width 0.7s cubic-bezier(0.4,0,0.2,1) 0.1s!important';
-
-    void m.hl.offsetWidth;
-    void m.base.offsetWidth;
-
-    requestAnimationFrame(function() {
-      m.hl.style.width = m.WP + 'px';
-      m.base.style.width = m.WP + 'px';
-      m.barR.style.left = m.barEnd;
-      m.dotBr.style.left = m.dotEnd;
-    });
-  }
-
-  function initTitle(animate) {
-    if (animate) {
-      runAnimate();
-    } else {
-      applyFinalState();
-    }
-  }
-
   /* ------------------------------------------------------------
      THEME TOGGLE - solo cambia el modo, sin JS innecesario
   ------------------------------------------------------------ */
@@ -224,9 +81,6 @@
 
     btn.addEventListener('click', function() {
       applyMode(currentMode() === 'dark' ? 'light' : 'dark');
-      requestAnimationFrame(function() {
-        requestAnimationFrame(function() { initTitle(false); });
-      });
     });
   }
 
@@ -285,15 +139,7 @@
   });
 
   window.addEventListener('load', function() {
-    requestAnimationFrame(function() {
-      requestAnimationFrame(function() {
-        var animate = isPostPath(location.pathname) ||
-                      /^\/$|^\/en\/$|^\/es\/$/.test(location.pathname);
-        initTitle(animate);
-        initThemeToggle();
-        setTimeout(ensureTocVisible, 600);
-      });
-    });
+    initThemeToggle();
   });
 })();
 

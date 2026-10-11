@@ -5,10 +5,6 @@
  * del tema Chirpy con selectores de igual o mayor especificidad — se
  * respetó tal cual para no cambiar comportamiento visual al migrar.
  */
-  .dv-bar-r, .dv-dot-br { visibility: hidden; }
-  .dv-base    { opacity: 0; }
-  .dv-highlight { width: 0 !important; }
-
 /* Topbar title: una sola línea, font-size pequeño, sin recorte */
   @media (max-width: 849px) {
     #topbar-title {

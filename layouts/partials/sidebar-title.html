@@ -3,8 +3,7 @@
   ─────────────────────────────────────────────────────────────
   Renders the animated "deviannt" title in the sidebar.
 
-  All child spans are positioned by CSS (custom.scss §7) and
-  animated by JS (metadata-hook.html → runAnimate / applyFinalState).
+  All child spans are positioned and animated by CSS (_06-sidebar-animated-title.scss).
 
   Span roles:
     .dv-base      — Full-width low-opacity blue rectangle, fades in
@@ -18,18 +17,15 @@
     .dv-dot-br    — Bottom-right blue dot that slides with .dv-bar-r.
     .dv-text      — The visible "deviannt" text, sits on top (z-index).
 
-  On nav pages (home, archives, categories, tags, about, 404):
-    → applyFinalState() is called — all elements snap to their
-      final positions immediately, no animation.
-
-  On post pages:
-    → runAnimate() is called — the highlight bar sweeps in with
-      a 900ms cubic-bezier ease after a 500ms delay.
+  .dv-title-name--animate (home y posts) activa el barrido; en el resto de páginas
+  el título aparece directamente en su estado final.
 */}}
 
+{{/* Barrido solo en la home y en los posts (content/post/...); el resto de páginas muestra el título ya en su estado final. */}}
+{{ $animate := or .IsHome (eq .Section "post") }}
 <div class="site-title-deviannt">
   <a href="{{ .Site.Home.RelPermalink }}">
-    <span class="dv-title-name">
+    <span class="dv-title-name{{ if $animate }} dv-title-name--animate{{ end }}">
       <span class="dv-base"></span>
       <span class="dv-highlight"></span>
       <span class="dv-bar-l"></span>
