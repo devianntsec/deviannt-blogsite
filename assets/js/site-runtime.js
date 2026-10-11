@@ -14,17 +14,6 @@
  * Nota: el router soft-nav ya no existe; la navegación es nativa del navegador.
  */
 (function(){
-  try {
-    var saved = localStorage.getItem('dv-mode');
-    if (saved === 'light' || saved === 'dark') {
-      document.documentElement.classList.remove('dark', 'light');
-      document.documentElement.classList.add(saved);
-      document.documentElement.setAttribute('data-mode', saved);
-    } else {
-      document.documentElement.setAttribute('data-mode', 'dark');
-    }
-  } catch(e) {}
-
   if (document.querySelector('meta[name="dv-404"]')) {
     try {
       var lastLang = sessionStorage.getItem('dv-lang');
@@ -76,10 +65,10 @@
      THEME TOGGLE - solo cambia el modo, sin JS innecesario
   ------------------------------------------------------------ */
   function applyMode(next) {
-    try { localStorage.setItem('dv-mode', next); sessionStorage.setItem('mode', next); } catch(e) {}
-    document.documentElement.classList.remove('dark', 'light');
-    document.documentElement.classList.add(next);
+    try { localStorage.setItem('dv-mode', next); } catch(e) {}
     document.documentElement.setAttribute('data-mode', next);
+    var tc = document.querySelector('meta[name="theme-color"]');
+    if (tc) tc.setAttribute('content', tc.getAttribute('data-' + next) || tc.getAttribute('content'));
     var val = document.querySelector('#mode-toggle .dv-theme-select__val');
     if (val) val.textContent = next;
   }
