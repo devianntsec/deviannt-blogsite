@@ -2,18 +2,34 @@
    La URL del índice y el texto 'sin resultados' llegan por data-* de #search-results. */
   const DEFAULT_CONFIG = {
     search: {
-      minChars: 1,              // 最小字符数
-      maxResults: 5,            // 最大结果数
-      fields: {                 // 搜索字段
+      minChars: 1,              // Mínimo de caracteres para buscar
+      maxResults: 5,            // Máximo de resultados a mostrar
+      fields: {                 // Campos en los que se busca
         title: true,
         description: true,
         section: true,
         contents: true
       },
-      // 简化搜索配置
-      strictMode: true          // 严格模式：只返回精确匹配结果
+      // Configuración de búsqueda simplificada
+      strictMode: true          // Modo estricto: solo devuelve coincidencias exactas
     }
   };
+
+  // Mostrar la vista de resultados y ocultar el contenido de la página
+  function showResultsView() {
+    const wrap = document.getElementById('search-result-wrapper');
+    if (wrap) wrap.style.display = 'block';
+    document.querySelectorAll('#main-wrapper > .container > .row')
+      .forEach(el => el.classList.add('d-none'));
+  }
+
+  // Ocultar la vista de resultados y restaurar el contenido de la página
+  function hideResultsView() {
+    const wrap = document.getElementById('search-result-wrapper');
+    if (wrap) wrap.style.display = 'none';
+    document.querySelectorAll('#main-wrapper > .container > .row')
+      .forEach(el => el.classList.remove('d-none'));
+  }
 
   class FastSearch {
     constructor({
@@ -26,7 +42,7 @@
       this.json = json;
       this.searchResultTemplate = searchResultTemplate;
       this.noResultsText = noResultsText;
-      
+
       this.init();
     }
 
@@ -34,31 +50,31 @@
       this.loadSearchIndex();
       this.searchInput.addEventListener('input', (event) => {
         if (!this.searchIndex) {
-          this.resultsContainer.innerHTML = '<li class="search-message">Loading search index...</li>';
+          this.resultsContainer.innerHTML = '<li class="search-message">Cargando índice de búsqueda...</li>';
           return;
         }
         this.performSearch(this.searchInput.value);
       });
     }
 
-    // Load the search index
+    // Carga el índice de búsqueda
     async loadSearchIndex() {
       try {
         const response = await fetch(this.json);
-        if (!response.ok) throw new Error('Failed to load search index');
+        if (!response.ok) throw new Error('No se pudo cargar el índice de búsqueda');
         const data = await response.json();
-        
+
         this.searchIndex = data.map(item => ({
           ...item,
-          // 转换为小写以进行不区分大小写的搜索
+          // Convierte a minúsculas para búsqueda sin distinguir mayúsculas
           searchableTitle: item.title?.toLowerCase() || '',
           searchableDesc: item.desc?.toLowerCase() || '',
           searchableSection: item.section?.toLowerCase() || '',
           searchableContents: item.contents?.toLowerCase() || ''
         }));
-        } catch (error) {
-          console.error('Error loading search index:', error);
-        this.resultsContainer.innerHTML = '<li class="search-message">Error loading search index...</li>';
+      } catch (error) {
+        console.error('Error al cargar el índice de búsqueda:', error);
+        this.resultsContainer.innerHTML = '<li class="search-message">Error al cargar el índice de búsqueda...</li>';
       }
     }
 
@@ -71,61 +87,62 @@
         .replace(/"/g, "&quot;")
         .replace(/'/g, "&#039;");
     }
-    
-    // 检测文本是否包含查询术语 - 使用严格的精确匹配
+
+    // Comprueba si el texto contiene el término (coincidencia exacta)
     containsTerm(text, term) {
       if (!text || !term) return false;
       return text.includes(term);
     }
 
     performSearch(query) {
-      // 清理和标准化查询
+      // Limpia y normaliza la consulta
       query = query.toLowerCase().trim();
-      
-      // 检查查询是否有效
+
+      // Comprueba si la consulta es válida
       if (!query || !this.searchIndex || query.length < DEFAULT_CONFIG.search.minChars) {
         this.resultsContainer.innerHTML = '';
+        hideResultsView();
         return;
       }
 
-      // 使用空格分隔查询词（对多语言适用）
+      // Separa la consulta en palabras (útil para varios idiomas)
       const searchTerms = [
-        query, // 保留整个查询字符串作为必须匹配的项
-        ...query.split(/\s+/).filter(term => term.length > 0) // 添加单独的词
+        query, // La consulta completa, que debe coincidir siempre
+        ...query.split(/\s+/).filter(term => term.length > 0) // Cada palabra por separado
       ];
-      
-      // 去重
+
+      // Elimina duplicados
       const uniqueTerms = [...new Set(searchTerms)];
-      
-      // 要求完整查询必须匹配的标志
+
+      // Indica si la consulta completa debe coincidir
       const requireFullQueryMatch = DEFAULT_CONFIG.search.strictMode;
-      
-      // 搜索
+
+      // Búsqueda
       const results = this.searchIndex
         .map(item => {
-          // 首先检查完整查询是否匹配（严格模式下必须匹配）
+          // Comprueba primero si la consulta completa coincide (obligatorio en modo estricto)
           const fullQueryMatched = this.checkFieldsForMatch(item, uniqueTerms[0]);
-          
-          // 如果启用了严格模式且完整查询未匹配，则跳过此项
+
+          // Si el modo estricto está activo y la consulta completa no coincide, se descarta
           if (requireFullQueryMatch && !fullQueryMatched) {
             return { item, score: 0, matched: false };
           }
-          
-          // 计算匹配得分
+
+          // Calcula la puntuación
           let score = 0;
           let matchedTermsCount = 0;
           let matchedInTitle = false;
-          
-          // 检查每个词的匹配情况
+
+          // Revisa la coincidencia de cada término
           uniqueTerms.forEach((term, index) => {
-            // 对于整个查询字符串(index=0)，给予更高权重
+            // La consulta completa (index=0) tiene más peso
             const isFullQuery = index === 0;
             const matched = this.checkFieldsForMatch(item, term);
-            
+
             if (matched) {
               matchedTermsCount++;
-              
-              // 基于匹配位置计算得分
+
+              // Suma puntos según el campo donde coincide
               if (matched.inTitle) {
                 score += isFullQuery ? 10 : 5;
                 matchedInTitle = true;
@@ -141,17 +158,17 @@
               }
             }
           });
-          
-          // 计算匹配率
+
+          // Proporción de términos que coinciden
           const matchRatio = matchedTermsCount / uniqueTerms.length;
-          
-          // 最终得分计算
+
+          // Puntuación final
           const finalScore = score * matchRatio * (matchedInTitle ? 1.5 : 1);
-          
+
           return {
             item,
             score: finalScore,
-            matched: fullQueryMatched // 只有完整查询匹配才视为有效
+            matched: fullQueryMatched // Solo es válido si coincide la consulta completa
           };
         })
         .filter(result => result.matched)
@@ -159,9 +176,10 @@
         .slice(0, DEFAULT_CONFIG.search.maxResults)
         .map(result => result.item);
 
-      // 显示结果
+      // Muestra los resultados
       if (results.length === 0) {
-        this.resultsContainer.innerHTML = '<p class="mt-5">' + this.escapeHtml(this.noResultsText || 'No results found.') + '</p>';
+        this.resultsContainer.innerHTML = '<p class="mt-5">' + this.escapeHtml(this.noResultsText || 'No se encontraron resultados.') + '</p>';
+        showResultsView();
         return;
       }
 
@@ -189,11 +207,12 @@
         </article>
       `;
       }).join('');
-      
+
       this.resultsContainer.innerHTML = searchItems;
+      showResultsView();
     }
-    
-    // 检查一个词是否匹配指定项的任何字段
+
+    // Comprueba si un término coincide con algún campo del elemento
     checkFieldsForMatch(item, term) {
       const matches = {
         inTitle: false,
@@ -201,30 +220,30 @@
         inSection: false,
         inContents: false
       };
-      
-      // 检查各个字段
+
+      // Revisa cada campo
       if (DEFAULT_CONFIG.search.fields.title && this.containsTerm(item.searchableTitle, term)) {
         matches.inTitle = true;
       }
-      
+
       if (DEFAULT_CONFIG.search.fields.description && this.containsTerm(item.searchableDesc, term)) {
         matches.inDesc = true;
       }
-      
+
       if (DEFAULT_CONFIG.search.fields.section && this.containsTerm(item.searchableSection, term)) {
         matches.inSection = true;
       }
-      
+
       if (DEFAULT_CONFIG.search.fields.contents && this.containsTerm(item.searchableContents, term)) {
         matches.inContents = true;
       }
-      
-      // 如果任何字段匹配，则返回匹配信息
+
+      // Si algún campo coincide, devuelve la información de coincidencia
       if (matches.inTitle || matches.inDesc || matches.inSection || matches.inContents) {
         return matches;
       }
-      
-      // 否则返回false
+
+      // Si no coincide ningún campo, devuelve false
       return false;
     }
   }
