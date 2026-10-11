@@ -68,6 +68,7 @@ copyFile(join(NM, "dayjs/dayjs.min.js"), join(OUT, "dayjs/dayjs.min.js"));
 copyFile(join(NM, "dayjs/locale/en.js"), join(OUT, "dayjs/locale/en.js"));
 copyFile(join(NM, "dayjs/plugin/relativeTime.js"), join(OUT, "dayjs/plugin/relativeTime.js"));
 copyFile(join(NM, "dayjs/plugin/localizedFormat.js"), join(OUT, "dayjs/plugin/localizedFormat.js"));
+copyFile(join(NM, "dayjs/plugin/utc.js"), join(OUT, "dayjs/plugin/utc.js"));
 // Si usas otros idiomas en el sitio, agrega aquí más locales, p.ej.:
 // copyFile(join(NM, "dayjs/locale/es.js"), join(OUT, "dayjs/locale/es.js"));
 
