@@ -159,7 +159,7 @@
         email     → clipboard copy with bilingual toast
         anything  → {id} as-is (already a full URL in params.toml)
     */}}
-    <div class="dv-social-icons" style="border-top: 1px solid rgba(59,130,246,0.1); padding-top: 0.75rem; margin-top: 0;">
+    <div class="dv-social-icons">
       {{ range .Site.Params.social.links }}
         {{ if not (eq .type "instagram") }}
 

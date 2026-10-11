@@ -23,6 +23,8 @@ html[data-mode='light'] .dv-social-only { border-top: 1px solid var(--border-col
 html[data-mode='light'] .dv-social-icons { border-top: 1px solid var(--border-color) !important; }
 
 .dv-social-icon-box {
+  cursor: pointer;
+  padding: 0;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
