@@ -52,3 +52,16 @@
 @media (min-width: 1200px) { :root { --dv-topbar-panel: #{$panel-width}; } }
 @media (min-width: 1400px) { :root { --dv-topbar-gap: 3rem; } }
 @media (min-width: 1650px) { :root { --dv-topbar-panel: #{$panel-width-lg}; } }
+
+/* Anclas (#hash): scroll nativo. Reemplaza a scrollToAnchor de site-runtime.js.
+   3.5rem = topbar (3rem) + 0.5rem de aire, igual que el calculo anterior en movil.
+   :target (0,1,0) gana a los scroll-margin de h2..h4 del tema (selectores de
+   elemento, 0,0,1) sin necesitar !important. */
+:target {
+  scroll-margin-top: 3.5rem;
+}
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}

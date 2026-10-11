@@ -96,58 +96,9 @@
   }
 
   /* ------------------------------------------------------------
-     SOFT NAVIGATION
+     ANCLAS (#hash): las resuelve el navegador (scroll, foco, :target).
+     El desplazamiento y el smooth scroll viven en _04-topbar.scss.
   ------------------------------------------------------------ */
-  function scrollToAnchor(hash) {
-    var id = decodeURIComponent(hash.replace(/^#/, ''));
-    var target = document.getElementById(id);
-    if (!target) {
-      target = document.querySelector('[id="' + id.replace(/"/g, '\\"') + '"]');
-    }
-    if (!target) return false;
-
-    var offset = 0;
-    var tocBar = document.getElementById('toc-bar');
-    if (tocBar && !tocBar.classList.contains('invisible')) {
-      var tocBarStyle = window.getComputedStyle(tocBar);
-      if (tocBarStyle.position === 'sticky' || tocBarStyle.position === 'fixed') {
-        offset = tocBar.getBoundingClientRect().height || 0;
-      }
-    }
-
-    var top = target.getBoundingClientRect().top + window.pageYOffset - offset - 8;
-    window.scrollTo({ top: top, behavior: 'smooth' });
-    history.pushState(null, '', hash);
-    return true;
-  }
-
-  document.addEventListener('click', function(e) {
-    if (e.defaultPrevented) return;
-    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
-    var a = e.target.closest('a');
-    if (!a) return;
-    var href = a.getAttribute('href');
-
-    if (!href) return;
-
-    if (href.charAt(0) === '#') {
-      e.preventDefault();
-      scrollToAnchor(href);
-      return;
-    }
-
-    var fullUrl;
-    try { fullUrl = new URL(href, location.href); } catch(err) { return; }
-    if (fullUrl.origin !== location.origin || a.target === '_blank' || a.hasAttribute('download')) return;
-
-    var norm = function(p) { return decodeURIComponent(p).replace(/\/$/, '').toLowerCase(); };
-    if (fullUrl.hash && norm(fullUrl.pathname) === norm(location.pathname)) {
-      e.preventDefault();
-      scrollToAnchor(fullUrl.hash);
-      return;
-    }
-
-  });
 
   window.addEventListener('load', function() {
     initThemeToggle();
