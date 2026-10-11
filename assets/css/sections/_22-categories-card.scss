@@ -12,15 +12,15 @@
     font-family: $font-heading;
     font-size: 0.92rem;
     font-weight: 500;
-    color: var(--text-color) !important;
-    text-decoration: none !important;
+    color: var(--text-color);
+    text-decoration: none;
   }
   .card-header {
     background: var(--dv-cat-header-bg);
-    border-bottom: 1px solid var(--dv-cat-header-border) !important;
+    border-bottom: 1px solid var(--dv-cat-header-border);
   }
 }
 html[data-mode='light'] .card.categories.mb-3 {
-  border-color: var(--border-color) !important;
-  small, span { color: var(--text-muted) !important; }
+  border-color: var(--border-color);
+  small, span { color: var(--text-muted); }
 }
