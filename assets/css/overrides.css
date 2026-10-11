@@ -23,8 +23,8 @@
      ESTILOS DEL BUSCADOR (extraídos de forceLinkEmButtonCardsLists)
      Solo se aplican en modo claro.
      ============================================================ */
-  html.light #search,
-  html.light search#search {
+  html[data-mode="light"] #search,
+  html[data-mode="light"] search#search {
     width: 100%;
     border-radius: 1rem;
     border: 1px solid #DEE2E6;
@@ -33,26 +33,26 @@
     box-shadow: none;
   }
   @media (min-width: 850px) {
-    html.light #search,
-    html.light search#search {
+    html[data-mode="light"] #search,
+    html[data-mode="light"] search#search {
       display: flex;
     }
   }
-  html.light #search i,
-  html.light search#search i {
+  html[data-mode="light"] #search i,
+  html[data-mode="light"] search#search i {
     color: #1E3A5F;
     opacity: 1;
   }
-  html.light #search-input {
+  html[data-mode="light"] #search-input {
     background: transparent;
     border: none;
     color: #1E3A5F;
     font-family: 'JetBrains Mono', monospace;
   }
-  html.light #search-input::placeholder {
+  html[data-mode="light"] #search-input::placeholder {
     color: #94A3B8;
   }
-  html.light #search-input:focus {
+  html[data-mode="light"] #search-input:focus {
     outline: none;
     box-shadow: none;
   }
