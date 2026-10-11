@@ -13,15 +13,16 @@ Blog bilingüe (EN/ES) de investigación en seguridad ofensiva. Sitio estático 
 
 ```bash
 npm ci
-npm run vendor-assets   # copia Font Awesome, tocbot, mermaid, mathjax, etc. a static/lib/
-hugo server
+npm run dev   # vendor-assets (Font Awesome, tocbot, mermaid, mathjax... a static/lib/) + hugo server -D
 ```
+
+`hugo server` a secas no regenera `static/lib/`: sin él faltan los iconos de marcas y el índice (TOC) de los posts.
 
 `static/lib/`, `public/`, `resources/_gen/` y `assets/jsconfig.json` son salida generada: no se versionan.
 
 ## Despliegue
 
-El workflow `.github/workflows/deploy.yaml` corre **solo con push a `master`** (o `workflow_dispatch`). Construye con `hugo --gc --baseURL "https://blog.deviannt.com/"`, publica en GitHub Pages y purga la caché de Cloudflare (secrets `CF_ZONE_ID` y `CF_API_TOKEN`).
+El workflow `.github/workflows/deploy.yaml` corre **solo con push a `master`** (o `workflow_dispatch`). Construye con `hugo --gc --baseURL "https://blog.deviannt.com/"`, y publica en GitHub Pages. No purga Cloudflare: el HTML no se cachea ahí y los assets llevan fingerprint.
 
 Cualquier otra rama se puede subir sin que se publique nada. No lances `workflow_dispatch` sobre una rama que no quieras desplegar.
 
