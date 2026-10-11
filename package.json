@@ -4,7 +4,8 @@
   "description": "Dependencias solo para vendorizar assets self-hosted del theme Chirpy (ver scripts/vendor-assets.mjs)",
   "scripts": {
     "vendor-assets": "node scripts/vendor-assets.mjs",
-    "prebuild": "npm run vendor-assets"
+    "prebuild": "npm run vendor-assets",
+    "dev": "npm run vendor-assets && hugo server -D"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-free": "6.7.1",
