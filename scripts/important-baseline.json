@@ -1,8 +1,7 @@
 {
-  "total": 239,
+  "total": 215,
   "files": {
     "assets/css/overrides.css": 25,
-    "assets/css/sections/_08-sidebar-social-icon-boxes.scss": 24,
     "assets/css/sections/_13-right-panel-toc.scss": 55,
     "assets/css/sections/_16-night-owl-code-theme.scss": 44,
     "assets/css/sections/_28-misc-hover-fixes-trending-category-page.scss": 51,

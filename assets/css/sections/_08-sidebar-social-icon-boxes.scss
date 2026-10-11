@@ -5,36 +5,36 @@
    ────────────────────────────────────────────────────────────── */
 
 .dv-social-only {
-  border-top: 1px solid rgba(59, 130, 246, 0.1) !important;
+  border-top: 1px solid rgba(59, 130, 246, 0.1);
   padding-top: 0.5rem;
   width: 100%;
 }
-html[data-mode='light'] .dv-social-only { border-top: 1px solid var(--border-color) !important; }
+html[data-mode='light'] .dv-social-only { border-top: 1px solid var(--border-color); }
 
 .dv-social-icons {
-  display: flex !important;
-  flex-wrap: wrap !important;
-  gap: 8px !important;
-  padding: 0.75rem 0.5rem 1rem !important;
-  border-top: 1px solid rgba(59, 130, 246, 0.1) !important;
-  width: 100% !important;
-  justify-content: center !important;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0.75rem 0.5rem 1rem;
+  border-top: 1px solid rgba(59, 130, 246, 0.1);
+  width: 100%;
+  justify-content: center;
 }
-html[data-mode='light'] .dv-social-icons { border-top: 1px solid var(--border-color) !important; }
+html[data-mode='light'] .dv-social-icons { border-top: 1px solid var(--border-color); }
 
 .dv-social-icon-box {
   cursor: pointer;
   padding: 0;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  width: 36px !important;
-  height: 36px !important;
-  flex-shrink: 0 !important;
-  background: var(--dv-social-bg) !important;
-  border: 1.5px solid var(--dv-social-border) !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  background: var(--dv-social-bg);
+  border: 1.5px solid var(--dv-social-border);
   text-decoration: none;
-  color: var(--dv-accent) !important;
+  color: var(--dv-accent);
   transition:
     border-color 0.25s ease,
     background 0.25s ease,
@@ -42,17 +42,17 @@ html[data-mode='light'] .dv-social-icons { border-top: 1px solid var(--border-co
     box-shadow 0.25s ease;
 
   i {
-    font-size: 0.85rem !important;
+    font-size: 0.85rem;
     color: var(--dv-accent);
     transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
   }
   &:hover {
-    border-color: var(--dv-primary) !important;
-    background: var(--dv-social-hover-bg) !important;
-    transform: translateY(-2px) !important;
+    border-color: var(--dv-primary);
+    background: var(--dv-social-hover-bg);
+    transform: translateY(-2px);
     box-shadow: var(--dv-social-hover-shadow);
     i {
-      transform: scale(1.15) !important;
+      transform: scale(1.15);
       color: var(--dv-social-icon-hover);
     }
   }
