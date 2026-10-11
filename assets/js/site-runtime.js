@@ -5,20 +5,15 @@
  * IIFE #1 (boot, se ejecuta de inmediato):
  *   - restaura dark/light mode desde localStorage antes del primer paint
  *   - redirect a /es/404/ si el 404 corresponde a sesión en español
- *   - cachea el avatar en localStorage (evita refetch en cada carga)
+ *   - limpia la caché de avatar antigua y guarda la preferencia blog_lang al cambiar de idioma
  *
  * IIFE #2 (interacciones, se activa en load/DOMContentLoaded):
  *   - animación del título (dv-title-name)
  *   - toggle de tema (#mode-toggle)
- *   - click handler mínimo (anclas con offset de TOC, cambio de idioma, corrección /es)
- *   - guard de TOC visible + guard del <link> de syntax highlighting
+ *   - anclas con offset de TOC
+ *   - guard de TOC visible
  *
- * Nota: esto es más que "avatar/dark-mode/404" — el archivo original
- * traía además todo el router soft-nav y la animación de título en el
- * mismo <script> gigante; se conservó junto porque ambas IIFEs comparten
- * funciones (reformatDatesDelayed, ensureTocVisible, initTitle) y romperlas
- * en más archivos requeriría exponerlas en window. Si se quiere separar
- * aún más, ese es el corte natural.
+ * Nota: el router soft-nav ya no existe; la navegación es nativa del navegador.
  */
 (function(){
   try {
@@ -56,64 +51,6 @@
 })();
 
 (function () {
-
-  var __dvSyntaxBaseHref = (function() {
-    var el = document.getElementById('dv-syntax-css');
-    if (el) return (el.getAttribute('href') || '').split('?')[0];
-    var found = '';
-    document.querySelectorAll('link[rel="stylesheet"]').forEach(function(l) {
-      var h = l.getAttribute('href') || '';
-      if (h.includes('syntax')) found = h.split('?')[0];
-    });
-    return found;
-  })();
-
-  function dvGuardSyntaxCSS() {
-    document.querySelectorAll('link[rel="stylesheet"]').forEach(function(link) {
-      if (link.id === 'dv-syntax-css') return;
-      var href = link.getAttribute('href') || '';
-      if (href.includes('syntax')) {
-        link.parentNode.removeChild(link);
-      }
-    });
-    if (__dvSyntaxBaseHref && !document.getElementById('dv-syntax-css')) {
-      var restored = document.createElement('link');
-      restored.rel  = 'stylesheet';
-      restored.id   = 'dv-syntax-css';
-      restored.href = __dvSyntaxBaseHref;
-      document.head.appendChild(restored);
-    }
-  }
-
-  var __dvHomeJsRef  = [null];
-  var __dvThemeJsRef = [null];
-
-  function dvRunBundle(cacheRef, path) {
-    if (cacheRef[0] !== null) {
-      try { (new Function(cacheRef[0]))(); } catch(e) {}
-      return;
-    }
-    fetch(path)
-      .then(function(r) { return r.text(); })
-      .then(function(code) {
-        cacheRef[0] = code;
-        try { (new Function(cacheRef[0]))(); } catch(e) {}
-      })
-      .catch(function() {});
-  }
-
-  function reformatDates() {
-    dvRunBundle(__dvHomeJsRef,  '/js/home.js');
-    dvRunBundle(__dvThemeJsRef, '/js/modules/theme.js');
-  }
-
-  function reformatDatesDelayed() {
-    reformatDates();
-    requestAnimationFrame(function() {
-      requestAnimationFrame(function() { reformatDates(); });
-    });
-    setTimeout(reformatDates, 500);
-  }
 
   var __tocObserver = null;
 
@@ -326,11 +263,6 @@
     if (!a) return;
     var href = a.getAttribute('href');
 
-    if (a.getAttribute('data-hard-nav') === 'true') {
-      e.preventDefault();
-      if (href) location.href = href;
-      return;
-    }
     if (!href) return;
 
     if (href.charAt(0) === '#') {
@@ -350,17 +282,9 @@
       return;
     }
 
-    var curEs = /^\/es(\/|$)/.test(location.pathname);
-    var tgtEs = /^\/es(\/|$)/.test(fullUrl.pathname);
-    if (curEs && !tgtEs && a.closest('#sidebar')) {
-      e.preventDefault();
-      location.href = '/es' + (fullUrl.pathname.charAt(0) === '/' ? '' : '/') + fullUrl.pathname + fullUrl.search + fullUrl.hash;
-    }
   });
 
   window.addEventListener('load', function() {
-    reformatDatesDelayed();
-    dvGuardSyntaxCSS();
     requestAnimationFrame(function() {
       requestAnimationFrame(function() {
         var animate = isPostPath(location.pathname) ||
