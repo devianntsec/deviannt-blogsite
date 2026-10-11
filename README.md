@@ -22,7 +22,7 @@ npm run dev   # vendor-assets (Font Awesome, tocbot, mermaid, mathjax... a stati
 
 ## Despliegue
 
-El workflow `.github/workflows/deploy.yaml` corre **solo con push a `master`** (o `workflow_dispatch`). Construye con `hugo --gc --baseURL "https://blog.deviannt.com/"`, y publica en GitHub Pages. No purga Cloudflare: el HTML no se cachea ahí y los assets llevan fingerprint.
+El workflow `.github/workflows/deploy.yaml` corre **solo con push a `master`** (o `workflow_dispatch`). Construye con `hugo --gc --baseURL "https://blog.deviannt.com/"` y publica en GitHub Pages. No purga Cloudflare: el HTML no se cachea ahí y los assets llevan fingerprint.
 
 Cualquier otra rama se puede subir sin que se publique nada. No lances `workflow_dispatch` sobre una rama que no quieras desplegar.
 
