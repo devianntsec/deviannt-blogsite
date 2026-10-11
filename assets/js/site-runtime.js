@@ -25,7 +25,7 @@
     }
   } catch(e) {}
 
-  if (window.__dv404) {
+  if (document.querySelector('meta[name="dv-404"]')) {
     try {
       var lastLang = sessionStorage.getItem('dv-lang');
       if (lastLang === 'es') { location.replace('/es/404/'); }
@@ -46,6 +46,28 @@
     if (!a) return;
     try { document.cookie = 'blog_lang=' + a.getAttribute('data-set-lang') + ';path=/;max-age=31536000;SameSite=Lax'; } catch(err) {}
   }, true);
+
+  /* Botón de email del sidebar: copia al portapapeles (antes un onclick inline, bloqueado por la CSP). */
+  document.addEventListener('click', function(e) {
+    var btn = e.target.closest && e.target.closest('button[data-email]');
+    if (!btn) return;
+    var email = btn.getAttribute('data-email');
+    var lang = document.documentElement.getAttribute('lang') || 'en';
+    var msg = lang === 'es'
+      ? '¡' + email + ' copiado al portapapeles!'
+      : email + ' copied to clipboard!';
+    navigator.clipboard.writeText(email).then(function() {
+      var t = document.getElementById('dv-copy-toast');
+      if (!t) {
+        t = document.createElement('div');
+        t.id = 'dv-copy-toast';
+        document.body.appendChild(t);
+      }
+      t.textContent = msg;
+      t.classList.add('visible');
+      setTimeout(function() { t.classList.remove('visible'); }, 2500);
+    }).catch(function() {});
+  });
 })();
 
 (function () {
@@ -374,4 +396,24 @@
 
     viewport.style.cursor = 'default';
   };
+})();
+
+/* Diagramas: el shortcode solo marca el contenedor (data-dv-diagram / data-dv-height) y esto lo inicializa
+   (antes: <script> y style inline en cada shortcode, bloqueados por la CSP). */
+(function() {
+  function initDiagrams() {
+    if (!window.__dvDiagramInit) return;
+    document.querySelectorAll('.dv-diagram-wrap[data-dv-diagram]').forEach(function(w) {
+      if (w.getAttribute('data-dv-ready')) return;
+      w.setAttribute('data-dv-ready', '1');
+      var h = (parseInt(w.getAttribute('data-dv-height'), 10) || 240) + 'px';
+      var c = w.querySelector('.dv-diagram-canvas');
+      var s = w.querySelector('.dv-diagram-svg');
+      if (c) c.style.minHeight = h;
+      if (s) { s.style.minHeight = h; s.style.display = 'block'; }
+      window.__dvDiagramInit(w.id);
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initDiagrams);
+  else initDiagrams();
 })();

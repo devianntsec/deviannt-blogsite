@@ -2,13 +2,11 @@
 {{- $label   := .Get "label"  | default "" -}}
 {{- $height  := .Get "height" | default "240" -}}
 {{- $id      := printf "dv-diag-%d" .Ordinal -}}
-{{- $hpx     := printf "min-height:%spx" $height | safeCSS -}}
-{{- $hpxsvg  := printf "min-height:%spx;display:block" $height | safeCSS -}}
 
 {{- $a11yTitle := $title | default $label | default "Diagram" -}}
 {{- $a11yDesc  := $label | default $title -}}
 
-<div class="dv-diagram-wrap" id="{{ $id }}">
+<div class="dv-diagram-wrap" id="{{ $id }}" data-dv-diagram="1" data-dv-height="{{ $height }}">
   {{- if $title }}
   <div class="dv-diagram-title">{{ $title }}</div>
   {{- end }}
@@ -21,11 +19,10 @@
       {{- if $label }}
       <div class="dv-diagram-label">// {{ $label }}</div>
       {{- end }}
-      <div class="dv-diagram-canvas" style="{{ $hpx }}">
+      <div class="dv-diagram-canvas">
         <svg class="dv-diagram-svg"
              xmlns="http://www.w3.org/2000/svg"
              width="100%"
-             style="{{ $hpxsvg }}"
              role="img"
              aria-labelledby="{{ $id }}-svg-title{{ if $a11yDesc }} {{ $id }}-svg-desc{{ end }}">
           <title id="{{ $id }}-svg-title">{{ $a11yTitle }}</title>
@@ -70,5 +67,3 @@
     </div>
   </div>
 </div>
-
-<script>window.__dvDiagramInit && window.__dvDiagramInit('{{ $id }}');</script>

@@ -20,7 +20,7 @@
           Trending Posts
         {{- end -}}
       </h2>
-      <ul class="content list-unstyled ps-0 pb-1 ms-1 mt-2" style="font-size: 0.8em;">
+      <ul class="content list-unstyled ps-0 pb-1 ms-1 mt-2 dv-trending-list">
         {{ range $slugs }}
           {{ $page := index $pageMap . }}
           {{ with $page }}

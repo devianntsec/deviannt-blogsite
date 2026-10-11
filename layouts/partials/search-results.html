@@ -1,0 +1,13 @@
+<div id="search-result-wrapper" class="d-flex justify-content-center d-none">
+  <div class="col-11 content">
+    <div id="search-hints">
+      {{ partial "trending-tags.html" . }}
+    </div>
+    <div id="search-results" class="d-flex flex-wrap justify-content-center text-muted mt-3"
+         data-json="{{ path.Join .Site.Home.RelPermalink "index.json" }}"
+         data-no-results="{{ i18n "search.no_results" }}"></div>
+  </div>
+</div>
+
+{{- $search := resources.Get "js/search.js" | minify | fingerprint -}}
+<script src="{{ $search.RelPermalink }}" defer></script>
