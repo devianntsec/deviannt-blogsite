@@ -18,7 +18,7 @@ description = "Annais Molina Fuentes (devianntsec) — offensive security resear
 
 [analytics]
   [analytics.cloudflare]
-    id = "76aea43575a443d1aabf00530015e1c0"
+    id = ""  # beacon manual desactivado: Cloudflare inyecta el automatico (zona). Token anterior: 76aea43575a443d1aabf00530015e1c0
 
 [social]
   name = "Annais Molina Fuentes"
