@@ -62,6 +62,10 @@
     <link rel="stylesheet" href="{{ $data.glightbox.css | relURL }}">
   {{ end }}
   <!-- Scripts -->
+  <!-- Tema: dv-mode es el único dueño. Va ANTES de theme.js para evitar parpadeo. -->
+  <script>
+    (function(){try{var m=localStorage.getItem('dv-mode');m=(m==='light')?'light':'dark';var d=document.documentElement;d.classList.remove('dark','light');d.classList.add(m);d.setAttribute('data-mode',m);sessionStorage.setItem('mode',m);}catch(e){document.documentElement.setAttribute('data-mode','dark');}})();
+  </script>
   <script src="{{ $theme.RelPermalink }}"></script>
   {{ partial "js-selector.html" . }}
   {{ if hugo.IsProduction }}
