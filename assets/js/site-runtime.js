@@ -284,7 +284,7 @@
      THEME TOGGLE - solo cambia el modo, sin JS innecesario
   ------------------------------------------------------------ */
   function applyMode(next) {
-    try { localStorage.setItem('dv-mode', next); } catch(e) {}
+    try { localStorage.setItem('dv-mode', next); sessionStorage.setItem('mode', next); } catch(e) {}
     document.documentElement.classList.remove('dark', 'light');
     document.documentElement.classList.add(next);
     document.documentElement.setAttribute('data-mode', next);
@@ -305,24 +305,6 @@
       return;
     }
     btn.dataset.dvThemeInit = '1';
-
-    /*
-     * El tema Chirpy trae su propio listener nativo (Theme.flip(), vía
-     * mode-toggle.js) que se engancha a este mismo botón durante la carga
-     * (commons.js con defer, corre antes que este script porque este
-     * bloque se dispara recién en window.load). Si dejamos ambos, cada
-     * click dispara los dos sistemas y se pisan entre sí — el de Chirpy
-     * limpia el atributo data-mode, el nuestro lo vuelve a fijar, y según
-     * el orden de ejecución el resultado visual queda inconsistente hasta
-     * el próximo reload (que sí respeta la preferencia guardada).
-     *
-     * Clonamos el botón para descartar cualquier listener ya adjunto
-     * (clonar un nodo NO copia sus event listeners) y enganchamos el
-     * nuestro sobre el clon limpio, dejando un solo dueño del toggle.
-     */
-    var clean = btn.cloneNode(true);
-    btn.parentNode.replaceChild(clean, btn);
-    btn = clean;
 
     var val = btn.querySelector('.dv-theme-select__val');
     if (val) val.textContent = currentMode();
