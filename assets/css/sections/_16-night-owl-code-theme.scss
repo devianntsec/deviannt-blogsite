@@ -1,5 +1,8 @@
 @use 'tokens' as *;
 
+/* NOTA: los !important de esta seccion anulan estilos de tablas de datos (_19)
+   que tambien alcanzan a table.lntable. Quitarlos exige separar esas reglas. */
+
 /* ──────────────────────────────────────────────────────────────
    16. NIGHT OWL CODE THEME (Chroma override)
    ────────────────────────────────────────────────────────────── */

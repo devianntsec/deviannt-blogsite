@@ -1,9 +1,8 @@
 {
-  "total": 85,
+  "total": 51,
   "files": {
     "assets/css/overrides.css": 1,
-    "assets/css/sections/_16-night-owl-code-theme.scss": 44,
-    "assets/css/sections/_30-prefers-reduced-motion-focus-visible.scss": 7,
-    "assets/css/syntax.css": 33
+    "assets/css/sections/_16-night-owl-code-theme.scss": 43,
+    "assets/css/sections/_30-prefers-reduced-motion-focus-visible.scss": 7
   }
 }
