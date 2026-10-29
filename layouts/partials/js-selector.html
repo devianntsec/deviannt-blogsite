@@ -34,23 +34,6 @@
   {{ end }}
 {{ end }}
 
-{{ if or $is_home (eq .Type "post") (eq .Layout "archives") (eq .Type "categories") (eq .Type "tags") }}
-  {{ $locale := strings.TrimSuffix (path.Ext .Lang) .Lang }}
-  {{ with $data.dayjs.js.common }}
-    {{ $urls = $urls | append . }}
-  {{ end }}
-  {{ with replace $data.dayjs.js.locale ":LOCALE" $locale }}
-    {{ $urls = $urls | append . }}
-  {{ end }}
-  {{ with $data.dayjs.js.relativeTime }}
-    {{ $urls = $urls | append . }}
-  {{ end }}
-  {{ with $data.dayjs.js.localizedFormat }}
-    {{ $urls = $urls | append . }}
-  {{ end }}
-  {{ $urls = $urls | append "/lib/dayjs/plugin/utc.js" }}
-{{ end }}
-
 {{ if or (strings.Contains .Content "<h2") (strings.Contains .Content "<h3") }}
 {{ if and site.Params.toc (default true .Params.toc) }}
 {{ with $data.toc.js }}
