@@ -16,3 +16,4 @@ node_modules/
 
 # Artefactos locales
 repomix-output.xml
+.venv-tools/
