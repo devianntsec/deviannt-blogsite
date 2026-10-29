@@ -20,9 +20,8 @@
 
 <!-- layout specified -->
 {{ if or (eq .Type "post") (eq .Layout "page") $is_home }}
-  {{ with $data.lazyPolyfill.js }}
-    {{ $urls = $urls | append . }}
-  {{ end }}
+  {{/* lazyPolyfill eliminado: la clave del yaml es "lazy-polyfill", así que nunca cargaba, y el
+       lazy-loading nativo ya lo soportan todos los navegadores. */}}
 
   {{ if not $is_home }}
 <!-- image lazy-loading & popup & clipboard -->
@@ -91,14 +90,13 @@
   {{ $js = "misc" }}
 {{ end }}
 
-{{- $script := resources.Get (printf "js/%s.js" $js) | js.Build $jsOpts -}}
+{{- $script := resources.Get (printf "js/%s.js" $js) | js.Build $jsOpts | fingerprint -}}
 <script defer src="{{ $script.RelPermalink }}"></script>
 
 {{ if .Params.math }}
 <!-- MathJax -->
   {{ $mathjaxConfig := resources.Get "js/mathjax.js" | minify | fingerprint }}
 <script src="{{ $mathjaxConfig.RelPermalink }}" defer></script>
-<script async src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
 <script id="MathJax-script" src="{{ $data.mathjax.js }}" defer></script>
 {{ end }}
 
