@@ -66,3 +66,13 @@ Las capturas estáticas no ven `.active`, `.show`, `.collapse` ni estados que ac
 
 - `master`: lo que se publica.
 - Todo trabajo va en ramas propias y se integra a `master` solo cuando está revisado.
+
+## Overrides de layouts
+
+`layouts/` contiene personalizaciones sobre `themes/hugo-theme-chirpy/layouts/`. Todas difieren del tema original y son necesarias para el aspecto y el comportamiento del sitio. No las borres pensando que son duplicados: se comprobó que ninguna es idéntica al tema.
+
+Los archivos del tema con el mismo nombre no se eliminan: forman parte del tema vendorizado y su historia se mantiene junta. Si actualizas el tema, revisa estos overrides uno por uno:
+
+- `404.html`, `index.html`, `_default/page.html`, `_default/archives.html`, `_default/baseof.html`, `_default/_markup/render-image.html`, `post/single.html`
+- `taxonomy/*.html`
+- `partials/head.html`, `partials/footer.html`, `partials/sidebar.html`, `partials/datetime.html`, `partials/language-selector.html`, `partials/metadata-hook.html`, `partials/js-selector.html`, `partials/search-results.html`
