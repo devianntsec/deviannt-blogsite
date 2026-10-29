@@ -37,10 +37,11 @@
     {{ end }}
   {{ end }}
   <!-- Theme style -->
+  {{/* Source map solo fuera de producción: en el sitio publicado no se genera ni se referencia. */}}
   {{ $opts := dict
     "transpiler" "dartsass"
     "targetPath" "css/main.css"
-    "enableSourceMap" true
+    "enableSourceMap" (not hugo.IsProduction)
   }}
   {{ $sass := resources.Get "scss/main.bundle.scss" }}
   {{ $style := $sass | toCSS $opts | minify | fingerprint }}

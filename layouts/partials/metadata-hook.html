@@ -8,8 +8,14 @@
     - JS        -> assets/js/site-runtime.js   (dark-mode boot, avatar
                    cache, redirect 404, animación de título, theme
                    toggle, soft-navigation, guard de TOC)
-    - CSS       -> assets/css/overrides.css    (parches con !important
-                   acumulados, antes en un <style> inline)
+    - CSS       -> assets/css/syntax.css + custom.scss + overrides.css
+                   (parches con !important acumulados, antes en un
+                   <style> inline), servidos como UN solo archivo.
+
+  CSS propio en un solo request: syntax -> custom -> overrides, en el MISMO
+  orden en que antes se enlazaban como tres <link> separados (el orden es
+  la cascada; no lo cambies sin pasar el kit vr/). Se concatena antes de
+  minificar y se aplica un único fingerprint.
 
   Todos los recursos llevan fingerprint: la URL cambia con el contenido,
   así que ni Cloudflare ni el navegador pueden servir una copia vieja
@@ -20,16 +26,17 @@
 
 {{ partial "seo-meta.html" . }}
 
-{{- $style   := resources.Get "css/custom.scss"    | toCSS (dict "transpiler" "dartsass") | minify | fingerprint -}}
-{{- $syntax  := resources.Get "css/syntax.css"     | minify | fingerprint -}}
-{{- $overr   := resources.Get "css/overrides.css"  | minify | fingerprint -}}
+{{- $style   := resources.Get "css/custom.scss"    | toCSS (dict "transpiler" "dartsass") -}}
+{{- $syntax  := resources.Get "css/syntax.css" -}}
+{{- $overr   := resources.Get "css/overrides.css" -}}
+{{- $siteCSS := slice $syntax $style $overr | resources.Concat "css/site.css" | minify | fingerprint -}}
 {{- $runtime := resources.Get "js/site-runtime.js" | minify | fingerprint -}}
-
-<link rel="stylesheet" href="{{ $syntax.Permalink }}" id="dv-syntax-css">
 
 {{- if eq .Kind "404" }}
 <meta name="dv-404" content="1">
 {{- end }}
+
+<link rel="stylesheet" href="{{ $siteCSS.Permalink }}">
 
 {{/*
   El script se carga sin defer/async, en la misma posición que el
@@ -38,6 +45,3 @@
   dark/light mode) y para restaurar el avatar cacheado a tiempo.
 */}}
 <script src="{{ $runtime.Permalink }}"></script>
-
-<link rel="stylesheet" href="{{ $style.Permalink }}">
-<link rel="stylesheet" href="{{ $overr.Permalink }}">

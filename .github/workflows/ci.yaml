@@ -40,5 +40,5 @@ jobs:
         with: { node-version: "20", cache: "npm" }
       - run: npm ci
       - run: npm run vendor-assets
-      - name: Build (valida que compila; no se sube)
-        run: hugo --gc --baseURL "http://localhost/"
+      - name: Build (valida que compila con minify; no se sube)
+        run: hugo --gc --minify --baseURL "http://localhost/"
