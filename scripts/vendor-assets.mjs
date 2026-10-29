@@ -63,15 +63,6 @@ copyFile(join(NM, "tocbot/dist/tocbot.min.js"), join(OUT, "tocbot/tocbot.min.js"
 console.log("→ mermaid");
 copyFile(join(NM, "mermaid/dist/mermaid.min.js"), join(OUT, "mermaid/mermaid.min.js"));
 
-console.log("→ dayjs");
-copyFile(join(NM, "dayjs/dayjs.min.js"), join(OUT, "dayjs/dayjs.min.js"));
-copyFile(join(NM, "dayjs/locale/en.js"), join(OUT, "dayjs/locale/en.js"));
-copyFile(join(NM, "dayjs/plugin/relativeTime.js"), join(OUT, "dayjs/plugin/relativeTime.js"));
-copyFile(join(NM, "dayjs/plugin/localizedFormat.js"), join(OUT, "dayjs/plugin/localizedFormat.js"));
-copyFile(join(NM, "dayjs/plugin/utc.js"), join(OUT, "dayjs/plugin/utc.js"));
-// Si usas otros idiomas en el sitio, agrega aquí más locales, p.ej.:
-// copyFile(join(NM, "dayjs/locale/es.js"), join(OUT, "dayjs/locale/es.js"));
-
 console.log("→ glightbox");
 copyFile(join(NM, "glightbox/dist/css/glightbox.min.css"), join(OUT, "glightbox/glightbox.min.css"));
 copyFile(join(NM, "glightbox/dist/js/glightbox.min.js"), join(OUT, "glightbox/glightbox.min.js"));
