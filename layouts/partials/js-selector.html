@@ -66,8 +66,16 @@
 {{ end }}
 {{ end }}
 
+{{/*
+  Las librerías de terceros van con defer: ya no bloquean el primer render.
+  El orden de ejecución se conserva (los scripts defer corren en orden de
+  documento) y todas se ejecutan antes que el bundle propio (js/<pagina>.js),
+  que también es defer y se imprime después de este bucle. Los únicos
+  consumidores de estas librerías viven en ese bundle; ningún script inline
+  ni site-runtime.js / search.js las usan.
+*/}}
 {{ range $urls }}
-<script src="{{ . }}"></script>
+<script defer src="{{ . }}"></script>
 {{ end }}
 
 {{ $js := "commons" }}

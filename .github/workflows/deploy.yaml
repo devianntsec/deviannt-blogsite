@@ -60,7 +60,7 @@ jobs:
         run: npm run vendor-assets
 
       - name: Build
-        run: hugo --gc --baseURL "https://blog.deviannt.com/"
+        run: hugo --gc --minify --baseURL "https://blog.deviannt.com/"
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3

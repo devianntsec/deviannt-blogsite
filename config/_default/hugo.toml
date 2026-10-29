@@ -27,3 +27,12 @@ theme = "hugo-theme-chirpy"
   [module]
 [[module.imports]]
   path = "github.com/gohugoio/hugo-mod-bootstrap-scss/v5"
+
+# Minify del HTML/JSON/RSS generado (se activa con `hugo --minify` en CI y deploy).
+# keepWhitespace = true: conserva los espacios entre elementos inline, que es lo
+# que más suele alterar el aspecto (iconos, tags, botones del sidebar). Es la
+# opción conservadora; si `npm run check` en vr/ sale limpio, puedes probar
+# `false` para ahorrar unos bytes más.
+[minify]
+  [minify.tdewolff.html]
+    keepWhitespace = true
