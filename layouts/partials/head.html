@@ -5,7 +5,7 @@
   "minify" (eq hugo.Environment "production")
 -}}
 {{- $themeOpts := merge $jsOpts (dict "global" "Theme") -}}
-{{- $theme := resources.Get "js/modules/theme.js" | js.Build $themeOpts -}}
+{{- $theme := resources.Get "js/modules/theme.js" | js.Build $themeOpts | fingerprint -}}
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="theme-color" content="#000000" data-dark="#000000" data-light="#F5F7FA">
@@ -35,6 +35,10 @@
         <link rel="{{ .rel }}" href="{{ $url }}" {{ if isset . "opts" }}{{ delimit .opts " " | safeHTMLAttr }}{{ end }}>
       {{ end }}
     {{ end }}
+  {{ end }}
+  <!-- Host de las imágenes de los posts: abre la conexión antes de que el parser llegue al <img> -->
+  {{ if eq .Type "post" }}
+  <link rel="preconnect" href="https://img.deviannt.com">
   {{ end }}
   <!-- Theme style -->
   {{/* Source map solo fuera de producción: en el sitio publicado no se genera ni se referencia. */}}

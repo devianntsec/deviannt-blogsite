@@ -3,7 +3,7 @@
  * vendor-assets.mjs
  *
  * Copia los assets reales (Font Awesome, webfonts, tocbot, mermaid, dayjs,
- * glightbox, loading-attribute-polyfill, clipboard, mathjax) desde
+ * glightbox, clipboard, mathjax) desde
  * node_modules hacia static/lib/, respetando EXACTAMENTE las rutas que pide
  * el theme Chirpy (Hugo) cuando `self_host = true`
  * (ver _vendor/.../data/origin/basic.yaml).
@@ -75,13 +75,6 @@ copyFile(join(NM, "dayjs/plugin/utc.js"), join(OUT, "dayjs/plugin/utc.js"));
 console.log("→ glightbox");
 copyFile(join(NM, "glightbox/dist/css/glightbox.min.css"), join(OUT, "glightbox/glightbox.min.css"));
 copyFile(join(NM, "glightbox/dist/js/glightbox.min.js"), join(OUT, "glightbox/glightbox.min.js"));
-
-console.log("→ loading-attribute-polyfill");
-// Nota: esta versión del paquete no publica un build .min por separado;
-// copiamos el build normal con el nombre .min que espera el theme
-// (funciona igual, solo pesa un poco más sin minificar).
-copyFile(join(NM, "loading-attribute-polyfill/dist/loading-attribute-polyfill.css"), join(OUT, "loading-attribute-polyfill/loading-attribute-polyfill.min.css"));
-copyFile(join(NM, "loading-attribute-polyfill/dist/loading-attribute-polyfill.umd.js"), join(OUT, "loading-attribute-polyfill/loading-attribute-polyfill.umd.min.js"));
 
 console.log("→ clipboard");
 copyFile(join(NM, "clipboard/dist/clipboard.min.js"), join(OUT, "clipboard/clipboard.min.js"));

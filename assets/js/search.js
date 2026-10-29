@@ -47,14 +47,31 @@
     }
 
     init() {
-      this.loadSearchIndex();
-      this.searchInput.addEventListener('input', (event) => {
-        if (!this.searchIndex) {
-          this.resultsContainer.innerHTML = '<li class="search-message">Cargando índice de búsqueda...</li>';
+      // El índice (texto completo de todos los posts) ya NO se descarga al abrir la página:
+      // solo cuando la persona enfoca el buscador o empieza a escribir.
+      this.indexPromise = null;
+      this.searchInput.addEventListener('focus', () => this.ensureIndex(), { once: true });
+      this.searchInput.addEventListener('input', () => {
+        if (this.searchIndex) {
+          this.performSearch(this.searchInput.value);
           return;
         }
-        this.performSearch(this.searchInput.value);
+        this.resultsContainer.innerHTML = '<li class="search-message">Cargando índice de búsqueda...</li>';
+        this.ensureIndex().then(() => {
+          // Re-ejecuta con lo que haya escrito mientras cargaba el índice.
+          if (this.searchIndex) this.performSearch(this.searchInput.value);
+        });
       });
+    }
+
+    // Descarga el índice una sola vez; si falla, permite reintentar en el siguiente evento.
+    ensureIndex() {
+      if (!this.indexPromise) {
+        this.indexPromise = this.loadSearchIndex().then(() => {
+          if (!this.searchIndex) this.indexPromise = null;
+        });
+      }
+      return this.indexPromise;
     }
 
     // Carga el índice de búsqueda
