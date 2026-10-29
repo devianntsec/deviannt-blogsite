@@ -56,7 +56,7 @@
                 {{ $lqip = printf `lqip="%s"` .Params.image.lqip }}
               {{ end }}
               <div class="col-md-5">
-                <img src="{{ $src }}" alt="{{ $alt }}" {{ $lqip | safeHTMLAttr }}>
+                <img src="{{ partial "img-cdn.html" (dict "src" $src "width" 800) }}" alt="{{ $alt }}" width="800" height="420" loading="lazy" decoding="async" {{ $lqip | safeHTMLAttr }}>
               </div>
               {{ $card_body_col = "7" }}
             {{ end }}

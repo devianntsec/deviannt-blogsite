@@ -1,0 +1,10 @@
+{{- /* Convierte una URL de img.deviannt.com en la variante optimizada de Cloudflare.
+     Uso: {{ partial "img-cdn.html" (dict "src" $src "width" 800) }} */ -}}
+{{- $src := .src -}}
+{{- $w := default 1200 .width -}}
+{{- if strings.HasPrefix $src "https://img.deviannt.com/" -}}
+  {{- $path := strings.TrimPrefix "https://img.deviannt.com/" $src -}}
+  {{- printf "https://blog.deviannt.com/cdn-cgi/image/format=auto,fit=scale-down,width=%d/https://img.deviannt.com/%s" $w $path -}}
+{{- else -}}
+  {{- $src -}}
+{{- end -}}
