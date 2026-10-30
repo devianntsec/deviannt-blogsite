@@ -1,0 +1,40 @@
+{{ define "main" }}
+  {{ $items := slice }}
+  {{ range .Site.RegularPages }}
+    {{ if .Params.cve_id }}
+      {{ $items = $items | append . }}
+    {{ end }}
+  {{ end }}
+
+  <article class="px-1">
+    <header>
+      <h1>{{ .Title }}</h1>
+      {{ with .Description }}
+        <p class="post-desc fw-light mb-4">{{ . }}</p>
+      {{ end }}
+    </header>
+
+    <div class="table-responsive">
+      <table class="table table-hover cve-table">
+        <thead>
+          <tr>
+            <th>CVE</th>
+            <th>{{ if eq .Site.Language.Lang "es" }}Análisis{{ else }}Write-up{{ end }}</th>
+            <th>CVSS</th>
+            <th>{{ if eq .Site.Language.Lang "es" }}Fecha{{ else }}Date{{ end }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{ range sort $items "Date" "desc" }}
+            <tr>
+              <td><a href="https://www.cve.org/CVERecord?id={{ .Params.cve_id }}" target="_blank" rel="noopener">{{ .Params.cve_id }}</a></td>
+              <td><a href="{{ .RelPermalink }}">{{ .Title }}</a></td>
+              <td>{{ with .Params.cvss }}{{ . }}{{ end }}</td>
+              <td>{{ .Date.Format "2006-01-02" }}</td>
+            </tr>
+          {{ end }}
+        </tbody>
+      </table>
+    </div>
+  </article>
+{{ end }}
