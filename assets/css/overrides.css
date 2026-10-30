@@ -56,3 +56,17 @@
     outline: none;
     box-shadow: none;
   }
+/* Índice de CVEs: tabla transparente que hereda color del tema (claro y oscuro) */
+.cve-table.table > :not(caption) > * > * {
+  background-color: transparent;
+  color: inherit;
+  border-bottom-color: rgba(128, 128, 128, 0.3);
+  box-shadow: none;
+}
+.cve-table.table-hover > tbody > tr:hover > * {
+  background-color: rgba(128, 128, 128, 0.12);
+  color: inherit;
+}
+.cve-table thead th {
+  font-weight: 600;
+}
