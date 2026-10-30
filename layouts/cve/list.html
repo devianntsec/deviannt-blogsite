@@ -5,6 +5,7 @@
       {{ $items = $items | append . }}
     {{ end }}
   {{ end }}
+  {{ $es := eq .Site.Language.Lang "es" }}
 
   <article class="px-1">
     <header>
@@ -14,19 +15,24 @@
       {{ end }}
     </header>
 
+    <div class="d-flex flex-wrap gap-2 mb-3" role="group" aria-label="{{ if $es }}Ordenar{{ else }}Sort{{ end }}">
+      <button type="button" class="post-tag btn btn-outline-primary active" data-sort="date" aria-pressed="true">{{ if $es }}Fecha{{ else }}Date{{ end }}</button>
+      <button type="button" class="post-tag btn btn-outline-primary" data-sort="cvss" aria-pressed="false">{{ if $es }}Severidad (CVSS){{ else }}Severity (CVSS){{ end }}</button>
+    </div>
+
     <div class="table-responsive">
       <table class="table table-hover cve-table">
         <thead>
           <tr>
             <th>CVE</th>
-            <th>{{ if eq .Site.Language.Lang "es" }}Análisis{{ else }}Write-up{{ end }}</th>
+            <th>{{ if $es }}Análisis{{ else }}Write-up{{ end }}</th>
             <th>CVSS</th>
-            <th>{{ if eq .Site.Language.Lang "es" }}Fecha{{ else }}Date{{ end }}</th>
+            <th>{{ if $es }}Fecha{{ else }}Date{{ end }}</th>
           </tr>
         </thead>
         <tbody>
           {{ range sort $items "Date" "desc" }}
-            <tr>
+            <tr data-date="{{ .Date.Format "2006-01-02" }}" data-cvss="{{ with .Params.cvss }}{{ . }}{{ else }}0{{ end }}">
               <td><a href="https://www.cve.org/CVERecord?id={{ .Params.cve_id }}" target="_blank" rel="noopener">{{ .Params.cve_id }}</a></td>
               <td><a href="{{ .RelPermalink }}">{{ .Title }}</a></td>
               <td>{{ with .Params.cvss }}{{ . }}{{ end }}</td>
@@ -37,4 +43,6 @@
       </table>
     </div>
   </article>
+
+  <script src="{{ "/js/cve-sort.js" | relURL }}" defer></script>
 {{ end }}
