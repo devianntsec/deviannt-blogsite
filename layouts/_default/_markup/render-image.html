@@ -1,8 +1,9 @@
 {{- /*
   layouts/_default/_markup/render-image.html
   Override del hook del tema (copia de themes/hugo-theme-chirpy/layouts/_default/_markup/render-image.html).
-  Añade loading/decoding. Las dimensiones no se pueden calcular (las imágenes viven en img.deviannt.com),
-  pero se pueden indicar por imagen en el markdown para evitar saltos de layout:
+  Añade loading/decoding. Las imágenes de img.deviannt.com se sirven como miniatura vía Cloudflare
+  (format=auto, width=1200). El enlace del popup conserva la URL original a tamaño completo.
+  Las dimensiones se pueden indicar por imagen en el markdown para evitar saltos de layout:
       ![alt](url){width=1200 height=700}
   Para forzar carga inmediata de una imagen concreta:  ![alt](url){loading=eager}
 */ -}}
@@ -20,12 +21,13 @@
     {{- end -}}
   {{- end -}}
 {{- end -}}
+{{- $thumb := partial "img-cdn.html" (dict "src" $src "width" 1200) -}}
 {{- /* La primera imagen del documento carga de inmediato; el resto, perezosa. */ -}}
 {{- $loading := or .Attributes.loading (cond (eq .Ordinal 0) "eager" "lazy") -}}
 {{- $decoding := or .Attributes.decoding "async" -}}
 
 <a href="{{ $src }}" class="popup img-link {{ .Attributes.class }}">
-  <img src="{{ $src }}" alt="{{ .PlainText }}" loading="{{ $loading }}" decoding="{{ $decoding }}"
+  <img src="{{ $thumb }}" alt="{{ .PlainText }}" loading="{{ $loading }}" decoding="{{ $decoding }}"
     {{- with .Title }} title="{{ . }}" {{- end -}}
     {{- range $k, $v := .Attributes -}}
       {{- if and $v (not (in (slice "class" "loading" "decoding" "caption") $k)) -}}
